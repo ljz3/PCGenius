@@ -79,7 +79,16 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_parts:
                 fragment = new PartsFragment();
                 break;
-        }
+            case R.id.nav_settings:
+                fragment = new SettingsFragment();
+                break;
+            case R.id.nav_help:
+                fragment = new HelpAndFeedbackFragment();
+                break;
+            case R.id.nav_tos:
+                fragment = new TermsOfServiceFragment();
+                break;
+            }
         //replacing the fragment
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
