@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -59,7 +58,7 @@ public class HomeFragment extends Fragment {
         int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
-        ListView androidListView = getView().findViewById(R.id.list);
+        ListView androidListView = getView().findViewById(R.id.list_home);
         androidListView.setAdapter(simpleAdapter);
     }
     }

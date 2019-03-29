@@ -12,10 +12,11 @@
         android:text="Home"
         android:textSize="20sp"
         android:layout_gravity="center"
+        android:layout_marginTop="100dp"
         />
 
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/list_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"
