@@ -17,18 +17,18 @@ public class HomeFragment extends Fragment {
 
     String[] listviewTitle = new String[]{
             "ListView Title 1", "ListView Title 2", "ListView Title 3", "ListView Title 4", "ListView Title 5",
-            "ListView Title 6", "ListView Title 7", "ListView Title 8","ListView Title 9","ListView Title 10",
+            "ListView Title 6", "ListView Title 7", "ListView Title 8", "ListView Title 9", "ListView Title 10",
     };
 
 
     int[] listviewImage = new int[]{
-            R.drawable.image_icon, R.drawable.image_icon,R.drawable.image_icon,R.drawable.image_icon, R.drawable.image_icon,
-            R.drawable.image_icon,R.drawable.image_icon,R.drawable.image_icon,R.drawable.image_icon,R.drawable.image_icon,
+            R.drawable.image_icon, R.drawable.image_icon, R.drawable.image_icon, R.drawable.image_icon, R.drawable.image_icon,
+            R.drawable.image_icon, R.drawable.image_icon, R.drawable.image_icon, R.drawable.image_icon, R.drawable.image_icon,
     };
 
     String[] listviewShortDescription = new String[]{
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
-            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description","Android ListView Short Description","Android ListView Short Description",
+            "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
     };
 
     @Nullable
@@ -61,5 +61,5 @@ public class HomeFragment extends Fragment {
         ListView androidListView = getView().findViewById(R.id.list_home);
         androidListView.setAdapter(simpleAdapter);
     }
-    }
+}
 
