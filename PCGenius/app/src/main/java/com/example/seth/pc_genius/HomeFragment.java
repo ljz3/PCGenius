@@ -31,6 +31,10 @@ public class HomeFragment extends Fragment {
             "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description", "Android ListView Short Description",
     };
 
+    double[] listviewprice = new double[]{
+            1000.00,100.00,100.00,100.00,100.00,100.00,100.00,100.00,100.00,100.00
+    };
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,12 +54,13 @@ public class HomeFragment extends Fragment {
             hm.put("listview_title", listviewTitle[i]);
             hm.put("listview_discription", listviewShortDescription[i]);
             hm.put("listview_image", Integer.toString(listviewImage[i]));
+            hm.put("listview_price", "$"+Double.toString(listviewprice[i]));
             aList.add(hm);
         }
 
 
-        String[] from = {"listview_image", "listview_title", "listview_discription"};
-        int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
+        String[] from = {"listview_image", "listview_title", "listview_discription","listview_price"};
+        int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description,R.id.listview_item_price};
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
         ListView androidListView = getView().findViewById(R.id.list_home);
