@@ -48,7 +48,7 @@ public class BuildsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Home");
+        getActivity().setTitle("Builds");
         List<HashMap<String, String>> aList = new ArrayList<HashMap<String, String>>();
 
         for (int i = 0; i < 10; i++) {
