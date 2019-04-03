@@ -59,7 +59,7 @@ public class BuildsFragment extends Fragment {
         int[] to = {R.id.listview_image, R.id.listview_item_title, R.id.listview_item_short_description};
 
         SimpleAdapter simpleAdapter = new SimpleAdapter(getActivity().getBaseContext(), aList, R.layout.listview_activity, from, to);
-        ListView androidListView = getView().findViewById(R.id.list_build);
+        ListView androidListView = getView().findViewById(R.id.list_builds);
         androidListView.setAdapter(simpleAdapter);
     }
 }
