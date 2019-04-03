@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity
                 fragment = new PartsFragment();
                 break;
             case R.id.nav_search:
-                fragment = new PartsFragment();
+                fragment = new SearchFragment();
                 break;
             case R.id.nav_settings:
                 fragment = new SettingsFragment();
