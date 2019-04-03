@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity
     private void displaySelectedScreen(int itemId) {
         Fragment fragment = null;
 
-            switch (itemId) {
+        switch (itemId) {
             case R.id.nav_home:
                 fragment = new HomeFragment();
                 break;
@@ -77,6 +76,9 @@ public class MainActivity extends AppCompatActivity
                 fragment = new BuildsFragment();
                 break;
             case R.id.nav_parts:
+                fragment = new PartsFragment();
+                break;
+            case R.id.nav_search:
                 fragment = new PartsFragment();
                 break;
             case R.id.nav_settings:
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_tos:
                 fragment = new TermsOfServiceFragment();
                 break;
-            }
+        }
         //replacing the fragment
         if (fragment != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
