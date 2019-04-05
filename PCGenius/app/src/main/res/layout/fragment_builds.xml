@@ -14,6 +14,13 @@
         android:layout_gravity="center"
         />
 
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="addBuild"
+        android:text="Button" />
+
     <ListView
         android:id="@+id/list_builds"
         android:layout_width="match_parent"
