@@ -9,15 +9,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Parts"
-        android:textSize="20sp"
         android:layout_gravity="center"
-        />
+        android:text="Parts"
+        android:textSize="20sp" />
 
     <ListView
         android:id="@+id/list_parts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        />
+        android:layout_margin="20dp" />
 </LinearLayout>
