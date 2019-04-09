@@ -13,6 +13,12 @@ public class Part {
         mPrice = price;
         setmImageResourceId(image);
     }
+    public Part(String name,int image){
+        mName = name;
+        mDescription = "";
+        mPrice = 0.00;
+        setmImageResourceId(image);
+    }
 
     public int getmImageResourceId() {
         return mImageResourceId;
