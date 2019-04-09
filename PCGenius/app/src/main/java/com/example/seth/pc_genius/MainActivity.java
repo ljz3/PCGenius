@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import com.example.seth.pc_genius.BuildScreen.BuildsFragment;
 import com.example.seth.pc_genius.HomeScreen.HomeFragment;
 import com.example.seth.pc_genius.SavedPartsScreen.PartsFragment;
-import com.example.seth.pc_genius.SearchScreen.SearchFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

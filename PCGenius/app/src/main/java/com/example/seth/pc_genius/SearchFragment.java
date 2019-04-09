@@ -1,4 +1,4 @@
-package com.example.seth.pc_genius.SearchScreen;
+package com.example.seth.pc_genius;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,8 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.seth.pc_genius.R;
 
 public class SearchFragment extends Fragment {
 

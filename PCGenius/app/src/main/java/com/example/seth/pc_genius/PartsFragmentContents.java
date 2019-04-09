@@ -1,10 +1,7 @@
-package com.example.seth.pc_genius.SavedPartsScreen;
+package com.example.seth.pc_genius;
 
 import android.app.Fragment;
 import android.content.Context;
-
-import com.example.seth.pc_genius.PartObject.Part;
-import com.example.seth.pc_genius.R;
 
 import java.util.List;
 
