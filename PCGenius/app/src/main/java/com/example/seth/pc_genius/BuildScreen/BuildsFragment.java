@@ -17,8 +17,8 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.example.seth.pc_genius.Part;
-import com.example.seth.pc_genius.SavedPartsScreen.PartAdapter;
+import com.example.seth.pc_genius.PartObject.Part;
+import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
 
 import java.util.ArrayList;
