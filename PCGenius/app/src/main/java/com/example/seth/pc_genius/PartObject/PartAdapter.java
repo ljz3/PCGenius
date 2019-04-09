@@ -1,4 +1,4 @@
-package com.example.seth.pc_genius.SavedPartsScreen;
+package com.example.seth.pc_genius.PartObject;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.seth.pc_genius.Part;
 import com.example.seth.pc_genius.R;
 
 import java.util.List;

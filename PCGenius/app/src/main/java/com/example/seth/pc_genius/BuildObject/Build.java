@@ -1,32 +1,34 @@
-package com.example.seth.pc_genius;
+package com.example.seth.pc_genius.BuildObject;
 
-public class Part {
+import com.example.seth.pc_genius.PartObject.Part;
 
+import java.util.ArrayList;
+
+public class Build {
     private String mName;
     private String mDescription;
     private double mPrice;
-    private int mImageResourceId;
+    private ArrayList<Part> mParts;
 
-    public Part(String name, String description, double price, int image) {
+    public Build(String name, String description, double price, ArrayList<Part> parts) {
         mName = name;
         mDescription = description;
         mPrice = price;
-        setmImageResourceId(image);
+        mParts = parts;
     }
-    public Part(String name,int image){
+
+    public Build(String name, int image) {
         mName = name;
         mDescription = "";
         mPrice = 0.00;
-        setmImageResourceId(image);
     }
 
-    public int getmImageResourceId() {
-        return mImageResourceId;
+    public ArrayList<Part> getmParts() {
+        return mParts;
     }
 
-    public void setmImageResourceId(int mImageResourceId) {
-        if (mImageResourceId != -1)
-            this.mImageResourceId = mImageResourceId;
+    public void setmParts(ArrayList<Part> parts) {
+        mParts = parts;
     }
 
     public double getmPrice() {

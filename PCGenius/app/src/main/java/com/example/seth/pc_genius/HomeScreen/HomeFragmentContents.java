@@ -2,7 +2,7 @@ package com.example.seth.pc_genius.HomeScreen;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 
-import com.example.seth.pc_genius.Part;
+import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.R;
 
 import java.util.List;
