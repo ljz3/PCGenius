@@ -1,6 +1,9 @@
-package com.example.seth.pc_genius;
+package com.example.seth.pc_genius.HomeScreen;
 import android.content.Context;
 import android.support.v4.app.Fragment;
+
+import com.example.seth.pc_genius.Part;
+import com.example.seth.pc_genius.R;
 
 import java.util.List;
 public class HomeFragmentContents extends Fragment{
