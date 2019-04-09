@@ -23,8 +23,7 @@
             android:id="@+id/search_bar"
             android:layout_width="250dp"
             android:layout_height="18dp"
-            android:hint="Search"
-            />
+            android:hint="Search" />
 
     </LinearLayout>
 </LinearLayout>

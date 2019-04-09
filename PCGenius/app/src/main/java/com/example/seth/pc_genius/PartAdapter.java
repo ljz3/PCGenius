@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class PartAdapter extends ArrayAdapter<Part>{
+public class PartAdapter extends ArrayAdapter<Part> {
 
     public PartAdapter(Context context, int resources, List<Part> locationsList) {
         super(context, 0, locationsList);
@@ -32,7 +32,7 @@ public class PartAdapter extends ArrayAdapter<Part>{
         nameTextView.setText(currentLocation.getmName());
 
         TextView priceTextView = (TextView) listItemView.findViewById(R.id.listview_item_price);
-        priceTextView.setText(currentLocation.getmPrice()+"$");
+        priceTextView.setText(currentLocation.getmPrice() + "$");
 
         TextView descTextView = (TextView) listItemView.findViewById(R.id.listview_item_short_description);
         descTextView.setText(("Description:   " + currentLocation.getmDescription()));

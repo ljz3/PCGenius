@@ -7,21 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         List<Part> list = new ArrayList<>();
-        HomeFragmentContents.initFoodsList(list, getContext());
+        HomeFragmentContents.initPartsListHome(list, getContext());
 
         PartAdapter adapter = new PartAdapter(getActivity(), -1, list);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
@@ -31,7 +28,5 @@ public class HomeFragment extends Fragment {
 
         return view;
     }
-
-
 }
 

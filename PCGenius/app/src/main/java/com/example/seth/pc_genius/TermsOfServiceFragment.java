@@ -15,11 +15,9 @@ public class TermsOfServiceFragment extends Fragment{
         return inflater.inflate(R.layout.fragment_tos, container, false);
     }
 
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("TermsOfService");
     }
-
 }
