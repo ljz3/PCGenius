@@ -43,16 +43,48 @@ public class BuildsFragment extends Fragment {
         Log.i("info",""+R.id.fab);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
-        Toolbar toolbar = (Toolbar) getView().findViewById(R.id.toolbar);
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
-       
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                LayoutInflater li = LayoutInflater.from(getContext());
+                View promptsView = li.inflate(R.layout.prompts, null);
+
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                        getContext());
+
+                // set prompts.xml to alertdialog builder
+                alertDialogBuilder.setView(promptsView);
+
+                final EditText userInput = (EditText) promptsView
+                        .findViewById(R.id.editTextDialogUserInput);
+
+                // set dialog message
+                alertDialogBuilder
+                        .setCancelable(false)
+                        .setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // get user input and set it to result
+                                        // edit text
+                                        buildTitle = userInput.getText().toString();
+
+                                    }
+                                })
+                        .setNegativeButton("Cancel",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                // create alert dialog
+                AlertDialog alertDialog = alertDialogBuilder.create();
+
+                // show it
+                alertDialog.show();
+
+
             }
         });
 
@@ -60,47 +92,9 @@ public class BuildsFragment extends Fragment {
         return view;
     }
 
-    public void onClick(View view) {
-
-        LayoutInflater li = LayoutInflater.from(getContext());
-        View promptsView = li.inflate(R.layout.prompts, null);
 
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                getContext());
 
-        // set prompts.xml to alertdialog builder
-        alertDialogBuilder.setView(promptsView);
-
-        final EditText userInput = (EditText) promptsView
-                .findViewById(R.id.editTextDialogUserInput);
-
-        // set dialog message
-        alertDialogBuilder
-                .setCancelable(false)
-                .setPositiveButton("OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // get user input and set it to result
-                                // edit text
-                                buildTitle = userInput.getText().toString();
-
-                            }
-                        })
-                .setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                dialog.cancel();
-                            }
-                        });
-
-        // create alert dialog
-        AlertDialog alertDialog = alertDialogBuilder.create();
-
-        // show it
-        alertDialog.show();
-
-    }
 
 }
 
