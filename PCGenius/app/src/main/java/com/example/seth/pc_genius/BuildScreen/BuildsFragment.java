@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,10 +41,8 @@ public class BuildsFragment extends Fragment {
 
         listView.setAdapter(adapter);
 
-        Toolbar toolbar = (Toolbar) getView().findViewById(R.id.toolbar);
-        ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) getView().findViewById(R.id.fab);
+        Log.i("info",""+R.id.fab);
+        FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
