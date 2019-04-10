@@ -1,4 +1,4 @@
-package com.example.seth.pc_genius.PartObject;
+package com.example.seth.pc_genius.BuildObject;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,13 +8,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class PartAdapter extends ArrayAdapter<Part> {
+public class BuildsAdapter extends ArrayAdapter<Build> {
 
-    public PartAdapter(Context context, int resources, List<Part> locationsList) {
+
+    public BuildsAdapter(Context context, int resources, List<Build> locationsList) {
         super(context, 0, locationsList);
     }
 
@@ -24,7 +27,7 @@ public class PartAdapter extends ArrayAdapter<Part> {
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.listview_activity, parent, false);
         }
-        Part currentLocation = getItem(position);
+        Build currentLocation = getItem(position);
 
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.listview_image);
         imageView.setImageResource(currentLocation.getmImageResourceId());
@@ -42,4 +45,5 @@ public class PartAdapter extends ArrayAdapter<Part> {
 
         return listItemView;
     }
+
 }

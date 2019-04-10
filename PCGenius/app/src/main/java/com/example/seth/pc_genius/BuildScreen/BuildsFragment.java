@@ -11,8 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -23,11 +21,11 @@ import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class BuildsFragment extends Fragment {
     String buildTitle;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,8 +39,15 @@ public class BuildsFragment extends Fragment {
 
         listView.setAdapter(adapter);
 
+
         Log.i("info",""+R.id.fab);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
+
+        Toolbar toolbar = (Toolbar) getView().findViewById(R.id.toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+
+       
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,7 +102,7 @@ public class BuildsFragment extends Fragment {
 
     }
 
-        }
+}
 
 
 
