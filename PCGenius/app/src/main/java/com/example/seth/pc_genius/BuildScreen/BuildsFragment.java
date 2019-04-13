@@ -39,9 +39,9 @@ public class BuildsFragment extends Fragment {
         buildList = new ArrayList<>();
         BuildsFragmentContents.initPartsListBuilds(buildList, getContext());
 
-        BuildsAdapter adapter = new BuildsAdapter(getActivity(), -1, buildList);
+        final BuildsAdapter adapter = new BuildsAdapter(getActivity(), -1, buildList);
         View view = inflater.inflate(R.layout.fragment_builds, container, false);
-        ListView listView = (ListView) view.findViewById(R.id.list_builds);
+        final ListView listView = (ListView) view.findViewById(R.id.list_builds);
 
         listView.setAdapter(adapter);
 
@@ -90,6 +90,9 @@ public class BuildsFragment extends Fragment {
                                         // get user input and set it to result
                                         // edit text
                                         buildTitle = userInput.getText().toString();
+                                        buildList.add(new Build(buildTitle));
+                                        Log.i("info","test");
+                                        adapter.notifyDataSetChanged();
 
                                     }
                                 })
