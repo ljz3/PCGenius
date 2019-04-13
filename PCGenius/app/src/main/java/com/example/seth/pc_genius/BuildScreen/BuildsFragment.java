@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,24 +18,28 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.seth.pc_genius.BuildObject.Build;
+import com.example.seth.pc_genius.BuildObject.BuildsAdapter;
 import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
+import com.example.seth.pc_genius.SavedPartsScreen.InfoPartDisplay;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BuildsFragment extends Fragment {
     String buildTitle;
+    protected static List<Build> buildList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        List<Part> list = new ArrayList<>();
-        BuildsFragmentContents.initPartsListBuilds(list, getContext());
+        buildList = new ArrayList<>();
+        BuildsFragmentContents.initPartsListBuilds(buildList, getContext());
 
-        PartAdapter adapter = new PartAdapter(getActivity(), -1, list);
+        BuildsAdapter adapter = new BuildsAdapter(getActivity(), -1, buildList);
         View view = inflater.inflate(R.layout.fragment_builds, container, false);
         ListView listView = (ListView) view.findViewById(R.id.list_builds);
 
@@ -43,7 +48,16 @@ public class BuildsFragment extends Fragment {
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-                Log.i("info",""+position);
+                Bundle bundle = new Bundle();
+               InfoBuildDisplay infoBuildDisplay = new InfoBuildDisplay();
+                bundle.putInt("Position", position);
+                infoBuildDisplay.setArguments(bundle);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.screen_area, infoBuildDisplay, null);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                Log.i("info","item clicked");
+
 
             }
         });
