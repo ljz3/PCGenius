@@ -2,10 +2,7 @@ package com.example.seth.pc_genius;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.seth.pc_genius.BuildScreen.BuildsFragment;
+import com.example.seth.pc_genius.HomeScreen.HomeFragment;
+import com.example.seth.pc_genius.SavedPartsScreen.PartsFragment;
+import com.example.seth.pc_genius.SearchScreen.SearchFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -90,6 +92,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_tos:
                 fragment = new TermsOfServiceFragment();
                 break;
+
         }
         //replacing the fragment
         if (fragment != null) {
