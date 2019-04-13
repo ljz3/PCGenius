@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_tos:
                 fragment = new TermsOfServiceFragment();
                 break;
+
         }
         //replacing the fragment
         if (fragment != null) {

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -39,8 +40,15 @@ public class BuildsFragment extends Fragment {
 
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                Log.i("info",""+position);
 
-        Log.i("info",""+R.id.fab);
+            }
+        });
+
+                Log.i("info", "" + R.id.fab);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
