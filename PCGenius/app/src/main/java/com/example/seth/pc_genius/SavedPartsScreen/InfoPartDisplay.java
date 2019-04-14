@@ -6,6 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.example.seth.pc_genius.R;
 
 
@@ -22,6 +25,16 @@ public class InfoPartDisplay extends Fragment {
         mDescription = getArguments().getString("Description", "");
         mPrice = getArguments().getDouble("Price", 0);
         mImageResourceId = getArguments().getInt("ImageResource", 0);
+
+        TextView partDisplay = view.findViewById(R.id.partDisplay);
+        partDisplay.setText(mName);
+        TextView descriptionDisplay = view.findViewById(R.id.descriptionDisplay);
+        descriptionDisplay.setText(mDescription);
+        TextView priceDisplay = view.findViewById(R.id.priceDisplay);
+        priceDisplay.setText(Double.toString(mPrice));
+        ImageView imageDisplay = view.findViewById(R.id.imageDisplay);
+        imageDisplay.setImageResource(mImageResourceId);
+
 
         return view;
     }

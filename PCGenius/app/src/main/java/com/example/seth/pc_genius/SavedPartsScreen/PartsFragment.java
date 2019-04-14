@@ -29,7 +29,7 @@ public class PartsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        getActivity().setTitle("Parts");
         list = new ArrayList<>();
         PartsFragmentContents.initPartsListParts(list, getContext());
 

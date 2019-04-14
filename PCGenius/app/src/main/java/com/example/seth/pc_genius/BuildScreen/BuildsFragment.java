@@ -35,7 +35,7 @@ public class BuildsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        getActivity().setTitle("Builds");
         buildList = new ArrayList<>();
         BuildsFragmentContents.initPartsListBuilds(buildList, getContext());
 
