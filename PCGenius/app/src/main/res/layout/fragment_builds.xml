@@ -6,26 +6,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="80dp"
-        android:text="Builds"
+        android:layout_marginTop="40dp"
         android:textSize="20sp" />
+    <ListView
+        android:id="@+id/list_builds"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_margin="20dp"
+        />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
-    <ListView
-        android:id="@+id/list_builds"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp" />
-
+        app:srcCompat="@drawable/plus_icon" />
 
 
 </LinearLayout>
