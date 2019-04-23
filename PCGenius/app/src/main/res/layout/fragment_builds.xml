@@ -9,12 +9,10 @@
         android:id="@+id/list_builds"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="60dp"
-        android:paddingBottom="40dp"
-
-
+        android:paddingRight="@dimen/side_padding_listview"
+        android:paddingLeft="@dimen/side_padding_listview"
+        android:paddingTop="@dimen/top_padding_listview"
+        android:paddingBottom="@dimen/bottom_padding_listview"
         />
 
     <android.support.design.widget.FloatingActionButton

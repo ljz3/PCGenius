@@ -20,6 +20,7 @@
         android:id="@+id/list_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp" />
+        android:paddingLeft="@dimen/side_padding_listview"
+        android:paddingRight="@dimen/side_padding_listview"/>
 
 </LinearLayout>
