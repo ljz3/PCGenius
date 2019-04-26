@@ -144,7 +144,6 @@ public final class QueryUtils {
             JSONArray resultsArray = responseArray.getJSONArray("results");
 
 
-
             for (int i = 0; i < responseArray.length(); i++) {
 
                 JSONObject results = resultsArray.getJSONObject(i);
@@ -163,13 +162,13 @@ public final class QueryUtils {
 
                 int img = Integer.parseInt(section);
 
-                if(!authorArray.isNull(0)){
+                if (!authorArray.isNull(0)) {
                     JSONObject tag = authorArray.getJSONObject(0);
                     author = tag.getString("webTitle");
                 }
 
                 String url = results.getString("webUrl");
-                Part part = new Part(title, author, price,img);
+                Part part = new Part(title, author, price, img);
                 newsStories.add(part);
             }
 
