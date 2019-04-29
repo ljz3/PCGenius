@@ -36,8 +36,15 @@ public class Part {
     }
 
     public Part(String type, String num, String brand, String model, String rank, String benchmark, String samples, String URL) {
+        mType = type;
+        mNum = num;
 
-
+        mBrand = brand;
+        mModel = model;
+        mRank = Integer.getInteger(rank);
+        mBenchmark = Integer.getInteger(benchmark);
+        mSamples = Integer.getInteger(samples);
+        mURL = URL;
     }
 
     public int getmImageResourceId() {
