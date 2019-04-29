@@ -17,6 +17,10 @@ public class Part {
     private int mSamples;
     private String mURL;
 
+    public Part(){
+
+    }
+
     public Part(String name, String description, double price, int image) {
         mName = name;
         mDescription = description;
