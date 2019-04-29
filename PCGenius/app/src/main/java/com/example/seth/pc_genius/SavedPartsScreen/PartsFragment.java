@@ -76,8 +76,8 @@ public class PartsFragment extends Fragment {
         );
 
         String line = "";
-     //   try {
-       //     while ((line = reader.readLine()) != null) {
+        try {
+            while ((line = reader.readLine()) != null) {
                 // Split by ','
                 String[] tokens = line.split(",");
 
@@ -88,18 +88,18 @@ public class PartsFragment extends Fragment {
                 part.setmNum(tokens[1]);
                 part.setmBrand(tokens[2]);
                 part.setmModel(tokens[3]);
-                part.setmRank(Integer.getInteger(tokens[4]));
-                part.setmBenchmark(Integer.getInteger(tokens[5]));
-                part.setmSamples(Integer.getInteger(tokens[6]));
+//                part.setmRank(Integer.getInteger(tokens[4]));
+//                part.setmBenchmark(Integer.getInteger(tokens[5]));
+//                part.setmSamples(Integer.getInteger(tokens[6]));
                 part.setmURL(tokens[7]);
 
                 parts.add(part);
 
-        //    }
-      //  } catch (IOException e) {
-    //        Log.wtf("MyActivity", "Error reading data file on line " + line, e);
-    //        e.printStackTrace();
-     //   }
+            }
+        } catch (IOException e) {
+            Log.wtf("MyActivity", "Error reading data file on line " + line, e);
+            e.printStackTrace();
+        }
 
 
     }
