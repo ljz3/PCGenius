@@ -70,37 +70,55 @@ public class PartsFragment extends Fragment {
     }
 
     private void readPartData() {
-        InputStream is = getResources().openRawResource(R.raw.gpu);
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(is, Charset.forName("UTF-8"))
-        );
 
-        String line = "";
-        try {
-            while ((line = reader.readLine()) != null) {
-                // Split by ','
-                String[] tokens = line.split(",");
-
-                //Read the data
-                //Type,Part Number,Brand,Model,Rank,Benchmark,Samples,URL
-                Part part = new Part();
-                part.setmType(tokens[0]);
-                part.setmNum(tokens[1]);
-                part.setmBrand(tokens[2]);
-                part.setmModel(tokens[3]);
-//                part.setmRank(Integer.getInteger(tokens[4]));
-//                part.setmBenchmark(Integer.getInteger(tokens[5]));
-//                part.setmSamples(Integer.getInteger(tokens[6]));
-                part.setmURL(tokens[7]);
-
-                parts.add(part);
-
+        for(int i = 0; i <5;i++) {
+            int csv = 0;
+            switch(i){
+                case 0:
+                    csv = R.raw.gpu;
+                    break;
+                case 1:
+                    csv = R.raw.cpu;
+                    break;
+                case 2:
+                    csv = R.raw.hdd;
+                    break;
+                case 3:
+                    csv = R.raw.ram;
+                    break;
+                case 4:
+                    csv = R.raw.ssd;
+                    break;
             }
-        } catch (IOException e) {
-            Log.wtf("MyActivity", "Error reading data file on line " + line, e);
-            e.printStackTrace();
-        }
 
+            InputStream is = getResources().openRawResource(csv);
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8"))
+            );
+
+            String line = "";
+            try {
+                while ((line = reader.readLine()) != null) {
+                    // Split by ','
+                    String[] tokens = line.split(",");
+
+                    //Read the data
+                    //Type,Part Number,Brand,Model,Rank,Benchmark,Samples,URL
+                    Part part = new Part();
+                    part.setmType(tokens[0]);
+                    part.setmNum(tokens[1]);
+                    part.setmBrand(tokens[2]);
+                    part.setmModel(tokens[3]);
+                    part.setmURL(tokens[7]);
+
+                    parts.add(part);
+
+                }
+            } catch (IOException e) {
+                Log.wtf("MyActivity", "Error reading data file on line " + line, e);
+                e.printStackTrace();
+            }
+        }
 
     }
 
