@@ -14,6 +14,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.seth.pc_genius.Api.SearchPart;
 import com.example.seth.pc_genius.R;
 
 public class SearchFragment extends Fragment {
@@ -36,6 +37,8 @@ public class SearchFragment extends Fragment {
                 if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
                         (i == KeyEvent.KEYCODE_ENTER)) {
                     Log.i("info",searchProduct.getText().toString());
+                    SearchPart searchPart = new SearchPart(searchProduct.getText().toString());
+
                     return true;
                 }
                 return false;
