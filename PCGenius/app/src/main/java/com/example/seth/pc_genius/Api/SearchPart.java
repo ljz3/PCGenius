@@ -14,8 +14,10 @@ public class SearchPart {
     private String productName;
     public SearchPart(String name){
         productName = name;
+        Log.i("test","test1");
+       // Log.i("importantInfo","https://api.bestbuy.com/v1/products(("+formatUserInput(productName)+")&(categoryPath.id=abcat0501000))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&sort=salePrice.asc&show=salePrice,image,shortDescription,name&format=json");
         DownloadTask downloadTask = new DownloadTask();
-        downloadTask.execute("https://api.bestbuy.com/v1/products(categoryPath.id=pcmcat748302027818))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&sort=regularPrice.asc&show=regularPrice,name,categoryPath.id&format=json");
+        //downloadTask.execute("https://api.bestbuy.com/v1/products((search=gtx&search=1060)&(categoryPath.id=abcat0501000))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&sort=salePrice.asc&show=salePrice,image,shortDescription,name&format=json");
         Log.i("test","test");
     }
     public class DownloadTask extends AsyncTask<String, Void, String> {
@@ -47,4 +49,14 @@ public class SearchPart {
             }
         }
     }
+
+    public String formatUserInput (String userInput){
+       String[] user =  userInput.split(" ");
+       String result = "";
+       result = user[0];
+        for(int i = 1; i<user.length; i++){
+            result = result + "&search="+user[i];
+}
+        return result;
+}
 }

@@ -23,12 +23,14 @@ public class SearchFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.i("importantInfo","test");
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.i("importantInfo","test");
         getActivity().setTitle("Search");
         searchProduct =  view.findViewById(R.id.searchProduct);
         searchProduct.setOnKeyListener(new View.OnKeyListener() {
@@ -36,7 +38,7 @@ public class SearchFragment extends Fragment {
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
                         (i == KeyEvent.KEYCODE_ENTER)) {
-                    Log.i("info",searchProduct.getText().toString());
+                    Log.i("importantInfo",searchProduct.getText().toString());
                     SearchPart searchPart = new SearchPart(searchProduct.getText().toString());
 
                     return true;
