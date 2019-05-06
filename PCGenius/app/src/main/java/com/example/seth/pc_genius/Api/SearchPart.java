@@ -17,7 +17,7 @@ public class SearchPart {
         Log.i("test","test1");
        Log.i("importantInfo","https://api.bestbuy.com/v1/products(("+formatUserInput(productName)+")&(categoryPath.id=abcat0501000))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&sort=salePrice.asc&show=salePrice,image,shortDescription,name&format=json");
         DownloadTask downloadTask = new DownloadTask();
-        //downloadTask.execute("https://api.bestbuy.com/v1/products((search=gtx&search=1060)&(categoryPath.id=abcat0501000))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&sort=salePrice.asc&show=salePrice,image,shortDescription,name&format=json");
+        downloadTask.execute("https://api.bestbuy.com/v1/products(("+formatUserInput(productName)+")&(categoryPath.id=abcat0501000))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&sort=salePrice.asc&show=salePrice,image,shortDescription,name&format=json");
         Log.i("test","test");
     }
     public class DownloadTask extends AsyncTask<String, Void, String> {
@@ -42,6 +42,11 @@ public class SearchPart {
             super.onPostExecute(result);
             try {
                 JSONObject jsonObject = new JSONObject(result);
+
+                Log.i("importantinfo",jsonObject.get("products").toString());
+                JSONObject test = new JSONObject(jsonObject.get("products").toString());
+                Log.i("importantinfo",test.get("salePrice").toString());
+
 
             } catch (JSONException e) {
                 Log.i("info","failed to get products");
