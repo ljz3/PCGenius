@@ -1,6 +1,7 @@
 package com.example.seth.pc_genius.SavedPartsScreen;
 
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ public class InfoPartDisplay extends Fragment {
     private String mDescription;
     private double mPrice;
     private int mImageResourceId;
+    private Bitmap mBitmap=null;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -25,6 +27,11 @@ public class InfoPartDisplay extends Fragment {
         mDescription = getArguments().getString("Description", "");
         mPrice = getArguments().getDouble("Price", 0);
         mImageResourceId = getArguments().getInt("ImageResource", 0);
+        try {
+            mBitmap = getArguments().getParcelable("BitmapImage");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         TextView partDisplay = view.findViewById(R.id.partDisplay);
         partDisplay.setText(mName);
@@ -33,8 +40,11 @@ public class InfoPartDisplay extends Fragment {
         TextView priceDisplay = view.findViewById(R.id.priceDisplay);
         priceDisplay.setText(Double.toString(mPrice));
         ImageView imageDisplay = view.findViewById(R.id.imageDisplay);
-        imageDisplay.setImageResource(mImageResourceId);
-
+        if(mBitmap!=null){
+            imageDisplay.setImageBitmap(mBitmap);
+        }else {
+            imageDisplay.setImageResource(mImageResourceId);
+        }
 
         return view;
     }

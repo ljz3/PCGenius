@@ -1,6 +1,7 @@
 package com.example.seth.pc_genius.Api;
 
 import android.app.DownloadManager;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -13,6 +14,8 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
+
 import com.example.seth.pc_genius.Api.SearchFragment;
 
 public class SearchPart {
@@ -20,24 +23,20 @@ public class SearchPart {
 
     public SearchPart(String name) {
         productName = name;
-        Log.i("test", "test1");
-        Log.i("importantInfo", "https://api.bestbuy.com/v1/products((" + formatUserInput(productName) + ")&(categoryPath.id=abcat0501000))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&sort=salePrice.asc&show=salePrice,image,shortDescription,name&format=json");
         DownloadTask downloadTask = new DownloadTask();
-        downloadTask.execute("https://api.bestbuy.com/v1/products((" + formatUserInput(productName) + ")&(categoryPath.id=abcat0501000))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&sort=salePrice.asc&show=salePrice,image,shortDescription,name&format=json");
-        Log.i("test", "test");
+        downloadTask.execute("https://api.bestbuy.com/v1/products((" + formatUserInput(productName) + "))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&pageSize=100&sort=salePrice.asc&show=salePrice,image,shortDescription,name&format=json");
+        SearchFragment.searchList.clear();
     }
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
-            Log.i("test", "test2");
             URL url = QueryUtils.createUrl(urls[0]);
             String result = "";
 
             try {
                 result = QueryUtils.makeHttpRequest(url);
-                Log.i("JSONResponse", QueryUtils.makeHttpRequest(url));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -50,16 +49,23 @@ public class SearchPart {
             try {
                 JSONObject jsonObject = new JSONObject(result);
 
-               JSONArray m = jsonObject.getJSONArray("products");
-               for(int i = 0;i<m.length();i++){
-                   Log.i("info",m.getJSONObject(i).get("name").toString());
+                JSONArray m = jsonObject.getJSONArray("products");
 
-                   SearchFragment.searchList.add(new Part(m.getJSONObject(i).get("name").toString(),m.getJSONObject(i).get("shortDescription").toString(),Double.parseDouble(m.getJSONObject(i).get("salePrice").toString()), R.drawable.image_icon));
-               }
+                for (int i = 0; i < m.length(); i++) {
+                   Bitmap myImage = null;
+
+                    try {
+                        DownloadImage downloadImage = new DownloadImage();
+                        myImage=downloadImage.execute(m.getJSONObject(i).get("image").toString()).get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
+                    SearchFragment.searchList.add(new Part(m.getJSONObject(i).get("name").toString(), m.getJSONObject(i).get("shortDescription").toString(), Double.parseDouble(m.getJSONObject(i).get("salePrice").toString()), myImage));
+                }
                 SearchFragment.adapter.notifyDataSetChanged();
-
-                Log.i("importantinfo", jsonObject.get("products").toString());
-
 
             } catch (JSONException e) {
                 Log.i("info", "failed to get products");

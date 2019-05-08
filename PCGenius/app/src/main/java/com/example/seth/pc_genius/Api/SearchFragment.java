@@ -31,13 +31,13 @@ public class SearchFragment extends Fragment {
     EditText searchProduct;
     public static List<Part> searchList;
     public static PartAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         searchList = new ArrayList<>();
-        searchList.add(new Part("","",55,R.drawable.image_icon));
-        Log.i("importantInfo","test");
-         adapter = new PartAdapter(getActivity(), -1, searchList);
+        Log.i("importantInfo", "test");
+        adapter = new PartAdapter(getActivity(), -1, searchList);
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         ListView listView = (ListView) view.findViewById(R.id.list_search);
 
@@ -50,9 +50,10 @@ public class SearchFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 InfoPartDisplay infoPartDisplay = new InfoPartDisplay();
                 bundle.putString("Name", searchList.get(position).getmName());
-                bundle.putString("Description",searchList.get(position).getmDescription());
+                bundle.putString("Description", searchList.get(position).getmDescription());
                 bundle.putInt("ImageResource", searchList.get(position).getmImageResourceId());
                 bundle.putDouble("Price", searchList.get(position).getmPrice());
+                bundle.putParcelable("BitmapImage",searchList.get(position).getmBitmap());
                 infoPartDisplay.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.screen_area, infoPartDisplay, null);
@@ -69,15 +70,15 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.i("importantInfo","test");
+        Log.i("importantInfo", "test");
         getActivity().setTitle("Search");
-        searchProduct =  view.findViewById(R.id.searchProduct);
+        searchProduct = view.findViewById(R.id.searchProduct);
         searchProduct.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if ((keyEvent.getAction() == KeyEvent.ACTION_DOWN) &&
                         (i == KeyEvent.KEYCODE_ENTER)) {
-                    Log.i("importantInfo",searchProduct.getText().toString());
+                    Log.i("importantInfo", searchProduct.getText().toString());
                     SearchPart searchPart = new SearchPart(searchProduct.getText().toString());
 
                     return true;
