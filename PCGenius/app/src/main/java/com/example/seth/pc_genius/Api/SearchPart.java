@@ -24,7 +24,7 @@ public class SearchPart {
     public SearchPart(String name) {
         productName = name;
         DownloadTask downloadTask = new DownloadTask();
-        downloadTask.execute("https://api.bestbuy.com/v1/products((" + formatUserInput(productName) + "))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&pageSize=100&sort=salePrice.asc&show=salePrice,image,shortDescription,name&format=json");
+        downloadTask.execute("https://api.bestbuy.com/v1/products((" + formatUserInput(productName) + ")&((categoryPath.id=abcat0507000)%7C(categoryPath.id=pcmcat748302027797)%7C(categoryPath.id=abcat0507002)))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&pageSize=100&sort=salePrice.asc&show=salePrice,image,shortDescription,name&format=json");
         SearchFragment.searchList.clear();
     }
 
