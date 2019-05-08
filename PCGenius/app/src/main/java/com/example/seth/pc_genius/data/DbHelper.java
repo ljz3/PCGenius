@@ -17,14 +17,14 @@ public class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String SQL_CREATE_BOOKS_TABLE = "CREATE TABLE " + PartContract.BookEntry.BOOK_TABLE_NAME + " ("
-                + PartContract.BookEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + PartContract.BookEntry.BOOK_NAME + " TEXT NOT NULL DEFAULT 0, "
-                + PartContract.BookEntry.BOOK_PRICE + " DOUBLE NOT NULL DEFAULT 0, "
-                + PartContract.BookEntry.BOOK_QUANTITY + " INTEGER NOT NULL, "
-                + PartContract.BookEntry.SUPPLIER_NAME + " TEXT, "
-                + PartContract.BookEntry.BOOK_PHONE + " TEXT);";
-        db.execSQL(SQL_CREATE_BOOKS_TABLE);
+        String SQL_CREATE_PARTS_TABLE = "CREATE TABLE " + PartContract.PartEntry.PART_TABLE_NAME + " ("
+                + PartContract.PartEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + PartContract.PartEntry.PART_NAME + " TEXT NOT NULL DEFAULT 0, "
+                + PartContract.PartEntry.PART_PRICE + " DOUBLE NOT NULL DEFAULT 0, "
+                + PartContract.PartEntry.PART_QUANTITY + " INTEGER NOT NULL, "
+                + PartContract.PartEntry.SUPPLIER_NAME + " TEXT, "
+                + PartContract.PartEntry.PART_PHONE + " TEXT);";
+        db.execSQL(SQL_CREATE_PARTS_TABLE);
     }
 
     @Override

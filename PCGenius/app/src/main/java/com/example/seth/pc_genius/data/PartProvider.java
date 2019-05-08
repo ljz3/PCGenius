@@ -8,22 +8,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
 
-import com.example.seth.pc_genius.data.PartContract.BookEntry;
-public class BookProvider extends ContentProvider {
+import com.example.seth.pc_genius.data.PartContract.PartEntry;
+public class PartProvider extends ContentProvider {
 
-    public static final String LOG_TAG = BookProvider.class.getSimpleName();
+    public static final String LOG_TAG = PartProvider.class.getSimpleName();
 
-    private static final int BOOKS = 100;
+    private static final int PARTS = 100;
 
-    private static final int BOOK_ID = 101;
+    private static final int PART_ID = 101;
 
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
 
-        sUriMatcher.addURI(PartContract.CONTENT_AUTHORITY, PartContract.PATH_BOOKS, BOOKS);
+        sUriMatcher.addURI(PartContract.CONTENT_AUTHORITY, PartContract.PATH_PARTS, PARTS);
 
-        sUriMatcher.addURI(PartContract.CONTENT_AUTHORITY, PartContract.PATH_BOOKS + "/#", BOOK_ID);
+        sUriMatcher.addURI(PartContract.CONTENT_AUTHORITY, PartContract.PATH_PARTS + "/#", PART_ID);
     }
 
     private DbHelper mDbHelper;
@@ -43,17 +43,17 @@ public class BookProvider extends ContentProvider {
 
         int match = sUriMatcher.match(uri);
         switch (match) {
-            case BOOKS:
+            case PARTS:
 
-                cursor = database.query(BookEntry.BOOK_TABLE_NAME, projection, selection, selectionArgs,
+                cursor = database.query(PartEntry.PART_TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
-            case BOOK_ID:
+            case PART_ID:
 
-                selection = BookEntry._ID + "=?";
+                selection = PartEntry._ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
 
-                cursor = database.query(BookEntry.BOOK_TABLE_NAME, projection, selection, selectionArgs,
+                cursor = database.query(PartEntry.PART_TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             default:
@@ -69,43 +69,43 @@ public class BookProvider extends ContentProvider {
     public Uri insert(Uri uri, ContentValues contentValues) {
         final int match = sUriMatcher.match(uri);
         switch (match) {
-            case BOOKS:
-                return insertBook(uri, contentValues);
+            case PARTS:
+                return insertPart(uri, contentValues);
             default:
                 throw new IllegalArgumentException("Insertion is not supported for " + uri);
         }
     }
 
-    private Uri insertBook(Uri uri, ContentValues values) {
-        String name = values.getAsString(BookEntry.BOOK_NAME);
+    private Uri insertPart(Uri uri, ContentValues values) {
+        String name = values.getAsString(PartEntry.PART_NAME);
         if (name == null) {
-            throw new IllegalArgumentException("Book requires a name");
+            throw new IllegalArgumentException("Part requires a name");
         }
 
 
-        Integer qty = values.getAsInteger(BookEntry.BOOK_QUANTITY);
+        Integer qty = values.getAsInteger(PartEntry.PART_QUANTITY);
         if (qty != null && qty < 0) {
-            throw new IllegalArgumentException("Book requires valid quantity");
+            throw new IllegalArgumentException("Part requires valid quantity");
         }
 
-        Double price = values.getAsDouble(BookEntry.BOOK_PRICE);
+        Double price = values.getAsDouble(PartEntry.PART_PRICE);
         if (price != null && price < 0) {
-            throw new IllegalArgumentException("Book requires valid price");
+            throw new IllegalArgumentException("Part requires valid price");
         }
 
-        String supplier = values.getAsString(BookEntry.BOOK_NAME);
+        String supplier = values.getAsString(PartEntry.PART_NAME);
         if (supplier == null) {
-            throw new IllegalArgumentException("Book requires a supplier");
+            throw new IllegalArgumentException("Part requires a supplier");
         }
-        String phone = values.getAsString(BookEntry.BOOK_NAME);
+        String phone = values.getAsString(PartEntry.PART_NAME);
         if (phone == null) {
-            throw new IllegalArgumentException("Book requires a supplier phone number");
+            throw new IllegalArgumentException("Part requires a supplier phone number");
         }
 
 
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        long id = database.insert(BookEntry.BOOK_TABLE_NAME, null, values);
+        long id = database.insert(PartEntry.PART_TABLE_NAME, null, values);
         if (id == -1) {
             Log.e(LOG_TAG, "Failed to insert row for " + uri);
             return null;
@@ -121,53 +121,53 @@ public class BookProvider extends ContentProvider {
                       String[] selectionArgs) {
         final int match = sUriMatcher.match(uri);
         switch (match) {
-            case BOOKS:
-                return updateBook(uri, contentValues, selection, selectionArgs);
-            case BOOK_ID:
+            case PARTS:
+                return updatePart(uri, contentValues, selection, selectionArgs);
+            case PART_ID:
 
-                selection = BookEntry._ID + "=?";
+                selection = PartEntry._ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
-                return updateBook(uri, contentValues, selection, selectionArgs);
+                return updatePart(uri, contentValues, selection, selectionArgs);
             default:
                 throw new IllegalArgumentException("Update is not supported for " + uri);
         }
     }
 
 
-    private int updateBook(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+    private int updatePart(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
-        if (values.containsKey(BookEntry.BOOK_NAME)) {
-            String name = values.getAsString(BookEntry.BOOK_NAME);
+        if (values.containsKey(PartEntry.PART_NAME)) {
+            String name = values.getAsString(PartEntry.PART_NAME);
             if (name == null) {
-                throw new IllegalArgumentException("Book requires a name");
+                throw new IllegalArgumentException("Part requires a name");
             }
         }
 
-        if (values.containsKey(BookEntry.BOOK_QUANTITY)) {
-            Integer qty = values.getAsInteger(BookEntry.BOOK_QUANTITY);
+        if (values.containsKey(PartEntry.PART_QUANTITY)) {
+            Integer qty = values.getAsInteger(PartEntry.PART_QUANTITY);
             if (qty != null && qty < 0) {
-                throw new IllegalArgumentException("Book requires valid quantity");
+                throw new IllegalArgumentException("Part requires valid quantity");
             }
         }
 
-        if (values.containsKey(BookEntry.BOOK_PRICE)) {
-            Double price = values.getAsDouble(BookEntry.BOOK_PRICE);
+        if (values.containsKey(PartEntry.PART_PRICE)) {
+            Double price = values.getAsDouble(PartEntry.PART_PRICE);
             if (price != null && price < 0) {
-                throw new IllegalArgumentException("Book requires valid price");
+                throw new IllegalArgumentException("Part requires valid price");
             }
         }
 
-        if (values.containsKey(BookEntry.BOOK_NAME)) {
-            String supplier = values.getAsString(BookEntry.BOOK_NAME);
+        if (values.containsKey(PartEntry.PART_NAME)) {
+            String supplier = values.getAsString(PartEntry.PART_NAME);
             if (supplier == null) {
-                throw new IllegalArgumentException("Book requires a supplier");
+                throw new IllegalArgumentException("Part requires a supplier");
             }
         }
 
-        if (values.containsKey(BookEntry.BOOK_NAME)) {
-            String phone = values.getAsString(BookEntry.BOOK_NAME);
+        if (values.containsKey(PartEntry.PART_NAME)) {
+            String phone = values.getAsString(PartEntry.PART_NAME);
             if (phone == null) {
-                throw new IllegalArgumentException("Book requires a supplier phone number");
+                throw new IllegalArgumentException("Part requires a supplier phone number");
             }
         }
 
@@ -177,7 +177,7 @@ public class BookProvider extends ContentProvider {
 
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        int rowsUpdated = database.update(BookEntry.BOOK_TABLE_NAME, values, selection, selectionArgs);
+        int rowsUpdated = database.update(PartEntry.PART_TABLE_NAME, values, selection, selectionArgs);
 
         if (rowsUpdated != 0) {
             getContext().getContentResolver().notifyChange(uri, null);
@@ -194,15 +194,15 @@ public class BookProvider extends ContentProvider {
 
         final int match = sUriMatcher.match(uri);
         switch (match) {
-            case BOOKS:
+            case PARTS:
                 // Delete all rows that match the selection and selection args
-                rowsDeleted = database.delete(BookEntry.BOOK_TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = database.delete(PartEntry.PART_TABLE_NAME, selection, selectionArgs);
                 break;
-            case BOOK_ID:
+            case PART_ID:
                 // Delete a single row given by the ID in the URI
-                selection = PartContract.BookEntry._ID + "=?";
+                selection = PartEntry._ID + "=?";
                 selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
-                rowsDeleted = database.delete(BookEntry.BOOK_TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = database.delete(PartEntry.PART_TABLE_NAME, selection, selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
@@ -218,10 +218,10 @@ public class BookProvider extends ContentProvider {
     public String getType(Uri uri) {
         final int match = sUriMatcher.match(uri);
         switch (match) {
-            case BOOKS:
-                return BookEntry.CONTENT_LIST_TYPE;
-            case BOOK_ID:
-                return PartContract.BookEntry.CONTENT_ITEM_TYPE;
+            case PARTS:
+                return PartEntry.CONTENT_LIST_TYPE;
+            case PART_ID:
+                return PartEntry.CONTENT_ITEM_TYPE;
             default:
                 throw new IllegalStateException("Unknown URI " + uri + " with match " + match);
         }
