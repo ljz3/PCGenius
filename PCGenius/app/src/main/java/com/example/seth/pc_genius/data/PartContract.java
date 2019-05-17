@@ -27,15 +27,21 @@ public final class PartContract {
 
         public final static String _ID = BaseColumns._ID;
 
-        public final static String PART_NAME = "name";
+        public final static String PART_TYPE = "type";
 
         public final static String PART_PRICE = "price";
 
-        public final static String PART_PHONE = "phone";
+        public final static String PART_SAMPLES = "samples";
 
-        public final static String PART_QUANTITY = "qty";
+        public final static String PART_SCORE = "score";
 
-        public final static String SUPPLIER_NAME = "supname";
+        public final static String PART_RANK = "rank";
+
+        public final static String PART_MODEL = "model";
+
+        public final static String PART_IMG = "img";
+
+        public final static String PART_VENDOR = "vendor";
 
     }
 }

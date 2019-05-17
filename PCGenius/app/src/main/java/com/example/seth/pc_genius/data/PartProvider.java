@@ -77,13 +77,13 @@ public class PartProvider extends ContentProvider {
     }
 
     private Uri insertPart(Uri uri, ContentValues values) {
-        String name = values.getAsString(PartEntry.PART_NAME);
+        String name = values.getAsString(PartEntry.PART_TYPE);
         if (name == null) {
             throw new IllegalArgumentException("Part requires a name");
         }
 
 
-        Integer qty = values.getAsInteger(PartEntry.PART_QUANTITY);
+        Integer qty = values.getAsInteger(PartEntry.PART_SCORE);
         if (qty != null && qty < 0) {
             throw new IllegalArgumentException("Part requires valid quantity");
         }
@@ -93,11 +93,11 @@ public class PartProvider extends ContentProvider {
             throw new IllegalArgumentException("Part requires valid price");
         }
 
-        String supplier = values.getAsString(PartEntry.PART_NAME);
+        String supplier = values.getAsString(PartEntry.PART_TYPE);
         if (supplier == null) {
             throw new IllegalArgumentException("Part requires a supplier");
         }
-        String phone = values.getAsString(PartEntry.PART_NAME);
+        String phone = values.getAsString(PartEntry.PART_TYPE);
         if (phone == null) {
             throw new IllegalArgumentException("Part requires a supplier phone number");
         }
@@ -136,15 +136,15 @@ public class PartProvider extends ContentProvider {
 
     private int updatePart(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
 
-        if (values.containsKey(PartEntry.PART_NAME)) {
-            String name = values.getAsString(PartEntry.PART_NAME);
+        if (values.containsKey(PartEntry.PART_TYPE)) {
+            String name = values.getAsString(PartEntry.PART_TYPE);
             if (name == null) {
                 throw new IllegalArgumentException("Part requires a name");
             }
         }
 
-        if (values.containsKey(PartEntry.PART_QUANTITY)) {
-            Integer qty = values.getAsInteger(PartEntry.PART_QUANTITY);
+        if (values.containsKey(PartEntry.PART_SCORE)) {
+            Integer qty = values.getAsInteger(PartEntry.PART_SCORE);
             if (qty != null && qty < 0) {
                 throw new IllegalArgumentException("Part requires valid quantity");
             }
@@ -157,15 +157,15 @@ public class PartProvider extends ContentProvider {
             }
         }
 
-        if (values.containsKey(PartEntry.PART_NAME)) {
-            String supplier = values.getAsString(PartEntry.PART_NAME);
+        if (values.containsKey(PartEntry.PART_TYPE)) {
+            String supplier = values.getAsString(PartEntry.PART_TYPE);
             if (supplier == null) {
                 throw new IllegalArgumentException("Part requires a supplier");
             }
         }
 
-        if (values.containsKey(PartEntry.PART_NAME)) {
-            String phone = values.getAsString(PartEntry.PART_NAME);
+        if (values.containsKey(PartEntry.PART_TYPE)) {
+            String phone = values.getAsString(PartEntry.PART_TYPE);
             if (phone == null) {
                 throw new IllegalArgumentException("Part requires a supplier phone number");
             }

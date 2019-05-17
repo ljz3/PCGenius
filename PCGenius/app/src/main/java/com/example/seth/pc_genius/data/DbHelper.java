@@ -19,11 +19,11 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String SQL_CREATE_PARTS_TABLE = "CREATE TABLE " + PartContract.PartEntry.PART_TABLE_NAME + " ("
                 + PartContract.PartEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + PartContract.PartEntry.PART_NAME + " TEXT NOT NULL DEFAULT 0, "
+                + PartContract.PartEntry.PART_TYPE + " TEXT NOT NULL DEFAULT 0, "
                 + PartContract.PartEntry.PART_PRICE + " DOUBLE NOT NULL DEFAULT 0, "
-                + PartContract.PartEntry.PART_QUANTITY + " INTEGER NOT NULL, "
-                + PartContract.PartEntry.SUPPLIER_NAME + " TEXT, "
-                + PartContract.PartEntry.PART_PHONE + " TEXT);";
+                + PartContract.PartEntry.PART_SCORE + " INTEGER NOT NULL, "
+                + PartContract.PartEntry.PART_RANK + " INTEGER NOT NULL DEFAULT 0, "
+                + PartContract.PartEntry.PART_SAMPLES + " TEXT);";
         db.execSQL(SQL_CREATE_PARTS_TABLE);
     }
 
