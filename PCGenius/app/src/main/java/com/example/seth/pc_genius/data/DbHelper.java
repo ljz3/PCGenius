@@ -20,10 +20,14 @@ public class DbHelper extends SQLiteOpenHelper {
         String SQL_CREATE_PARTS_TABLE = "CREATE TABLE " + PartContract.PartEntry.PART_TABLE_NAME + " ("
                 + PartContract.PartEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + PartContract.PartEntry.PART_TYPE + " TEXT NOT NULL DEFAULT 0, "
+                + PartContract.PartEntry.PART_MODEL + "TEXT NOT NULL DEFAULT 0, "
                 + PartContract.PartEntry.PART_PRICE + " DOUBLE NOT NULL DEFAULT 0, "
-                + PartContract.PartEntry.PART_SCORE + " INTEGER NOT NULL, "
-                + PartContract.PartEntry.PART_RANK + " INTEGER NOT NULL DEFAULT 0, "
-                + PartContract.PartEntry.PART_SAMPLES + " TEXT);";
+                + PartContract.PartEntry.PART_VENDOR + "TEXT, "
+                + PartContract.PartEntry.PART_SCORE + " INTEGER, "
+                + PartContract.PartEntry.PART_RANK + " INTEGER, "
+                + PartContract.PartEntry.PART_SAMPLES + " TEXT, "
+                + PartContract.PartEntry.PART_IMG+ "TEXT);";
+
         db.execSQL(SQL_CREATE_PARTS_TABLE);
     }
 
