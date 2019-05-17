@@ -1,11 +1,14 @@
 package com.example.seth.pc_genius.PartObject;
 
+import android.graphics.Bitmap;
+
 public class Part {
 
     private String mName;
     private String mDescription;
     private double mPrice;
     private int mImageResourceId;
+    private Bitmap mimageBitmap;
 
 
     private String mType;
@@ -19,6 +22,13 @@ public class Part {
 
     public Part(){
 
+    }
+
+    public Part(String name, String description, double price, Bitmap image) {
+        mName = name;
+        mDescription = description;
+        mPrice = price;
+        mimageBitmap= image;
     }
 
     public Part(String name, String description, double price, int image) {
@@ -55,6 +65,7 @@ public class Part {
         if (mImageResourceId != -1)
             this.mImageResourceId = mImageResourceId;
     }
+    public Bitmap getmBitmap(){ return mimageBitmap; }
 
     public double getmPrice() {
         return mPrice;

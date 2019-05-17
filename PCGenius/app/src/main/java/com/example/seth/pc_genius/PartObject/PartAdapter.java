@@ -26,9 +26,13 @@ public class PartAdapter extends ArrayAdapter<Part> {
         }
         Part currentLocation = getItem(position);
 
-        ImageView imageView = (ImageView) listItemView.findViewById(R.id.listview_image);
-        imageView.setImageResource(currentLocation.getmImageResourceId());
-
+        if(currentLocation.getmBitmap()!=null){
+            ImageView imageView = (ImageView) listItemView.findViewById(R.id.listview_image);
+            imageView.setImageBitmap(currentLocation.getmBitmap());
+        }else {
+            ImageView imageView = (ImageView) listItemView.findViewById(R.id.listview_image);
+            imageView.setImageResource(currentLocation.getmImageResourceId());
+        }
 
         TextView nameTextView = (TextView) listItemView.findViewById(R.id.listview_item_title);
         nameTextView.setText(currentLocation.getmName());
