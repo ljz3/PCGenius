@@ -1,4 +1,4 @@
-package com.example.seth.pc_genius.SavedPartsScreen;
+package com.example.seth.pc_genius.Api;
 
 
 import android.graphics.Bitmap;
@@ -10,11 +10,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.seth.pc_genius.Api.SearchRelatedPart;
 import com.example.seth.pc_genius.R;
 
+public class SearchInfoPartDisplay extends Fragment {
 
-public class InfoPartDisplay extends Fragment {
     private String mName;
     private String mDescription;
     private double mPrice;
@@ -51,5 +50,4 @@ public class InfoPartDisplay extends Fragment {
 
         return view;
     }
-
 }

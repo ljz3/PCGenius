@@ -19,7 +19,7 @@ import java.util.concurrent.ExecutionException;
 import com.example.seth.pc_genius.Api.SearchFragment;
 
 public class SearchPart {
-    private String productName;
+    public String productName;
 
     public SearchPart(String name) {
         productName = name;

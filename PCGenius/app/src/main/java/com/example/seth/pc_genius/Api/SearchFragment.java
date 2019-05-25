@@ -30,6 +30,8 @@ import java.util.List;
 public class SearchFragment extends Fragment {
     EditText searchProduct;
     public static List<Part> searchList;
+    public static List<Part> searchRelatedList;
+
     public static PartAdapter adapter;
 
     @Nullable
@@ -48,15 +50,15 @@ public class SearchFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-                InfoPartDisplay infoPartDisplay = new InfoPartDisplay();
+                SearchInfoPartDisplay searchInfoPartDisplay = new SearchInfoPartDisplay();
                 bundle.putString("Name", searchList.get(position).getmName());
                 bundle.putString("Description", searchList.get(position).getmDescription());
                 bundle.putInt("ImageResource", searchList.get(position).getmImageResourceId());
                 bundle.putDouble("Price", searchList.get(position).getmPrice());
                 bundle.putParcelable("BitmapImage",searchList.get(position).getmBitmap());
-                infoPartDisplay.setArguments(bundle);
+                searchInfoPartDisplay.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.screen_area, infoPartDisplay, null);
+                transaction.replace(R.id.screen_area, searchInfoPartDisplay, null);
                 transaction.addToBackStack(null);
 
                 transaction.commit();
@@ -80,6 +82,7 @@ public class SearchFragment extends Fragment {
                         (i == KeyEvent.KEYCODE_ENTER)) {
                     Log.i("importantInfo", searchProduct.getText().toString());
                     SearchPart searchPart = new SearchPart(searchProduct.getText().toString());
+                    SearchRelatedPart searchRelatedPart = new SearchRelatedPart(searchProduct.getText().toString());
 
                     return true;
                 }

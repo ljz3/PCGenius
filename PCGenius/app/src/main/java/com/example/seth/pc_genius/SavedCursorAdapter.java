@@ -29,7 +29,7 @@ public class SavedCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, final Context context, Cursor cursor) {
 
-        TextView nameTextView = (TextView) view.findViewById(R.id.name);
+       /* TextView nameTextView = (TextView) view.findViewById(R.id.name);
         TextView qtyTextView = (TextView) view.findViewById(R.id.qty);
         TextView priceTextView = (TextView) view.findViewById(R.id.price);
         TextView supplierTextView = (TextView) view.findViewById(R.id.supplier);
@@ -65,7 +65,7 @@ public class SavedCursorAdapter extends CursorAdapter {
                 CatalogActivity activity = (CatalogActivity) context;
                 activity.sellBook(bookID, bookQuantity);
             }
-        });
+        });*/
 
     }
 }
