@@ -37,10 +37,9 @@ public class InfoPartDisplay extends Fragment {
 
 
 
-        TextView partDisplay = view.findViewById(R.id.partDisplay);
+
 
         TextView partDisplay = view.findViewById(R.id.partInfoNameDisplay);
-
         partDisplay.setText(mName);
         TextView descriptionDisplay = view.findViewById(R.id.partInfoDescriptionDisplay);
         descriptionDisplay.setText(mDescription);

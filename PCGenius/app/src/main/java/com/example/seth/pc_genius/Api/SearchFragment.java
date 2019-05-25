@@ -29,16 +29,17 @@ import java.util.List;
 
 public class SearchFragment extends Fragment {
     EditText searchProduct;
-    public static List<Part> searchList;
-    public static List<Part> searchRelatedList;
+    public static List<Part> searchList = new ArrayList<>();
+    public static List<Part> searchRelatedList = new ArrayList<>();
 
     public static PartAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        searchList = new ArrayList<>();
-        Log.i("importantInfo", "test");
+        super.onCreate(savedInstanceState);
+
+       
         adapter = new PartAdapter(getActivity(), -1, searchList);
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         ListView listView = (ListView) view.findViewById(R.id.list_search);
