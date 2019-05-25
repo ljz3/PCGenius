@@ -21,7 +21,7 @@ public class SavedCursorAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.listview_activity, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.part_info_display, parent, false);
     }
 
 
@@ -29,8 +29,8 @@ public class SavedCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, final Context context, Cursor cursor) {
 
-        TextView nameTextView = (TextView) view.findViewById(R.id.name);
-        TextView qtyTextView = (TextView) view.findViewById(R.id.qty);
+        TextView nameTextView = (TextView) view.findViewById(R.id.partInfoNameDisplay);
+        TextView descTextView = (TextView) view.findViewById(R.id.partInfoDescriptionDisplay);
         TextView priceTextView = (TextView) view.findViewById(R.id.price);
         TextView supplierTextView = (TextView) view.findViewById(R.id.supplier);
         TextView phoneTextView = (TextView) view.findViewById(R.id.phone);
@@ -54,7 +54,7 @@ public class SavedCursorAdapter extends CursorAdapter {
 
 
         nameTextView.setText("Name: " + bookName);
-        qtyTextView.setText("Quantity: " + bookQty);
+        descTextView.setText("Quantity: " + bookQty);
         priceTextView.setText(" Price: " + bookPrice);
         supplierTextView.setText("Supplier Name: " + bookSupplier);
         phoneTextView.setText("Supplier Phone: " + bookPhone);

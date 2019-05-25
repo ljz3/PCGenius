@@ -11,7 +11,7 @@
         android:layout_height="65dp" />
 
     <TextView
-        android:id="@+id/partDisplay"
+        android:id="@+id/partInfoNameDisplay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
@@ -19,7 +19,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/descriptionDisplay"
+        android:id="@+id/partInfoDescriptionDisplay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
@@ -27,7 +27,7 @@
         android:textSize="14sp" />
 
     <ImageView
-        android:id="@+id/imageDisplay"
+        android:id="@+id/partInfoImageDisplay"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center_horizontal" />
