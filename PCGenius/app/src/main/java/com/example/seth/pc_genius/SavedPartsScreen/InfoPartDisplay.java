@@ -36,13 +36,17 @@ public class InfoPartDisplay extends Fragment {
 
 
 
+
         TextView partDisplay = view.findViewById(R.id.partDisplay);
+
+        TextView partDisplay = view.findViewById(R.id.partInfoNameDisplay);
+
         partDisplay.setText(mName);
-        TextView descriptionDisplay = view.findViewById(R.id.descriptionDisplay);
+        TextView descriptionDisplay = view.findViewById(R.id.partInfoDescriptionDisplay);
         descriptionDisplay.setText(mDescription);
         TextView priceDisplay = view.findViewById(R.id.priceDisplay);
         priceDisplay.setText(Double.toString(mPrice));
-        ImageView imageDisplay = view.findViewById(R.id.imageDisplay);
+        ImageView imageDisplay = view.findViewById(R.id.partInfoImageDisplay);
         if(mBitmap!=null){
             imageDisplay.setImageBitmap(mBitmap);
         }else {
