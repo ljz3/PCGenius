@@ -8,9 +8,9 @@ import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CursorAdapter;
 import android.widget.TextView;
+
+import com.example.seth.pc_genius.data.PartContract;
 
 public class SavedCursorAdapter extends CursorAdapter {
 
@@ -21,7 +21,7 @@ public class SavedCursorAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        return LayoutInflater.from(context).inflate(R.layout.part_info_display, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.listview_activity, parent, false);
     }
 
 
@@ -29,19 +29,15 @@ public class SavedCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, final Context context, Cursor cursor) {
 
-        TextView nameTextView = (TextView) view.findViewById(R.id.partInfoNameDisplay);
-        TextView descTextView = (TextView) view.findViewById(R.id.partInfoDescriptionDisplay);
-        TextView priceTextView = (TextView) view.findViewById(R.id.price);
-        TextView supplierTextView = (TextView) view.findViewById(R.id.supplier);
-        TextView phoneTextView = (TextView) view.findViewById(R.id.phone);
-        Button saleButton = (Button) view.findViewById(R.id.sale_button);
+        TextView nameTextView = (TextView) view.findViewById(R.id.partItemModel);
+        TextView descTextView = (TextView) view.findViewById(R.id.partItemVendor);
+        TextView priceTextView = (TextView) view.findViewById(R.id.partItemPrice);
 
-        int idColumnIndex = cursor.getColumnIndex(BookEntry._ID);
-        int nameColumnIndex = cursor.getColumnIndex(BookEntry.BOOK_NAME);
-        int qtyColumnIndex = cursor.getColumnIndex(BookEntry.BOOK_QUANTITY);
-        int priceColumnIndex = cursor.getColumnIndex(BookEntry.BOOK_PRICE);
-        int supplierColumnIndex = cursor.getColumnIndex(BookEntry.SUPPLIER_NAME);
-        int phoneColumnIndex = cursor.getColumnIndex(BookEntry.BOOK_PHONE);
+        int idColumnIndex = cursor.getColumnIndex(PartContract.PartEntry._ID);
+        int nameColumnIndex = cursor.getColumnIndex(PartContract.PartEntry.PART_MODEL);
+        int priceColumnIndex = cursor.getColumnIndex(PartContract.PartEntry.PART_PRICE);
+        int supplierColumnIndex = cursor.getColumnIndex(PartContract.PartEntry.PART_VENDOR);
+        int phoneColumnIndex = cursor.getColumnIndex(PartContract.PartEntry.BOOK_PHONE);
 
         final int bookID = cursor.getInt(idColumnIndex);
         String bookName = cursor.getString(nameColumnIndex);

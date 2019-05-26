@@ -34,13 +34,13 @@ public class PartAdapter extends ArrayAdapter<Part> {
             imageView.setImageResource(currentLocation.getmImageResourceId());
         }
 
-        TextView nameTextView = (TextView) listItemView.findViewById(R.id.listview_item_title);
+        TextView nameTextView = (TextView) listItemView.findViewById(R.id.partItemModel);
         nameTextView.setText(currentLocation.getmName());
 
-        TextView priceTextView = (TextView) listItemView.findViewById(R.id.listview_item_price);
+        TextView priceTextView = (TextView) listItemView.findViewById(R.id.partItemPrice);
         priceTextView.setText(currentLocation.getmPrice() + "$");
 
-        TextView descTextView = (TextView) listItemView.findViewById(R.id.listview_item_short_description);
+        TextView descTextView = (TextView) listItemView.findViewById(R.id.partItemVendor);
         descTextView.setText(("Description:   " + currentLocation.getmDescription()));
 
 
