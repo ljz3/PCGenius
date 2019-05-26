@@ -29,14 +29,17 @@ import java.util.List;
 
 public class SearchFragment extends Fragment {
     EditText searchProduct;
-    public static List<Part> searchList;
+    public static List<Part> searchList = new ArrayList<>();
+    public static List<Part> searchRelatedList = new ArrayList<>();
+
     public static PartAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        searchList = new ArrayList<>();
-        Log.i("importantInfo", "test");
+        super.onCreate(savedInstanceState);
+
+       
         adapter = new PartAdapter(getActivity(), -1, searchList);
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         ListView listView = (ListView) view.findViewById(R.id.list_search);
@@ -48,15 +51,15 @@ public class SearchFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-                InfoPartDisplay infoPartDisplay = new InfoPartDisplay();
+                SearchInfoPartDisplay searchInfoPartDisplay = new SearchInfoPartDisplay();
                 bundle.putString("Name", searchList.get(position).getmName());
                 bundle.putString("Description", searchList.get(position).getmDescription());
                 bundle.putInt("ImageResource", searchList.get(position).getmImageResourceId());
                 bundle.putDouble("Price", searchList.get(position).getmPrice());
                 bundle.putParcelable("BitmapImage",searchList.get(position).getmBitmap());
-                infoPartDisplay.setArguments(bundle);
+                searchInfoPartDisplay.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.screen_area, infoPartDisplay, null);
+                transaction.replace(R.id.screen_area, searchInfoPartDisplay, null);
                 transaction.addToBackStack(null);
 
                 transaction.commit();
@@ -80,6 +83,7 @@ public class SearchFragment extends Fragment {
                         (i == KeyEvent.KEYCODE_ENTER)) {
                     Log.i("importantInfo", searchProduct.getText().toString());
                     SearchPart searchPart = new SearchPart(searchProduct.getText().toString());
+                    SearchRelatedPart searchRelatedPart = new SearchRelatedPart(searchProduct.getText().toString());
 
                     return true;
                 }

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.seth.pc_genius.Api.SearchRelatedPart;
 import com.example.seth.pc_genius.R;
 
 
@@ -32,6 +33,11 @@ public class InfoPartDisplay extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
+
+
+
 
         TextView partDisplay = view.findViewById(R.id.partInfoNameDisplay);
         partDisplay.setText(mName);
