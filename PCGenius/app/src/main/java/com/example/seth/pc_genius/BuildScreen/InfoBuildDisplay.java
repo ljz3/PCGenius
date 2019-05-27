@@ -14,7 +14,6 @@ import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
 import com.example.seth.pc_genius.SavedPartsScreen.InfoPartDisplay;
-import com.example.seth.pc_genius.SavedPartsScreen.PartsFragmentContents;
 
 import java.util.ArrayList;
 
@@ -29,7 +28,7 @@ public class InfoBuildDisplay extends Fragment{
             partList = buildList.get(getArguments().getInt("Position", -1)).getmParts();
         PartAdapter adapter = new PartAdapter(getActivity(), -1, partList);
 
-        ListView listView = (ListView) view.findViewById(R.id.list_parts);
+        ListView listView = (ListView) view.findViewById(R.id.listSavedParts);
 
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {

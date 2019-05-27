@@ -1,11 +1,8 @@
 package com.example.seth.pc_genius.SavedPartsScreen;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,8 +11,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.seth.pc_genius.HomeScreen.HomeFragment;
-import com.example.seth.pc_genius.MainActivity;
 import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
@@ -42,7 +37,7 @@ public class PartsFragment extends Fragment {
 
         PartAdapter adapter = new PartAdapter(getActivity(), -1, list);
         View view = inflater.inflate(R.layout.fragment_parts, container, false);
-        ListView listView = (ListView) view.findViewById(R.id.list_parts);
+        ListView listView = (ListView) view.findViewById(R.id.listSavedParts);
 
         listView.setAdapter(adapter);
 

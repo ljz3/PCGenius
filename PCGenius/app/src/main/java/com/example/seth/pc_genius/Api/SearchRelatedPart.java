@@ -41,6 +41,7 @@ public class SearchRelatedPart {
 
         @Override
         protected String doInBackground(String... urls) {
+            SearchFragment.searchRelatedList.clear();
             URL url = QueryUtils.createUrl(urls[0]);
             String result = "";
 
@@ -85,11 +86,27 @@ public class SearchRelatedPart {
                 JSONObject jsonObject = new JSONObject(result);
 
                 JSONArray m = jsonObject.getJSONArray("items");
-                for(int i=0;i<5;i++) {
+                for(int i=0;i<m.length();i++) {
+
+                    Bitmap myImage = null;
+
+                    try {
+                        DownloadImage downloadImage = new DownloadImage();
+                        myImage=downloadImage.execute(m.getJSONObject(i).get("imageUrl").toString()).get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+
+                   Log.i("importantinfo", m.getJSONObject(i).getJSONArray("priceOptions").getJSONObject(0).getJSONObject("amount").get("value").toString());
                     Log.i("importantInfo", m.getJSONObject(i).toString());
-                    SearchFragment.searchRelatedList.add(new Part(m.getJSONObject(i).get("title").toString(), "test", 0.00, R.drawable.image_icon));
+                    SearchFragment.searchRelatedList.add(new Part(m.getJSONObject(i).get("title").toString(), "test", Double.parseDouble(m.getJSONObject(i).getJSONArray("priceOptions").getJSONObject(0).getJSONObject("amount").get("value").toString()), myImage));
+                    if(i==5){
+                        break;
+                    }
                 }
-                SearchFragment.adapter.notifyDataSetChanged();
+
 
             } catch (JSONException e) {
                 Log.i("info", "failed to get products");
