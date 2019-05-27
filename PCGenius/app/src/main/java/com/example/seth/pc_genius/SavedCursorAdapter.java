@@ -28,7 +28,7 @@ public class SavedCursorAdapter extends CursorAdapter {
     @SuppressLint("SetTextI18n")
     @Override
     public void bindView(View view, final Context context, Cursor cursor) {
-
+/*
         TextView nameTextView = (TextView) view.findViewById(R.id.partItemModel);
         TextView descTextView = (TextView) view.findViewById(R.id.partItemVendor);
         TextView priceTextView = (TextView) view.findViewById(R.id.partItemPrice);
@@ -62,6 +62,6 @@ public class SavedCursorAdapter extends CursorAdapter {
                 activity.sellBook(bookID, bookQuantity);
             }
         });
-
+*/
     }
 }
