@@ -33,11 +33,7 @@ public class InfoPartDisplay extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
-
-        TextView partDisplay = view.findViewById(R.id.partDisplay);
+        
 
         TextView partDisplay = view.findViewById(R.id.partInfoNameDisplay);
 
