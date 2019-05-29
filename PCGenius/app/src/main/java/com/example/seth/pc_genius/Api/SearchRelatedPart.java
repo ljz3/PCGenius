@@ -50,7 +50,7 @@ public class SearchRelatedPart {
             post.addHeader("X-API-CLIENT-ID", "PBGNWVIIBOVFNGYY");
             post.addHeader("Content-Type", "application/json");
             try {
-                StringEntity input = new StringEntity("{\"text\":\" " + productName + "\",\"category\":\"708042\"}");
+                StringEntity input = new StringEntity("{\"text\":\" " + productName + "\",\"category\":\"200002319\"}");
 
                 post.setEntity(input);
             } catch (UnsupportedEncodingException e) {
