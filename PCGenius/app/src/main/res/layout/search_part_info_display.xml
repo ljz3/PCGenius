@@ -1,54 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:fillViewport="true">
 
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="65dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/partNameDisplay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-smallcaps"
-        android:gravity="center"
-        android:textSize="18sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="65dp" />
 
-    <TextView
-        android:id="@+id/descriptionDisplay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-smallcaps"
-        android:gravity="center"
-        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/partNameDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center"
+            android:textSize="18sp" />
 
-    <ImageView
-        android:id="@+id/imageDisplay"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center_horizontal" />
+        <TextView
+            android:id="@+id/descriptionDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-smallcaps"
+            android:gravity="center"
+            android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/priceDisplay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center" />
+        <ImageView
+            android:id="@+id/imageDisplay"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal" />
 
-    <TextView
-        android:id="@+id/benchmarkDisplay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="291.2"/>
+        <TextView
+            android:id="@+id/priceDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" />
 
-    <ListView
-        android:id="@+id/relatedParts"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/benchmarkDisplay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="291.2" />
+
+        <ListView
+            android:id="@+id/relatedParts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
 
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
