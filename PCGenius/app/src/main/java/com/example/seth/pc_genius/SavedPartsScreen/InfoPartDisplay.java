@@ -11,7 +11,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -41,7 +40,6 @@ public class InfoPartDisplay extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
     }
 
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.part_info_display, container, false);
         mName = getArguments().getString("Name", "");
@@ -61,7 +59,7 @@ public class InfoPartDisplay extends Fragment {
         TextView descriptionDisplay = view.findViewById(R.id.partInfoDescriptionDisplay);
         descriptionDisplay.setText(mDescription);
         TextView priceDisplay = view.findViewById(R.id.priceDisplay);
-//      priceDisplay.setText(Double.toString(mPrice));
+        //priceDisplay.setText(Double.toString(mPrice));
         ImageView imageDisplay = view.findViewById(R.id.partInfoImageDisplay);
         if(mBitmap!=null){
             imageDisplay.setImageBitmap(mBitmap);
