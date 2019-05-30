@@ -3,24 +3,27 @@ package com.example.seth.pc_genius.Api;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
 
-import java.util.ArrayList;
-
-import static com.example.seth.pc_genius.Api.SearchFragment.adapter;
-import static com.example.seth.pc_genius.Api.SearchFragment.searchList;
 import static com.example.seth.pc_genius.Api.SearchFragment.searchRelatedList;
 
 public class SearchInfoPartDisplay extends Fragment {
@@ -30,6 +33,118 @@ public class SearchInfoPartDisplay extends Fragment {
     private double mPrice;
     private int mImageResourceId;
     private Bitmap mBitmap=null;
+
+
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_part_info, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.action_save_part:
+                savePart();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
+
+
+    private void savePart() {
+        Toast.makeText(getActivity(),
+                "Saved", Toast.LENGTH_LONG).show();
+
+        TextView partNameDisplay = (TextView) getView().findViewById(R.id.partNameDisplay);
+        /*
+        mPriceEditText = (EditText) findViewById(R.id.edit_book_price);
+        mQtyEditText = (EditText) findViewById(R.id.edit_book_qty);
+        mSupEditText = (EditText) findViewById(R.id.edit_book_sup);
+        mPhoneEditText = (EditText) findViewById(R.id.edit_book_phone);
+
+        String nameString = partNameDisplay.getText().toString().trim();
+        String priceString = mPriceEditText.getText().toString().trim();
+        String qtyString = mQtyEditText.getText().toString().trim();
+        String supString = mSupEditText.getText().toString().trim();
+        String phoneString = mPhoneEditText.getText().toString().trim();
+
+
+        if (mCurrentBookUri == null &&
+                TextUtils.isEmpty(nameString) && TextUtils.isEmpty(priceString) &&
+                TextUtils.isEmpty(supString) &&
+                TextUtils.isEmpty(phoneString)) {
+            return;
+        }
+
+        if (TextUtils.isEmpty(nameString)) {
+            return;
+        }
+        if (TextUtils.isEmpty(priceString)) {
+            return;
+        }
+        if (TextUtils.isEmpty(qtyString)) {
+            return;
+        }
+        if (TextUtils.isEmpty(supString)) {
+            return;
+        }
+        if (TextUtils.isEmpty(phoneString)) {
+            return;
+        }
+
+
+
+        double price = Double.parseDouble(priceString);
+
+        ContentValues values = new ContentValues();
+        values.put(BookEntry.BOOK_NAME, nameString);
+        values.put(BookEntry.BOOK_PRICE, price);
+        values.put(BookEntry.SUPPLIER_NAME, supString);
+        values.put(BookEntry.BOOK_PHONE, phoneString);
+
+        int qty = 0;
+        if (!TextUtils.isEmpty(qtyString)) {
+            qty = Integer.parseInt(qtyString);
+        }
+        values.put(BookEntry.BOOK_QUANTITY, qty);
+
+        if (mCurrentBookUri == null) {
+
+            Uri newUri = getContentResolver().insert(BookContract.BookEntry.CONTENT_URI, values);
+
+            if (newUri == null) {
+                Toast.makeText(this, getString(R.string.editor_insert_book_failed),
+                        Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, getString(R.string.editor_insert_book_successful),
+                        Toast.LENGTH_SHORT).show();
+            }
+        } else {
+
+            int rowsAffected = getContentResolver().update(mCurrentBookUri, values, null, null);
+
+            if (rowsAffected == 0) {
+
+                Toast.makeText(this, getString(R.string.editor_update_book_failed),
+                        Toast.LENGTH_SHORT).show();
+            } else {
+
+                Toast.makeText(this, getString(R.string.editor_update_book_successful),
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+*/
+    }
+
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,7 +163,7 @@ public class SearchInfoPartDisplay extends Fragment {
 
 
 
-        TextView partDisplay = view.findViewById(R.id.partDisplay);
+        TextView partDisplay = view.findViewById(R.id.partNameDisplay);
         partDisplay.setText(mName);
         TextView descriptionDisplay = view.findViewById(R.id.descriptionDisplay);
         descriptionDisplay.setText(mDescription);

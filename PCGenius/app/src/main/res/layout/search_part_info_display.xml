@@ -11,7 +11,7 @@
         android:layout_height="65dp" />
 
     <TextView
-        android:id="@+id/partDisplay"
+        android:id="@+id/partNameDisplay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-smallcaps"
