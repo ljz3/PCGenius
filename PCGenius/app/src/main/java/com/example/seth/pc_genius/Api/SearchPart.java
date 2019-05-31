@@ -63,7 +63,7 @@ public class SearchPart {
                         e.printStackTrace();
                     }
 
-                    SearchFragment.searchList.add(new Part(m.getJSONObject(i).get("name").toString(), m.getJSONObject(i).get("shortDescription").toString(), Double.parseDouble(m.getJSONObject(i).get("salePrice").toString()), myImage));
+                    SearchFragment.searchList.add(new Part(m.getJSONObject(i).get("name").toString(), m.getJSONObject(i).get("shortDescription").toString(), Double.parseDouble(m.getJSONObject(i).get("salePrice").toString()), myImage,"Best Buy"));
                 }
                 SearchFragment.adapter.notifyDataSetChanged();
 

@@ -32,7 +32,9 @@ public class SearchInfoPartDisplay extends Fragment {
     private String mDescription;
     private double mPrice;
     private int mImageResourceId;
+    private String mVendor;
     private Bitmap mBitmap=null;
+
 
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -155,6 +157,8 @@ public class SearchInfoPartDisplay extends Fragment {
         mDescription = getArguments().getString("Description", "");
         mPrice = getArguments().getDouble("Price", 0);
         mImageResourceId = getArguments().getInt("ImageResource", 0);
+        mVendor = getArguments().getString("Vendor","");
+
         try {
             mBitmap = getArguments().getParcelable("BitmapImage");
         } catch (Exception e) {
@@ -169,7 +173,10 @@ public class SearchInfoPartDisplay extends Fragment {
         descriptionDisplay.setText(mDescription);
         TextView priceDisplay = view.findViewById(R.id.priceDisplay);
         priceDisplay.setText(Double.toString(mPrice));
+        TextView vendorDisplay = view.findViewById(R.id.vendorDisplay);
+        vendorDisplay.setText(mVendor);
         ImageView imageDisplay = view.findViewById(R.id.imageDisplay);
+
         if(mBitmap!=null){
             imageDisplay.setImageBitmap(mBitmap);
         }else {
@@ -194,6 +201,7 @@ public class SearchInfoPartDisplay extends Fragment {
                 bundle.putInt("ImageResource", searchRelatedList.get(position).getmImageResourceId());
                 bundle.putDouble("Price", searchRelatedList.get(position).getmPrice());
                 bundle.putParcelable("BitmapImage",searchRelatedList.get(position).getmBitmap());
+                bundle.putString("Vendor",searchRelatedList.get(position).getmVendor());
                 searchInfoPartDisplay.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.screen_area, searchInfoPartDisplay, null);

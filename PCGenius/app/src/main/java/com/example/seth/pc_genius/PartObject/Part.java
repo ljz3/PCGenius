@@ -8,7 +8,7 @@ public class Part {
     private String mDescription;
     private double mPrice;
     private int mImageResourceId;
-    private Bitmap mimageBitmap;
+    private Bitmap mImageBitmap;
 
 
     private String mType;
@@ -19,16 +19,18 @@ public class Part {
     private int mBenchmark;
     private int mSamples;
     private String mURL;
+    private String mVendor;
 
     public Part(){
 
     }
 
-    public Part(String name, String description, double price, Bitmap image) {
+    public Part(String name, String description, double price, Bitmap image,String vendor) {
         mName = name;
         mDescription = description;
         mPrice = price;
-        mimageBitmap= image;
+        mImageBitmap = image;
+        mVendor= vendor;
     }
 
     public Part(String name, String description, double price, int image) {
@@ -65,7 +67,7 @@ public class Part {
         if (mImageResourceId != -1)
             this.mImageResourceId = mImageResourceId;
     }
-    public Bitmap getmBitmap(){ return mimageBitmap; }
+    public Bitmap getmBitmap(){ return mImageBitmap; }
 
     public double getmPrice() {
         return mPrice;
@@ -89,6 +91,10 @@ public class Part {
 
     public void setmName(String mName) {
         this.mName = mName;
+    }
+
+    public String getmVendor() {
+        return mVendor;
     }
 
     public String getmType() {

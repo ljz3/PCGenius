@@ -30,13 +30,13 @@ import java.util.List;
 
 public class BuildsFragment extends Fragment {
     String buildTitle;
-    protected static List<Build> buildList;
+    protected static List<Build> buildList= new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Builds");
-        buildList = new ArrayList<>();
+
         BuildsFragmentContents.initPartsListBuilds(buildList, getContext());
 
         final BuildsAdapter adapter = new BuildsAdapter(getActivity(), -1, buildList);

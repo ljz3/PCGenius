@@ -24,14 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PartsFragment extends Fragment {
-    protected List<Part> list;
+    protected List<Part> list= new ArrayList<>();
     private List<Part> parts = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Parts");
-        list = new ArrayList<>();
+        
         readPartData();
         PartsFragmentContents.initPartsListParts(list, getContext(), parts);
 
@@ -50,6 +50,7 @@ public class PartsFragment extends Fragment {
                 bundle.putString("Description", list.get(position).getmDescription());
                 bundle.putInt("ImageResource", list.get(position).getmImageResourceId());
                 bundle.putDouble("Price", list.get(position).getmPrice());
+                bundle.putString("Vendor",list.get(position).getmVendor());
                 infoPartDisplay.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.screen_area, infoPartDisplay, null);

@@ -101,7 +101,7 @@ public class SearchRelatedPart {
 
                    Log.i("importantinfo", m.getJSONObject(i).getJSONArray("priceOptions").getJSONObject(0).getJSONObject("amount").get("value").toString());
                     Log.i("importantInfo", m.getJSONObject(i).toString());
-                    SearchFragment.searchRelatedList.add(new Part(m.getJSONObject(i).get("title").toString(), "test", Double.parseDouble(m.getJSONObject(i).getJSONArray("priceOptions").getJSONObject(0).getJSONObject("amount").get("value").toString()), myImage));
+                    SearchFragment.searchRelatedList.add(new Part(m.getJSONObject(i).get("title").toString(), "test", Double.parseDouble(m.getJSONObject(i).getJSONArray("priceOptions").getJSONObject(0).getJSONObject("amount").get("value").toString()), myImage,"AliExpress"));
                     if(i==5){
                         break;
                     }

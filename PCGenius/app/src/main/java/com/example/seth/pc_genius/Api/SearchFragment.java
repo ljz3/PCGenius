@@ -57,6 +57,7 @@ public class SearchFragment extends Fragment {
                 bundle.putInt("ImageResource", searchList.get(position).getmImageResourceId());
                 bundle.putDouble("Price", searchList.get(position).getmPrice());
                 bundle.putParcelable("BitmapImage",searchList.get(position).getmBitmap());
+                bundle.putString("Vendor",searchList.get(position).getmVendor());
                 searchInfoPartDisplay.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.screen_area, searchInfoPartDisplay, null);
