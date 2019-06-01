@@ -26,6 +26,7 @@ public class InfoPartDisplay extends Fragment {
     private String mDescription;
     private double mPrice;
     private int mImageResourceId;
+    private String mVendor;
     private Bitmap mBitmap=null;
 
 
@@ -46,6 +47,7 @@ public class InfoPartDisplay extends Fragment {
         mDescription = getArguments().getString("Description", "");
         mPrice = getArguments().getDouble("Price", 0);
         mImageResourceId = getArguments().getInt("ImageResource", 0);
+        mVendor = getArguments().getString("Vendor","");
         try {
             mBitmap = getArguments().getParcelable("BitmapImage");
         } catch (Exception e) {
