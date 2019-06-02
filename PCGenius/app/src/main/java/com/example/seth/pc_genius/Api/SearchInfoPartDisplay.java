@@ -1,6 +1,7 @@
 package com.example.seth.pc_genius.Api;
 
 
+import android.content.ContentValues;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,8 +22,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
+import com.example.seth.pc_genius.data.PartContract;
 
 import static com.example.seth.pc_genius.Api.SearchFragment.searchRelatedList;
 
@@ -67,6 +70,13 @@ public class SearchInfoPartDisplay extends Fragment {
                 "Saved", Toast.LENGTH_LONG).show();
 
         TextView partNameDisplay = (TextView) getView().findViewById(R.id.partNameDisplay);
+        String nameString = partNameDisplay.getText().toString().trim();
+        ContentValues values = new ContentValues();
+
+        values.put(PartContract.PartEntry.PART_MODEL, nameString);
+        values.put(PartContract.PartEntry.PART_PRICE, 2);
+        values.put(PartContract.PartEntry.PART_TYPE, "GPU");
+
         /*
         mPriceEditText = (EditText) findViewById(R.id.edit_book_price);
         mQtyEditText = (EditText) findViewById(R.id.edit_book_qty);
