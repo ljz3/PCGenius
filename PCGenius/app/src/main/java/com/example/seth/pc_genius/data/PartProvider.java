@@ -38,20 +38,16 @@ public class PartProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs,
                         String sortOrder) {
         SQLiteDatabase database = mDbHelper.getReadableDatabase();
-
         Cursor cursor;
-
         int match = sUriMatcher.match(uri);
         switch (match) {
             case PARTS:
-
                 cursor = database.query(PartEntry.PART_TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             case PART_ID:
-
                 selection = PartEntry._ID + "=?";
-                selectionArgs = new String[]{String.valueOf(ContentUris.parseId(uri))};
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
 
                 cursor = database.query(PartEntry.PART_TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
@@ -59,9 +55,7 @@ public class PartProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);
         }
-
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
-
         return cursor;
     }
 
