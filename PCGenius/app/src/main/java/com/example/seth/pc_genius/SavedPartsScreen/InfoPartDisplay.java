@@ -2,14 +2,11 @@ package com.example.seth.pc_genius.SavedPartsScreen;
 
 
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,10 +19,9 @@ import android.widget.Toast;
 
 import com.example.seth.pc_genius.Api.SearchRelatedPart;
 import com.example.seth.pc_genius.R;
-import com.example.seth.pc_genius.data.PartContract;
 
 
-public class InfoPartDisplay extends Fragment{
+public class InfoPartDisplay extends Fragment {
     private String mName;
     private String mDescription;
     private double mPrice;
@@ -64,7 +60,8 @@ public class InfoPartDisplay extends Fragment{
         partDisplay.setText(mName);
         TextView descriptionDisplay = view.findViewById(R.id.partInfoDescriptionDisplay);
         descriptionDisplay.setText(mDescription);
-
+        TextView priceDisplay = view.findViewById(R.id.priceDisplay);
+        //priceDisplay.setText(Double.toString(mPrice));
         ImageView imageDisplay = view.findViewById(R.id.partInfoImageDisplay);
         if(mBitmap!=null){
             imageDisplay.setImageBitmap(mBitmap);
@@ -74,6 +71,4 @@ public class InfoPartDisplay extends Fragment{
 
         return view;
     }
-
-
 }
