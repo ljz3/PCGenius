@@ -77,30 +77,6 @@ public class PartProvider extends ContentProvider {
     }
 
     private Uri insertPart(Uri uri, ContentValues values) {
-        String name = values.getAsString(PartEntry.PART_TYPE);
-        if (name == null) {
-            throw new IllegalArgumentException("Part requires a name");
-        }
-
-
-        Integer qty = values.getAsInteger(PartEntry.PART_SCORE);
-        if (qty != null && qty < 0) {
-            throw new IllegalArgumentException("Part requires valid quantity");
-        }
-
-        Double price = values.getAsDouble(PartEntry.PART_PRICE);
-        if (price != null && price < 0) {
-            throw new IllegalArgumentException("Part requires valid price");
-        }
-
-        String supplier = values.getAsString(PartEntry.PART_TYPE);
-        if (supplier == null) {
-            throw new IllegalArgumentException("Part requires a supplier");
-        }
-        String phone = values.getAsString(PartEntry.PART_TYPE);
-        if (phone == null) {
-            throw new IllegalArgumentException("Part requires a supplier phone number");
-        }
 
 
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
