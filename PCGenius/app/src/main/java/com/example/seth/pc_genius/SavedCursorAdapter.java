@@ -28,7 +28,7 @@ public class SavedCursorAdapter extends CursorAdapter {
     @SuppressLint("SetTextI18n")
     @Override
     public void bindView(View view, final Context context, Cursor cursor) {
-
+/*
         TextView nameTextView = (TextView) view.findViewById(R.id.partItemModel);
         TextView descTextView = (TextView) view.findViewById(R.id.partItemVendor);
         TextView priceTextView = (TextView) view.findViewById(R.id.partItemPrice);
@@ -37,12 +37,31 @@ public class SavedCursorAdapter extends CursorAdapter {
         int nameColumnIndex = cursor.getColumnIndex(PartContract.PartEntry.PART_MODEL);
         int priceColumnIndex = cursor.getColumnIndex(PartContract.PartEntry.PART_PRICE);
         int supplierColumnIndex = cursor.getColumnIndex(PartContract.PartEntry.PART_VENDOR);
+        int phoneColumnIndex = cursor.getColumnIndex(PartContract.PartEntry.BOOK_PHONE);
 
-        String partName = cursor.getString(nameColumnIndex);
+        final int bookID = cursor.getInt(idColumnIndex);
+        String bookName = cursor.getString(nameColumnIndex);
+        final String bookQty = cursor.getString(qtyColumnIndex);
+        String bookPrice = cursor.getString(priceColumnIndex);
+        String bookSupplier = cursor.getString(supplierColumnIndex);
+        String bookPhone = cursor.getString(phoneColumnIndex);
+        final int bookQuantity = cursor.getInt(qtyColumnIndex);
 
 
-        nameTextView.setText(partName);
 
+        nameTextView.setText("Name: " + bookName);
+        descTextView.setText("Quantity: " + bookQty);
+        priceTextView.setText(" Price: " + bookPrice);
+        supplierTextView.setText("Supplier Name: " + bookSupplier);
+        phoneTextView.setText("Supplier Phone: " + bookPhone);
 
+        saleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CatalogActivity activity = (CatalogActivity) context;
+                activity.sellBook(bookID, bookQuantity);
+            }
+        });
+*/
     }
 }
