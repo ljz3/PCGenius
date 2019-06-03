@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,27 +12,6 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <RadioButton android:id="@+id/Alphabetically"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Alphabetically"
-                android:onClick="onRadioButtonClicked"/>
-            <RadioButton android:id="@+id/Price_low_high"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Price (low to high)"
-                android:onClick="onRadioButtonClicked"/>
-            <RadioButton android:id="@+id/Price_high_low"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Price (high to low)"
-                android:onClick="onRadioButtonClicked"/>
-        </RadioGroup>
-
         <ListView
             android:id="@+id/list_search"
             android:layout_width="match_parent"
@@ -45,5 +23,4 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </android.support.design.widget.TextInputLayout>
-
 </LinearLayout>

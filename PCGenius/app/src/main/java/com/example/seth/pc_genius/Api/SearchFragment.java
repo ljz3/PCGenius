@@ -15,7 +15,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.seth.pc_genius.Api.SearchPart;
@@ -40,7 +39,7 @@ public class SearchFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+       
         adapter = new PartAdapter(getActivity(), -1, searchList);
         View view = inflater.inflate(R.layout.fragment_search, container, false);
         ListView listView = (ListView) view.findViewById(R.id.list_search);
@@ -57,8 +56,8 @@ public class SearchFragment extends Fragment {
                 bundle.putString("Description", searchList.get(position).getmDescription());
                 bundle.putInt("ImageResource", searchList.get(position).getmImageResourceId());
                 bundle.putDouble("Price", searchList.get(position).getmPrice());
-                bundle.putParcelable("BitmapImage", searchList.get(position).getmBitmap());
-                bundle.putString("Vendor", searchList.get(position).getmVendor());
+                bundle.putParcelable("BitmapImage",searchList.get(position).getmBitmap());
+                bundle.putString("Vendor",searchList.get(position).getmVendor());
                 searchInfoPartDisplay.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.screen_area, searchInfoPartDisplay, null);
@@ -75,8 +74,6 @@ public class SearchFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
         Log.i("importantInfo", "test");
         getActivity().setTitle("Search");
         searchProduct = view.findViewById(R.id.searchProduct);
@@ -94,26 +91,5 @@ public class SearchFragment extends Fragment {
                 return false;
             }
         });
-    }
-
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch (view.getId()) {
-            case R.id.Alphabetically:
-                if (checked)
-                    // Pirates are the best
-                    break;
-            case R.id.Price_low_high:
-                if (checked)
-                    // Ninjas rule
-                    break;
-            case R.id.Price_high_low:
-                if (checked)
-                    // Ninjas rule
-                    break;
-        }
     }
 }
