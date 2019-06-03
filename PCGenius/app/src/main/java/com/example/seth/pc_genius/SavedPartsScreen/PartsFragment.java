@@ -1,19 +1,25 @@
 package com.example.seth.pc_genius.SavedPartsScreen;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
+import com.example.seth.pc_genius.data.DbHelper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -23,17 +29,72 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PartsFragment extends Fragment {
-    protected List<Part> list= new ArrayList<>();
+public class PartsFragment extends AppCompatActivity {
+
+
+    DbHelper myDB;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_parts);
+
+        ListView listView = (ListView) findViewById(R.id.listSavedParts);
+        myDB = new DbHelper(this);
+
+        //populate an ArrayList<String> from the database and then view it
+        ArrayList<String> theList = new ArrayList<>();
+        Cursor data = myDB.getListContents();
+        if(data.getCount() == 0){
+            Toast.makeText(this, "There are no contents in this list!",Toast.LENGTH_LONG).show();
+        }else{
+            while(data.moveToNext()){
+                theList.add(data.getString(1));
+                ListAdapter listAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,theList);
+                listView.setAdapter(listAdapter);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+    /*
+    protected List<Part> list = new ArrayList<>();
     private List<Part> parts = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+
         getActivity().setTitle("Parts");
 
+
         readPartData();
-        PartsFragmentContents.initPartsListParts(list, getContext(), parts);
 
         PartAdapter adapter = new PartAdapter(getActivity(), -1, list);
         View view = inflater.inflate(R.layout.fragment_parts, container, false);
@@ -63,7 +124,9 @@ public class PartsFragment extends Fragment {
 
         return view;
 
+        return null;
     }
+}
 
     private void readPartData() {
 
@@ -117,6 +180,4 @@ public class PartsFragment extends Fragment {
         }
 
     }
-
-}
-
+*/
