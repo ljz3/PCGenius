@@ -1,6 +1,5 @@
 package com.example.seth.pc_genius.SavedPartsScreen;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,7 +14,6 @@ import android.widget.ListView;
 import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
-import com.example.seth.pc_genius.SavedCursorAdapter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -65,27 +63,6 @@ public class PartsFragment extends Fragment {
 
         return view;
 
-    }
-
-    public static void initPartsListParts(List<Part> list, Context context, List<Part> parts) {
-
-        ListView savedListView = (ListView) findViewById(R.id.listSavedParts);
-
-        // Setup an Adapter to create a list item for each row of pet data in the Cursor.
-        // There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
-        mCursorAdapter = new SavedCursorAdapter(this, null);
-        savedListView.setAdapter(mCursorAdapter);
-
-
-        // Kick off the loader
-        getLoaderManager().initLoader(0, null, this);
-
-        /*
-        for(Part part: parts){
-            list.add(new Part(part.getmModel(),part.getmType(),part.getmPrice(),R.drawable.image_icon));
-        }
-*/
-        // list.add(new Part("random", "Motherboard", 199.99, R.drawable.image_icon));
     }
 
     private void readPartData() {

@@ -34,7 +34,26 @@ public class PartsFragmentContents extends AppCompatActivity implements LoaderMa
     private Uri mCurrentBookUri;
     static SavedCursorAdapter mCursorAdapter;
 
-    
+    public static void initPartsListParts(List<Part> list, Context context, List<Part> parts) {
+
+        ListView savedListView = (ListView) findViewById(R.id.listSavedParts);
+
+        // Setup an Adapter to create a list item for each row of pet data in the Cursor.
+        // There is no pet data yet (until the loader finishes) so pass in null for the Cursor.
+        mCursorAdapter = new SavedCursorAdapter(this, null);
+        savedListView.setAdapter(mCursorAdapter);
+
+
+        // Kick off the loader
+        getLoaderManager().initLoader(0, null, this);
+
+        /*
+        for(Part part: parts){
+            list.add(new Part(part.getmModel(),part.getmType(),part.getmPrice(),R.drawable.image_icon));
+        }
+*/
+       // list.add(new Part("random", "Motherboard", 199.99, R.drawable.image_icon));
+    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
