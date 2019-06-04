@@ -9,8 +9,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RadioButton;
 
 import com.example.seth.pc_genius.BuildScreen.BuildsFragment;
 import com.example.seth.pc_genius.HomeScreen.HomeFragment;
@@ -18,8 +21,9 @@ import com.example.seth.pc_genius.SavedPartsScreen.PartsFragment;
 import com.example.seth.pc_genius.Api.SearchFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
 
+        implements NavigationView.OnNavigationItemSelectedListener {
+    public static String Sortby="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +118,35 @@ public class MainActivity extends AppCompatActivity
         displaySelectedScreen(item.getItemId());
         //make this method blank
         return true;
+    }
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch (view.getId()) {
+            case R.id.Best_match:
+                if (checked)
+                    Log.i("radioInfo","Bestmatch checked");
+                Sortby="";
+
+                break;
+            case R.id.Alphabetically:
+                if (checked)
+                    Log.i("radioInfo","Alpha checked");
+                Sortby="&sort=name.asc";
+                    break;
+            case R.id.Price_low_high:
+                if (checked)
+                    Log.i("radioInfo","Pricelow checked");
+                Sortby = "&sort=salePrice.asc";
+                    break;
+            case R.id.Price_high_low:
+                if (checked)
+                    Log.i("radioInfo","Pricehigh checked");
+                Sortby = "&sort=salePrice.dsc";
+                    break;
+        }
     }
 
 

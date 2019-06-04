@@ -96,24 +96,5 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
 
-        // Check which radio button was clicked
-        switch (view.getId()) {
-            case R.id.Alphabetically:
-                if (checked)
-                    // Pirates are the best
-                    break;
-            case R.id.Price_low_high:
-                if (checked)
-                    // Ninjas rule
-                    break;
-            case R.id.Price_high_low:
-                if (checked)
-                    // Ninjas rule
-                    break;
-        }
-    }
 }

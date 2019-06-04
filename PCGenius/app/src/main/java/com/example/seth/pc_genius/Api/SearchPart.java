@@ -18,13 +18,15 @@ import java.util.concurrent.ExecutionException;
 
 import com.example.seth.pc_genius.Api.SearchFragment;
 
+import static com.example.seth.pc_genius.MainActivity.Sortby;
+
 public class SearchPart {
     public String productName;
 
     public SearchPart(String name) {
         productName = name;
         DownloadTask downloadTask = new DownloadTask();
-        downloadTask.execute("https://api.bestbuy.com/v1/products((" + formatUserInput(productName) + ")&((categoryPath.id=abcat0507000)))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&pageSize=100&sort=salePrice.asc&show=salePrice,image,shortDescription,name&format=json");
+        downloadTask.execute("https://api.bestbuy.com/v1/products((" + formatUserInput(productName) + ")&((categoryPath.id=abcat0507000)))?apiKey=QWjD2MfkLiW4eAR2Bx1X37YM&pageSize=100"+Sortby+"&show=salePrice,image,shortDescription,name&format=json");
         SearchFragment.searchList.clear();
     }
 
