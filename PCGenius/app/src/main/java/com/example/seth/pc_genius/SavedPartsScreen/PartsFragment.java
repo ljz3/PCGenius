@@ -31,7 +31,7 @@ public class PartsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Parts");
-
+        
         readPartData();
         PartsFragmentContents.initPartsListParts(list, getContext(), parts);
 
