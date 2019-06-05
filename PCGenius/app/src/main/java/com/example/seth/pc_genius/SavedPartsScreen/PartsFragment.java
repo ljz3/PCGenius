@@ -66,7 +66,7 @@ public class PartsFragment extends Fragment {
     }
 
     private void readPartData() {
-
+/*
         for(int i = 0; i <5;i++) {
             int csv = 0;
             switch(i){
@@ -86,6 +86,8 @@ public class PartsFragment extends Fragment {
                     csv = R.raw.ssd;
                     break;
             }
+            */
+            int csv = R.raw.parts;
 
             InputStream is = getResources().openRawResource(csv);
             BufferedReader reader = new BufferedReader(
@@ -114,7 +116,7 @@ public class PartsFragment extends Fragment {
                 Log.wtf("MyActivity", "Error reading data file on line " + line, e);
                 e.printStackTrace();
             }
-        }
+
 
     }
 
