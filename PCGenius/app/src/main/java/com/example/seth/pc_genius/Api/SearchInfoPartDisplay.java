@@ -31,6 +31,7 @@ import com.opencsv.CSVWriter;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -78,9 +79,12 @@ public class SearchInfoPartDisplay extends Fragment {
        // EditText fileNameEdit= (EditText) getActivity().findViewById(R.raw.parts);
         String fileName = "parts";
 
+
         try {
             String content = "1,2,3,4,5,6,7,8";
             File file = new File(fileName +".csv");
+            FileOutputStream stream = new FileOutputStream(getActivity().getFilesDir());
+
             // if file doesnt exists, then create it
             if (!file.exists()) {
                 file.createNewFile();
