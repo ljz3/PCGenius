@@ -24,14 +24,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PartsFragment extends Fragment {
-    protected List<Part> list= new ArrayList<>();
+    protected List<Part> list = new ArrayList<>();
     private List<Part> parts = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Parts");
-        
+
         readPartData();
         PartsFragmentContents.initPartsListParts(list, getContext(), parts);
 
@@ -50,7 +50,7 @@ public class PartsFragment extends Fragment {
                 bundle.putString("Description", list.get(position).getmDescription());
                 bundle.putInt("ImageResource", list.get(position).getmImageResourceId());
                 bundle.putDouble("Price", list.get(position).getmPrice());
-                bundle.putString("Vendor",list.get(position).getmVendor());
+                bundle.putString("Vendor", list.get(position).getmVendor());
                 infoPartDisplay.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.screen_area, infoPartDisplay, null);
@@ -66,10 +66,10 @@ public class PartsFragment extends Fragment {
     }
 
     private void readPartData() {
-/*
-        for(int i = 0; i <5;i++) {
+
+        for (int i = 0; i < 5; i++) {
             int csv = 0;
-            switch(i){
+            switch (i) {
                 case 0:
                     csv = R.raw.gpu;
                     break;
@@ -86,13 +86,13 @@ public class PartsFragment extends Fragment {
                     csv = R.raw.ssd;
                     break;
             }
-            */
-            int csv = R.raw.parts;
+
 
             InputStream is = getResources().openRawResource(csv);
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(is, Charset.forName("UTF-8"))
             );
+
 
             String line = "";
             try {
@@ -118,7 +118,8 @@ public class PartsFragment extends Fragment {
             }
 
 
-    }
+        }
 
+    }
 }
 

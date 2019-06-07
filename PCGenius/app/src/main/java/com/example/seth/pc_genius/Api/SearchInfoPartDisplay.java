@@ -30,6 +30,7 @@ import com.opencsv.CSVWriter;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -78,28 +79,60 @@ public class SearchInfoPartDisplay extends Fragment {
 
        // EditText fileNameEdit= (EditText) getActivity().findViewById(R.raw.parts);
         String fileName = "parts";
-
+        for(int i = 0; i<100; i++)
+            Log.d("PATH IS", getActivity().getFilesDir().getPath());
 
         try {
-            String content = "1,2,3,4,5,6,7,8";
-            File file = new File(fileName +".csv");
-            FileOutputStream stream = new FileOutputStream(getActivity().getFilesDir());
+
+        //    String content = "1,2,3,4,5,6,7,8";
+            File file = new File( getActivity().getFilesDir().getPath()+"/parts.csv");
+            FileOutputStream stream = new FileOutputStream(file);
+
 
             // if file doesnt exists, then create it
             if (!file.exists()) {
-                file.createNewFile();
+                Log.d("EXISTS", "DNE");
+
+
+            }else{
+                Log.d("EXISTS", "EXISTS");
+
             }
 
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(content);
-            bw.close();
+         //   String s = "test";
+        //    byte b[]=s.getBytes();
+           // stream.write(b);
+
+            stream.close();
+            stream.flush();
+
+            for(int i = 0; i<100; i++)
+                Log.d("TEST", "SUCCESS");
+
+            FileInputStream inputStream = new FileInputStream(file);
+
+
+            int i = 0;
+            while((i=inputStream.read())!=-1){
+
+                char ch = (char)i;
+                String str = String.valueOf(ch);
+                Log.d("READ", str);
+            }
+
+            inputStream.close();
+            //        FileWriter fw = new FileWriter(file.getAbsoluteFile());
+      //      BufferedWriter bw = new BufferedWriter(fw);
+        //    bw.write(content);
+          //  bw.close();
 
         } catch (IOException e) {
             e.printStackTrace();
             Log.d("?","this failed");
 
         }
+
+
 
         Toast.makeText(getActivity(),
                 "Saved", Toast.LENGTH_LONG).show();
