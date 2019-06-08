@@ -67,7 +67,9 @@ public class PartsFragment extends Fragment {
 
     private void readPartData() {
 
-        for (int i = 0; i < 5; i++) {
+        
+
+       /*for (int i = 0; i < 5; i++) {
             int csv = 0;
             switch (i) {
                 case 0:
@@ -119,6 +121,7 @@ public class PartsFragment extends Fragment {
 
 
         }
+        */
 
     }
 }

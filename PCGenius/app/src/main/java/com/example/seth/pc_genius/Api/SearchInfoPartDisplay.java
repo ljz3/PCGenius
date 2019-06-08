@@ -84,24 +84,27 @@ public class SearchInfoPartDisplay extends Fragment {
 
         try {
 
-        //    String content = "1,2,3,4,5,6,7,8";
             File file = new File( getActivity().getFilesDir().getPath()+"/parts.csv");
-            FileOutputStream stream = new FileOutputStream(file);
 
-
+            FileOutputStream stream;
             // if file doesnt exists, then create it
             if (!file.exists()) {
+
                 Log.d("EXISTS", "DNE");
+                stream = new FileOutputStream(file);
 
 
             }else{
                 Log.d("EXISTS", "EXISTS");
+                stream = new FileOutputStream(file,true);
 
             }
 
-         //   String s = "test";
-        //    byte b[]=s.getBytes();
-           // stream.write(b);
+            TextView name = (TextView) getView().findViewById(R.id.partNameDisplay);
+            CharSequence cs = name.getText();
+            String s = cs.toString();
+            byte b[]=s.getBytes();
+            stream.write(b);
 
             stream.close();
             stream.flush();
@@ -120,7 +123,7 @@ public class SearchInfoPartDisplay extends Fragment {
                 Log.d("READ", str);
             }
 
-            inputStream.close();
+      //      inputStream.close();
             //        FileWriter fw = new FileWriter(file.getAbsoluteFile());
       //      BufferedWriter bw = new BufferedWriter(fw);
         //    bw.write(content);
