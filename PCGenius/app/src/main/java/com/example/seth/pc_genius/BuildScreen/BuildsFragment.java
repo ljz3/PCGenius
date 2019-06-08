@@ -32,12 +32,11 @@ public class BuildsFragment extends Fragment {
     String buildTitle;
     protected static List<Build> buildList= new ArrayList<>();
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Builds");
-
-        BuildsFragmentContents.initPartsListBuilds(buildList, getContext());
 
         final BuildsAdapter adapter = new BuildsAdapter(getActivity(), -1, buildList);
         View view = inflater.inflate(R.layout.fragment_builds, container, false);

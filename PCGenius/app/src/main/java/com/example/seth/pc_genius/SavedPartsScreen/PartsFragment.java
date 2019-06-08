@@ -23,6 +23,8 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.seth.pc_genius.MainActivity.darkTheme;
+
 public class PartsFragment extends Fragment {
     protected List<Part> list= new ArrayList<>();
     private List<Part> parts = new ArrayList<>();
@@ -31,7 +33,6 @@ public class PartsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Parts");
-        
         readPartData();
         PartsFragmentContents.initPartsListParts(list, getContext(), parts);
 

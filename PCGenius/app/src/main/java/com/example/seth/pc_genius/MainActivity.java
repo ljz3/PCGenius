@@ -1,9 +1,11 @@
 package com.example.seth.pc_genius;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -14,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.Switch;
 
 import com.example.seth.pc_genius.BuildScreen.BuildsFragment;
 import com.example.seth.pc_genius.HomeScreen.HomeFragment;
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener {
     public static String Sortby="";
+    public static boolean darkTheme=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+       Fragment fragment = new HomeFragment();
 
 
     }
@@ -127,27 +132,44 @@ public class MainActivity extends AppCompatActivity
         switch (view.getId()) {
             case R.id.Best_match:
                 if (checked)
-                    Log.i("radioInfo","Bestmatch checked");
-                Sortby="";
+                    Log.i("radioInfo", "Bestmatch checked");
+                Sortby = "";
 
                 break;
             case R.id.Alphabetically:
                 if (checked)
-                    Log.i("radioInfo","Alpha checked");
-                Sortby="&sort=name.asc";
-                    break;
+                    Log.i("radioInfo", "Alpha checked");
+                Sortby = "&sort=name.asc";
+                break;
             case R.id.Price_low_high:
                 if (checked)
-                    Log.i("radioInfo","Pricelow checked");
+                    Log.i("radioInfo", "Pricelow checked");
                 Sortby = "&sort=salePrice.asc";
-                    break;
+                break;
             case R.id.Price_high_low:
                 if (checked)
-                    Log.i("radioInfo","Pricehigh checked");
+                    Log.i("radioInfo", "Pricehigh checked");
                 Sortby = "&sort=salePrice.dsc";
-                    break;
+                break;
         }
     }
+
+        public void onSwitchTheme(View view) {
+            // Is the button now checked?
+            boolean themeChange = ((Switch) view).isChecked();
+
+            // Check which radio button was clicked
+           if (themeChange){
+               Log.i("change theme","dark theme");
+
+
+           }
+           else{
+               Log.i("change theme","light theme");
+
+           }
+            }
+
 
 
 }
