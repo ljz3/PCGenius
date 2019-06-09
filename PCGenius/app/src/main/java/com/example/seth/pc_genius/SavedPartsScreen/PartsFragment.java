@@ -10,12 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -67,7 +72,44 @@ public class PartsFragment extends Fragment {
 
     private void readPartData() {
 
-        
+        String fileName = "parts";
+        for (int i = 0; i < 100; i++)
+            Log.d("PATH IS", getActivity().getFilesDir().getPath());
+
+        try {
+
+            File file = new File(getActivity().getFilesDir().getPath() + "/parts.csv");
+
+
+            for (int i = 0; i < 100; i++)
+                Log.d("TEST", "SUCCESS");
+
+            FileInputStream inputStream = new FileInputStream(file);
+
+            String fullStr = "";
+            int i = 0;
+            while ((i = inputStream.read()) != -1) {
+
+                char ch = (char) i;
+                String str = String.valueOf(ch);
+                Log.d("READ", str);
+                fullStr += str;
+                Log.d("READ", fullStr);
+
+            }
+
+            String[] savedParts = fullStr.split("|");
+            for(int c = 0; c<savedParts.length;c++){
+
+                String[] savedInfo = savedParts[c].split(",");
+
+                Part part = new Part();
+                part.setmName(savedInfo[0]);
+                parts.add(part);
+            }
+
+
+
 
        /*for (int i = 0; i < 5; i++) {
             int csv = 0;
@@ -123,6 +165,11 @@ public class PartsFragment extends Fragment {
         }
         */
 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

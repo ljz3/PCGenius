@@ -79,49 +79,51 @@ public class SearchInfoPartDisplay extends Fragment {
 
        // EditText fileNameEdit= (EditText) getActivity().findViewById(R.raw.parts);
         String fileName = "parts";
-        for(int i = 0; i<100; i++)
-            Log.d("PATH IS", getActivity().getFilesDir().getPath());
-
-        try {
-
-            File file = new File( getActivity().getFilesDir().getPath()+"/parts.csv");
-
-            FileOutputStream stream;
-            // if file doesnt exists, then create it
-            if (!file.exists()) {
-
-                Log.d("EXISTS", "DNE");
-                stream = new FileOutputStream(file);
-
-
-            }else{
-                Log.d("EXISTS", "EXISTS");
-                stream = new FileOutputStream(file,true);
-
-            }
-
-            TextView name = (TextView) getView().findViewById(R.id.partNameDisplay);
-            CharSequence cs = name.getText();
-            String s = cs.toString();
-            byte b[]=s.getBytes();
-            stream.write(b);
-
-            stream.close();
-            stream.flush();
-
             for(int i = 0; i<100; i++)
-                Log.d("TEST", "SUCCESS");
+                Log.d("PATH IS", getActivity().getFilesDir().getPath());
 
-            FileInputStream inputStream = new FileInputStream(file);
+            try {
+
+                File file = new File( getActivity().getFilesDir().getPath()+"/parts.csv");
+
+                FileOutputStream stream;
+                // if file doesnt exists, then create it
+                if (!file.exists()) {
+
+                    Log.d("EXISTS", "DNE");
+                    stream = new FileOutputStream(file);
 
 
-            int i = 0;
-            while((i=inputStream.read())!=-1){
+                }else{
+                    Log.d("EXISTS", "EXISTS");
+                    stream = new FileOutputStream(file,true);
 
-                char ch = (char)i;
-                String str = String.valueOf(ch);
-                Log.d("READ", str);
-            }
+                }
+
+                TextView name = (TextView) getView().findViewById(R.id.partNameDisplay);
+                TextView vendor = (TextView) getView().findViewById(R.id.vendorDisplay);
+                CharSequence cs = name.getText() + " , " + vendor.getText() + " | ";
+                String s = cs.toString();
+                byte b[]=s.getBytes();
+                stream.write(b);
+
+                stream.close();
+                stream.flush();
+
+                for(int i = 0; i<100; i++)
+                    Log.d("TEST", "SUCCESS");
+
+                FileInputStream inputStream = new FileInputStream(file);
+
+
+                int i = 0;
+                while((i=inputStream.read())!=-1){
+
+                    char ch = (char)i;
+                    String str = String.valueOf(ch);
+                    Log.d("READ", str);
+
+                }
 
       //      inputStream.close();
             //        FileWriter fw = new FileWriter(file.getAbsoluteFile());
