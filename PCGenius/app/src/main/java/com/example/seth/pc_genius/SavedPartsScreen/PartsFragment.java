@@ -10,12 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -26,13 +31,14 @@ import java.util.List;
 import static com.example.seth.pc_genius.MainActivity.darkTheme;
 
 public class PartsFragment extends Fragment {
-    protected List<Part> list= new ArrayList<>();
+    protected List<Part> list = new ArrayList<>();
     private List<Part> parts = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Parts");
+
         readPartData();
         PartsFragmentContents.initPartsListParts(list, getContext(), parts);
 
@@ -51,7 +57,7 @@ public class PartsFragment extends Fragment {
                 bundle.putString("Description", list.get(position).getmDescription());
                 bundle.putInt("ImageResource", list.get(position).getmImageResourceId());
                 bundle.putDouble("Price", list.get(position).getmPrice());
-                bundle.putString("Vendor",list.get(position).getmVendor());
+                bundle.putString("Vendor", list.get(position).getmVendor());
                 infoPartDisplay.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.screen_area, infoPartDisplay, null);
@@ -68,9 +74,48 @@ public class PartsFragment extends Fragment {
 
     private void readPartData() {
 
-        for(int i = 0; i <5;i++) {
+        String fileName = "parts";
+        for (int i = 0; i < 100; i++)
+            Log.d("PATH IS", getActivity().getFilesDir().getPath());
+
+        try {
+
+            File file = new File(getActivity().getFilesDir().getPath() + "/parts.csv");
+
+
+            for (int i = 0; i < 100; i++)
+                Log.d("TEST", "SUCCESS");
+
+            FileInputStream inputStream = new FileInputStream(file);
+
+            String fullStr = "";
+            int i = 0;
+            while ((i = inputStream.read()) != -1) {
+
+                char ch = (char) i;
+                String str = String.valueOf(ch);
+                Log.d("READ", str);
+                fullStr += str;
+                Log.d("READ", fullStr);
+
+            }
+
+            String[] savedParts = fullStr.split("|");
+            for(int c = 0; c<savedParts.length;c++){
+
+                String[] savedInfo = savedParts[c].split(",");
+
+                Part part = new Part();
+                part.setmName(savedInfo[0]);
+                parts.add(part);
+            }
+
+
+
+
+       /*for (int i = 0; i < 5; i++) {
             int csv = 0;
-            switch(i){
+            switch (i) {
                 case 0:
                     csv = R.raw.gpu;
                     break;
@@ -88,10 +133,12 @@ public class PartsFragment extends Fragment {
                     break;
             }
 
+
             InputStream is = getResources().openRawResource(csv);
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(is, Charset.forName("UTF-8"))
             );
+
 
             String line = "";
             try {
@@ -115,9 +162,16 @@ public class PartsFragment extends Fragment {
                 Log.wtf("MyActivity", "Error reading data file on line " + line, e);
                 e.printStackTrace();
             }
+
+
         }
+        */
 
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
 }
 
