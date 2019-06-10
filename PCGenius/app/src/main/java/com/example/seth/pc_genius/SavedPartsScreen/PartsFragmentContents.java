@@ -17,12 +17,12 @@ import java.util.List;
 
 public class PartsFragmentContents extends Fragment {
 
-    public static void initPartsListParts(List<Part> list, Context context, List<Part> parts) {
-
-        for(Part part: parts){
-            list.add(new Part(part.getmModel(),part.getmType(),part.getmPrice(),R.drawable.image_icon));
+    public static void initPartsListParts(List<Part> list, Context context, List<Part> parts, boolean ifDisplay) {
+        if(ifDisplay) {
+            for(Part part: parts){
+                list.add(new Part(part.getmModel(),part.getmType(),part.getmPrice(),R.drawable.image_icon));
+            }
         }
-
        // list.add(new Part("random", "Motherboard", 199.99, R.drawable.image_icon));
     }
 

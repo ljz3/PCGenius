@@ -21,16 +21,16 @@ public class Part {
     private String mURL;
     private String mVendor;
 
-    public Part(){
+    public Part() {
 
     }
 
-    public Part(String name, String description, double price, Bitmap image,String vendor) {
+    public Part(String name, String description, double price, Bitmap image, String vendor) {
         mName = name;
         mDescription = description;
         mPrice = price;
         mImageBitmap = image;
-        mVendor= vendor;
+        mVendor = vendor;
     }
 
     public Part(String name, String description, double price, int image) {
@@ -67,7 +67,10 @@ public class Part {
         if (mImageResourceId != -1)
             this.mImageResourceId = mImageResourceId;
     }
-    public Bitmap getmBitmap(){ return mImageBitmap; }
+
+    public Bitmap getmBitmap() {
+        return mImageBitmap;
+    }
 
     public double getmPrice() {
         return mPrice;
@@ -96,6 +99,11 @@ public class Part {
     public String getmVendor() {
         return mVendor;
     }
+
+    public void setmVendor(String mVendor) {
+        this.mVendor = mVendor;
+    }
+
 
     public String getmType() {
         return mType;

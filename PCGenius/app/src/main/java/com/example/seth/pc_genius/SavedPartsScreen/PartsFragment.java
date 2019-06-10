@@ -33,14 +33,14 @@ import static com.example.seth.pc_genius.MainActivity.darkTheme;
 public class PartsFragment extends Fragment {
     protected List<Part> list = new ArrayList<>();
     private List<Part> parts = new ArrayList<>();
+    boolean ifDisplay = true;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Parts");
-
         readPartData();
-        PartsFragmentContents.initPartsListParts(list, getContext(), parts);
+        PartsFragmentContents.initPartsListParts(list, getContext(), parts, ifDisplay);
 
         PartAdapter adapter = new PartAdapter(getActivity(), -1, list);
         View view = inflater.inflate(R.layout.fragment_parts, container, false);
@@ -67,24 +67,24 @@ public class PartsFragment extends Fragment {
 
             }
         });
-
+        ifDisplay = false;
         return view;
 
     }
 
     private void readPartData() {
 
-        String fileName = "parts";
-        for (int i = 0; i < 100; i++)
-            Log.d("PATH IS", getActivity().getFilesDir().getPath());
+    //    String fileName = "parts";
+  //      for (int i = 0; i < 100; i++)
+  //          Log.d("PATH IS", getActivity().getFilesDir().getPath());
 
         try {
 
             File file = new File(getActivity().getFilesDir().getPath() + "/parts.csv");
 
 
-            for (int i = 0; i < 100; i++)
-                Log.d("TEST", "SUCCESS");
+      //      for (int i = 0; i < 100; i++)
+     //           Log.d("TEST", "SUCCESS");
 
             FileInputStream inputStream = new FileInputStream(file);
 
@@ -94,20 +94,39 @@ public class PartsFragment extends Fragment {
 
                 char ch = (char) i;
                 String str = String.valueOf(ch);
-                Log.d("READ", str);
+      //          Log.d("READ", str);
                 fullStr += str;
-                Log.d("READ", fullStr);
 
             }
+            Log.d("READ", fullStr);
 
-            String[] savedParts = fullStr.split("|");
-            for(int c = 0; c<savedParts.length;c++){
+            String[] savedParts = fullStr.split("@");
 
-                String[] savedInfo = savedParts[c].split(",");
+            /*
+            for(int l = 0; i<30; i++)
+                Log.d("name", savedParts[0] + "\n");
 
+            for(String st: savedParts){
+                for(int l = 0; i<30; i++)
+                Log.d("name", st + "\n");
+
+            }
+*/
+
+            for(String savedP:savedParts){
+
+                String[] savedInfo = savedP.split(",");
                 Part part = new Part();
-                part.setmName(savedInfo[0]);
-                parts.add(part);
+
+                if(savedInfo.length!=0) {
+                    part.setmModel(savedInfo[0]);
+                    Log.d("model", savedInfo[0]);
+
+                    part.setmVendor(savedInfo[1]);
+                    Log.d("vendor", savedInfo[1]);
+
+                    parts.add(part);
+                }
             }
 
 

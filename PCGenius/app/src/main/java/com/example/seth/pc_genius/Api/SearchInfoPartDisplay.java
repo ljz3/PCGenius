@@ -102,7 +102,7 @@ public class SearchInfoPartDisplay extends Fragment {
 
                 TextView name = (TextView) getView().findViewById(R.id.partNameDisplay);
                 TextView vendor = (TextView) getView().findViewById(R.id.vendorDisplay);
-                CharSequence cs = name.getText() + " , " + vendor.getText() + " | ";
+                CharSequence cs = name.getText() + "," + vendor.getText() + "@";
                 String s = cs.toString();
                 byte b[]=s.getBytes();
                 stream.write(b);
