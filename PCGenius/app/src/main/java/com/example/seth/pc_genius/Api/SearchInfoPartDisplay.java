@@ -258,7 +258,7 @@ public class SearchInfoPartDisplay extends Fragment {
         TextView partDisplay = view.findViewById(R.id.partNameDisplay);
         partDisplay.setText(mName);
         TextView descriptionDisplay = view.findViewById(R.id.descriptionDisplay);
-        descriptionDisplay.setText(mDescription);
+        //descriptionDisplay.setText(mDescription);
         TextView priceDisplay = view.findViewById(R.id.priceDisplay);
         priceDisplay.setText(Double.toString(mPrice));
         TextView vendorDisplay = view.findViewById(R.id.vendorDisplay);
