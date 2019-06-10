@@ -17,11 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-<<<<<<< HEAD
 
-            <RadioButton
-                android:id="@+id/Alphabetically"
-=======
             <RadioButton android:id="@+id/Best_match"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,7 +25,6 @@
                 android:checked="true"
                 android:onClick="onRadioButtonClicked"/>
             <RadioButton android:id="@+id/Alphabetically"
->>>>>>> 035a0ca7122c3115ccc31b321bca43edb2d4e11c
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButtonClicked"

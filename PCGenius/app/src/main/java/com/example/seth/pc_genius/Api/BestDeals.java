@@ -93,6 +93,7 @@ public class BestDeals  {
                         try {
                             DownloadImage downloadImage = new DownloadImage();
                             myImage=downloadImage.execute(m.getJSONObject(i).get("imageUrl").toString()).get();
+                            Log.i("imagesinfo",m.getJSONObject(i).get("imageUrl").toString());
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         } catch (ExecutionException e) {

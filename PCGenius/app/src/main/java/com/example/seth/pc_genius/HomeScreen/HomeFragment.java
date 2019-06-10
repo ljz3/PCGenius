@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,20 +24,19 @@ public class HomeFragment extends Fragment {
 
     public static List<Part> bestDealsList = new ArrayList<>();
     public static PartAdapter adapter;
+    BestDeals bestDeals = new BestDeals();
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Home");
 
-
-
         adapter = new PartAdapter(getActivity(), -1, bestDealsList);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ListView listView = (ListView) view.findViewById(R.id.list_home);
 
 
-        BestDeals bestDeals = new BestDeals();
+
 
         listView.setAdapter(adapter);
 
@@ -48,7 +48,9 @@ public class HomeFragment extends Fragment {
                 bundle.putString("Name", bestDealsList.get(position).getmName());
                 bundle.putString("Description", bestDealsList.get(position).getmDescription());
                 bundle.putInt("ImageResource", bestDealsList.get(position).getmImageResourceId());
+                bundle.putParcelable("BitmapImage", bestDealsList.get(position).getmBitmap());
                 bundle.putDouble("Price", bestDealsList.get(position).getmPrice());
+                Log.i("priceInfo", ""+bestDealsList.get(position).getmPrice());
                 bundle.putString("Vendor", bestDealsList.get(position).getmVendor());
                 infoPartDisplay.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();

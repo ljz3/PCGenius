@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -50,18 +51,18 @@ public class InfoPartDisplay extends Fragment {
         mVendor = getArguments().getString("Vendor","");
         try {
             mBitmap = getArguments().getParcelable("BitmapImage");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
 
         TextView partDisplay = view.findViewById(R.id.partInfoNameDisplay);
-
         partDisplay.setText(mName);
         TextView descriptionDisplay = view.findViewById(R.id.partInfoDescriptionDisplay);
         descriptionDisplay.setText(mDescription);
-        TextView priceDisplay = view.findViewById(R.id.priceDisplay);
-        //priceDisplay.setText(Double.toString(mPrice));
+        TextView priceDisplay = view.findViewById(R.id.partInfoPriceDisplay);
+        priceDisplay.setText(Double.toString(mPrice));
         ImageView imageDisplay = view.findViewById(R.id.partInfoImageDisplay);
         if(mBitmap!=null){
             imageDisplay.setImageBitmap(mBitmap);

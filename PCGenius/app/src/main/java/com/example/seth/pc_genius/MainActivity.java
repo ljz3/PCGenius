@@ -16,10 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
-<<<<<<< HEAD
-=======
 import android.widget.Switch;
->>>>>>> 035a0ca7122c3115ccc31b321bca43edb2d4e11c
 
 import com.example.seth.pc_genius.BuildScreen.BuildsFragment;
 import com.example.seth.pc_genius.HomeScreen.HomeFragment;
@@ -47,7 +44,7 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-       Fragment fragment = new HomeFragment();
+
 
 
     }
@@ -133,22 +130,7 @@ public class MainActivity extends AppCompatActivity
 
         // Check which radio button was clicked
         switch (view.getId()) {
-<<<<<<< HEAD
-            case R.id.Alphabetically:
-                if (checked)
-                    // Pirates are the best
-                    break;
-            case R.id.Price_low_high:
-                if (checked)
-                    // Ninjas rule
-                    break;
-            case R.id.Price_high_low:
-                if (checked)
-                    // Ninjas rule
-                    break;
-        }
-    }
-=======
+
             case R.id.Best_match:
                 if (checked)
                     Log.i("radioInfo", "Bestmatch checked");
@@ -189,7 +171,7 @@ public class MainActivity extends AppCompatActivity
            }
             }
 
->>>>>>> 035a0ca7122c3115ccc31b321bca43edb2d4e11c
+
 
 
 }
