@@ -26,6 +26,16 @@ import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
 import com.example.seth.pc_genius.data.PartContract;
+import com.opencsv.CSVWriter;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import static com.example.seth.pc_genius.Api.SearchFragment.searchRelatedList;
 
@@ -66,9 +76,74 @@ public class SearchInfoPartDisplay extends Fragment {
 
 
     private void savePart() {
+
+       // EditText fileNameEdit= (EditText) getActivity().findViewById(R.raw.parts);
+        String fileName = "parts";
+            for(int i = 0; i<100; i++)
+                Log.d("PATH IS", getActivity().getFilesDir().getPath());
+
+            try {
+
+                File file = new File( getActivity().getFilesDir().getPath()+"/parts.csv");
+
+                FileOutputStream stream;
+                // if file doesnt exists, then create it
+                if (!file.exists()) {
+
+                    Log.d("EXISTS", "DNE");
+                    stream = new FileOutputStream(file);
+
+
+                }else{
+                    Log.d("EXISTS", "EXISTS");
+                    stream = new FileOutputStream(file,true);
+
+                }
+
+                TextView name = (TextView) getView().findViewById(R.id.partNameDisplay);
+                TextView vendor = (TextView) getView().findViewById(R.id.vendorDisplay);
+                CharSequence cs = name.getText() + " , " + vendor.getText() + " | ";
+                String s = cs.toString();
+                byte b[]=s.getBytes();
+                stream.write(b);
+
+                stream.close();
+                stream.flush();
+
+                for(int i = 0; i<100; i++)
+                    Log.d("TEST", "SUCCESS");
+
+                FileInputStream inputStream = new FileInputStream(file);
+
+
+                int i = 0;
+                while((i=inputStream.read())!=-1){
+
+                    char ch = (char)i;
+                    String str = String.valueOf(ch);
+                    Log.d("READ", str);
+
+                }
+
+      //      inputStream.close();
+            //        FileWriter fw = new FileWriter(file.getAbsoluteFile());
+      //      BufferedWriter bw = new BufferedWriter(fw);
+        //    bw.write(content);
+          //  bw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("?","this failed");
+
+        }
+
+
+
         Toast.makeText(getActivity(),
                 "Saved", Toast.LENGTH_LONG).show();
 
+
+        /*
         TextView partNameDisplay = (TextView) getView().findViewById(R.id.partNameDisplay);
         String nameString = partNameDisplay.getText().toString().trim();
         ContentValues values = new ContentValues();
@@ -76,6 +151,8 @@ public class SearchInfoPartDisplay extends Fragment {
         values.put(PartContract.PartEntry.PART_MODEL, nameString);
         values.put(PartContract.PartEntry.PART_PRICE, 2);
         values.put(PartContract.PartEntry.PART_TYPE, "GPU");
+*/
+
 
         /*
         mPriceEditText = (EditText) findViewById(R.id.edit_book_price);
