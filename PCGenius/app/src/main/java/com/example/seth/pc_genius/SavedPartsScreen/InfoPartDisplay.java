@@ -36,12 +36,6 @@ public class InfoPartDisplay extends Fragment {
         setHasOptionsMenu(true);
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_part_info, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.part_info_display, container, false);
         mName = getArguments().getString("Name", "");
