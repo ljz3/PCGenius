@@ -125,6 +125,9 @@ public class PartsFragment extends Fragment {
                     part.setmVendor(savedInfo[1]);
                     Log.d("vendor", savedInfo[1]);
 
+                    part.setmPrice(Double.parseDouble(savedInfo[2]));
+                    Log.d("price", savedInfo[2]);
+
                     parts.add(part);
                 }
             }
