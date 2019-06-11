@@ -7,11 +7,12 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/imageURL"
+        android:id="@+id/descriptionDisplay"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:textSize="1sp"
-        />
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:textSize="1sp" />
 
     <TextView
         android:id="@+id/partNameDisplay"
@@ -29,13 +30,6 @@
         android:gravity="center"
         android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/descriptionDisplay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-smallcaps"
-        android:gravity="center"
-        android:textSize="14sp" />
 
     <ImageView
         android:id="@+id/imageDisplay"
@@ -54,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="291.2"/>
+        android:text="N/A"/>
 
     <ListView
         android:id="@+id/relatedParts"

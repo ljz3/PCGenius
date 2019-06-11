@@ -39,8 +39,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:textSize="12sp"
-                tools:text="Short description" />
+                android:textSize="0sp"
+                tools:text="Short description"
+                android:textColor="#efefef"
+                />
         </LinearLayout>
 
         <TextView
