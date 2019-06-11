@@ -97,15 +97,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_search:
                 fragment = new SearchFragment();
                 break;
-            case R.id.nav_settings:
-                fragment = new SettingsFragment();
-                break;
-            case R.id.nav_help:
-                fragment = new HelpAndFeedbackFragment();
-                break;
-            case R.id.nav_tos:
-                fragment = new TermsOfServiceFragment();
-                break;
+
 
         }
         //replacing the fragment
@@ -160,19 +152,5 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-        public void onSwitchTheme(View view) {
-            // Is the button now checked?
-            boolean themeChange = ((Switch) view).isChecked();
 
-            // Check which radio button was clicked
-           if (themeChange){
-               Log.i("change theme","dark theme");
-
-
-           }
-           else{
-               Log.i("change theme","light theme");
-
-           }
-            }
 }

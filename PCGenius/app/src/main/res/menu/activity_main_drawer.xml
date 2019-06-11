@@ -23,24 +23,4 @@
             android:title="Search" />
 
     </group>
-    <group android:checkableBehavior="single">
-
-        <item android:title="Communicate">
-            <menu>
-                <item
-                    android:id="@+id/nav_settings"
-                    android:icon="@drawable/settings_icon"
-                    android:title="Settings" />
-                <item
-                    android:id="@+id/nav_help"
-                    android:icon="@drawable/help_icon"
-                    android:title="Help" />
-                <item
-                    android:id="@+id/nav_tos"
-                    android:icon="@drawable/lock_icon"
-                    android:title="Terms of Service" />
-            </menu>
-        </item>
-    </group>
-
 </menu>
