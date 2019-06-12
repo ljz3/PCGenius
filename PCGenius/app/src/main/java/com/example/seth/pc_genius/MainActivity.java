@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
     public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
+        // Is the button now checked?s
         boolean checked = ((RadioButton) view).isChecked();
 
         // Check which radio button was clicked

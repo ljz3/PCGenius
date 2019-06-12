@@ -56,6 +56,7 @@ public class SearchInfoPartDisplay extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+      //  getBenchmark();
     }
 
     @Override
@@ -73,6 +74,10 @@ public class SearchInfoPartDisplay extends Fragment {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+
+    }
+
+    private void getBenchmark() {
 
     }
 
@@ -105,7 +110,6 @@ public class SearchInfoPartDisplay extends Fragment {
             TextView name = (TextView) getView().findViewById(R.id.partNameDisplay);
             TextView vendor = (TextView) getView().findViewById(R.id.vendorDisplay);
             TextView price = (TextView) getView().findViewById(R.id.priceDisplay);
-            TextView bench = (TextView) getView().findViewById(R.id.benchmarkDisplay);
             CharSequence cs = name.getText() + "," + vendor.getText() + "," + price.getText() + "@";
             String s = cs.toString();
             byte b[] = s.getBytes();
@@ -130,52 +134,7 @@ public class SearchInfoPartDisplay extends Fragment {
             }
 
 
-            for (int z = 0; z < 5; z++) {
-                int csv = 0;
-                switch (z) {
-                    case 0:
-                        csv = R.raw.gpu;
-                        break;
-                    case 1:
-                        csv = R.raw.cpu;
-                        break;
-                    case 2:
-                        csv = R.raw.hdd;
-                        break;
-                    case 3:
-                        csv = R.raw.ram;
-                        break;
-                    case 4:
-                        csv = R.raw.ssd;
-                        break;
-                }
 
-
-                InputStream is = getResources().openRawResource(csv);
-                BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(is, Charset.forName("UTF-8"))
-                );
-
-
-                String line = "";
-                try {
-                    while ((line = reader.readLine()) != null) {
-                        // Split by ','
-                        String[] tokens = line.split(",");
-
-                        //part.setmModel(tokens[3]);
-
-                        if (name.getText().toString().contains(tokens[3])) {
-
-                            bench.setText(tokens[3]);
-
-                        }
-
-                    }
-                } catch (IOException e) {
-                    Log.wtf("MyActivity", "Error reading data file on line " + line, e);
-                    e.printStackTrace();
-                }
 
 
                 //      inputStream.close();
@@ -189,13 +148,14 @@ public class SearchInfoPartDisplay extends Fragment {
                         "Saved", Toast.LENGTH_LONG).show();
 
 
-            }
-        } catch (FileNotFoundException e) {
+            } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
 
 
         public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle
@@ -237,6 +197,59 @@ public class SearchInfoPartDisplay extends Fragment {
             PartAdapter adapter = new PartAdapter(getActivity(), -1, searchRelatedList);
             ListView listView = (ListView) view.findViewById(R.id.relatedParts);
 
+            getBenchmark();
+            TextView name = (TextView) view.findViewById(R.id.partNameDisplay);
+
+            TextView bench = (TextView) view.findViewById(R.id.benchmarkDisplay);
+
+
+
+            for (int z = 0; z < 5; z++) {
+                int csv = 0;
+                switch (z) {
+                    case 0:
+                        csv = R.raw.gpu;
+                        break;
+                    case 1:
+                        csv = R.raw.cpu;
+                        break;
+                    case 2:
+                        csv = R.raw.hdd;
+                        break;
+                    case 3:
+                        csv = R.raw.ram;
+                        break;
+                    case 4:
+                        csv = R.raw.ssd;
+                        break;
+                }
+
+
+                InputStream is = getResources().openRawResource(csv);
+                BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(is, Charset.forName("UTF-8"))
+                );
+
+
+                String line = "";
+                try {
+                    while ((line = reader.readLine()) != null) {
+                        // Split by ','
+                        String[] tokens = line.split(",");
+
+                        if (name.getText().toString().contains(tokens[3])) {
+                            Log.d("READ", tokens[3]);
+
+                            bench.setText(tokens[5]);
+
+                        }
+
+                    }
+                } catch (IOException e) {
+                    Log.wtf("MyActivity", "Error reading data file on line " + line, e);
+                    e.printStackTrace();
+                }
+            }
 
             listView.setAdapter(adapter);
 
