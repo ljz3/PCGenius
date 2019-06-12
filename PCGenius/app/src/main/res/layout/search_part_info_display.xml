@@ -44,7 +44,7 @@
         android:gravity="center" />
 
     <TextView
-        android:id="@+id/benchmarkDisplay"
+        android:id="@+id/searchBenchmarkDisplay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

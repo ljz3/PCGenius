@@ -26,12 +26,12 @@ public class Build {
         mDescription = "";
         mPrice = 0.00;
         mParts = new ArrayList();
-        mParts.add(new Part("blank", "Motherboard", 0.00, R.drawable.image_icon));
-        mParts.add(new Part("blank", "CPU", 0.00, R.drawable.image_icon));
-        mParts.add(new Part("blank", "GPU", 0.00, R.drawable.image_icon));
-        mParts.add(new Part("blank", "Case", 0.00, R.drawable.image_icon));
-        mParts.add(new Part("blank", "Ram", 0.00, R.drawable.image_icon));
-        mParts.add(new Part("blank", "HD", 0.00, R.drawable.image_icon));
+        mParts.add(new Part("blank", "Motherboard", 0.00, 0, R.drawable.image_icon));
+        mParts.add(new Part("blank", "CPU", 0.00,0, R.drawable.image_icon));
+        mParts.add(new Part("blank", "GPU", 0.00,0, R.drawable.image_icon));
+        mParts.add(new Part("blank", "Case", 0.00,0, R.drawable.image_icon));
+        mParts.add(new Part("blank", "Ram", 0.00,0, R.drawable.image_icon));
+        mParts.add(new Part("blank", "HD", 0.00,0, R.drawable.image_icon));
     }
 
     public ArrayList<Part> getmParts() {

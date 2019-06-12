@@ -1,13 +1,11 @@
 package com.example.seth.pc_genius.Api;
 
 
-import android.content.ContentValues;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,29 +14,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
-import com.example.seth.pc_genius.data.PartContract;
-import com.opencsv.CSVWriter;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.nio.charset.Charset;
 
 import static com.example.seth.pc_genius.Api.SearchFragment.searchRelatedList;
@@ -110,7 +101,8 @@ public class SearchInfoPartDisplay extends Fragment {
             TextView name = (TextView) getView().findViewById(R.id.partNameDisplay);
             TextView vendor = (TextView) getView().findViewById(R.id.vendorDisplay);
             TextView price = (TextView) getView().findViewById(R.id.priceDisplay);
-            CharSequence cs = name.getText() + "," + vendor.getText() + "," + price.getText() + "@";
+            TextView bench = (TextView) getView().findViewById(R.id.searchBenchmarkDisplay);
+            CharSequence cs = name.getText() + "," + vendor.getText() + "," + price.getText() +  "," + bench.getText() + "@";
             String s = cs.toString();
             byte b[] = s.getBytes();
             stream.write(b);
@@ -200,7 +192,7 @@ public class SearchInfoPartDisplay extends Fragment {
             getBenchmark();
             TextView name = (TextView) view.findViewById(R.id.partNameDisplay);
 
-            TextView bench = (TextView) view.findViewById(R.id.benchmarkDisplay);
+            TextView bench = (TextView) view.findViewById(R.id.searchBenchmarkDisplay);
 
 
 

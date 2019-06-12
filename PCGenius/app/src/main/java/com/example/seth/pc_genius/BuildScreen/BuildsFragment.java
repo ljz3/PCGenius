@@ -30,7 +30,7 @@ import java.util.List;
 
 public class BuildsFragment extends Fragment {
     String buildTitle;
-    protected static List<Build> buildList= new ArrayList<>();
+    protected static List<Build> buildList = new ArrayList<>();
 
 
     @Nullable
@@ -46,22 +46,22 @@ public class BuildsFragment extends Fragment {
 
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Bundle bundle = new Bundle();
-               InfoBuildDisplay infoBuildDisplay = new InfoBuildDisplay();
+                InfoBuildDisplay infoBuildDisplay = new InfoBuildDisplay();
                 bundle.putInt("Position", position);
                 infoBuildDisplay.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.screen_area, infoBuildDisplay, null);
                 transaction.addToBackStack(null);
                 transaction.commit();
-                Log.i("info","item clicked");
+                Log.i("info", "item clicked");
 
 
             }
         });
 
-                Log.i("info", "" + R.id.fab);
+        Log.i("info", "" + R.id.fab);
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +90,7 @@ public class BuildsFragment extends Fragment {
                                         // edit text
                                         buildTitle = userInput.getText().toString();
                                         buildList.add(new Build(buildTitle));
-                                        Log.i("info","test");
+                                        Log.i("info", "test");
                                         adapter.notifyDataSetChanged();
 
                                     }
@@ -115,11 +115,6 @@ public class BuildsFragment extends Fragment {
 
         return view;
     }
-
-
-
-
-
 }
 
 

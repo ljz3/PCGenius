@@ -44,6 +44,7 @@ public class PartAdapter extends ArrayAdapter<Part> {
         descTextView.setText(("Description:   " + currentLocation.getmDescription()));
 
 
+
         return listItemView;
     }
 }

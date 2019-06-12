@@ -58,6 +58,7 @@ public class PartsFragment extends Fragment {
                 bundle.putInt("ImageResource", list.get(position).getmImageResourceId());
                 bundle.putDouble("Price", list.get(position).getmPrice());
                 bundle.putString("Vendor", list.get(position).getmVendor());
+                bundle.putDouble("Bench",list.get(position).getmBenchmark());
                 infoPartDisplay.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.screen_area, infoPartDisplay, null);
@@ -127,6 +128,10 @@ public class PartsFragment extends Fragment {
 
                     part.setmPrice(Double.parseDouble(savedInfo[2]));
                     Log.d("price", savedInfo[2]);
+
+
+                    part.setmBenchmark(Double.parseDouble(savedInfo[3]));
+                    Log.d("bench", savedInfo[3]);
 
                     parts.add(part);
                 }

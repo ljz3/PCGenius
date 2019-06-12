@@ -16,7 +16,7 @@ public class Part {
     private String mBrand;
     private String mModel;
     private int mRank;
-    private int mBenchmark;
+    private double mBenchmark;
     private int mSamples;
     private String mURL;
     private String mVendor;
@@ -33,10 +33,11 @@ public class Part {
         mVendor = vendor;
     }
 
-    public Part(String name, String description, double price, int image) {
+    public Part(String name, String description, double price, double bench, int image) {
         mName = name;
         mDescription = description;
         mPrice = price;
+        mBenchmark = bench;
         setmImageResourceId(image);
     }
 
@@ -145,11 +146,11 @@ public class Part {
         this.mRank = mRank;
     }
 
-    public int getmBenchmark() {
+    public double getmBenchmark() {
         return mBenchmark;
     }
 
-    public void setmBenchmark(int mBenchmark) {
+    public void setmBenchmark(double mBenchmark) {
         this.mBenchmark = mBenchmark;
     }
 
