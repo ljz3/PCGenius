@@ -177,6 +177,7 @@ public class BuildsFragment extends Fragment {
             String[] savedParts = fullStr.split(",");
 
             for (int z = buildList.size(); z < savedParts.length - 1; z++) {
+                File buildFile = new File(getActivity().getFilesDir().getPath() + "/" + savedParts[z] + ".csv");
 
                 buildList.add(new Build(savedParts[z]));
                 Log.d("BUILD NAME", savedParts[z]);
