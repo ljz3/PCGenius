@@ -51,7 +51,9 @@ public class SavePartToBuild extends Fragment {
 
 
                 try {
-                    saveToBuild(buildList.get(position));
+                    saveToBuild(buildList.get(position).replaceAll("\\s+",""));
+
+                    Log.e("SAVEPARTOBUILDCLASSNAME", buildList.get(position).replaceAll("\\s+",""));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -80,6 +82,8 @@ public class SavePartToBuild extends Fragment {
 
     private void saveToBuild(String path) throws IOException {
 
+        Log.d("FILE PATH SAVEBUILD", getActivity().getFilesDir().getPath() + "/" + path +".csv");
+
         File file = new File(getActivity().getFilesDir().getPath() + "/" + path +".csv");
 
         FileOutputStream stream;
@@ -96,9 +100,10 @@ public class SavePartToBuild extends Fragment {
 
         }
 
-
-
         CharSequence cs = getTemp();
+
+        Log.d("CHARSEQUENCE PRINT", getTemp().toString());
+
         String s = cs.toString();
         byte b[] = s.getBytes();
         stream.write(b);
@@ -106,8 +111,6 @@ public class SavePartToBuild extends Fragment {
         stream.close();
         stream.flush();
 
-        for (int i = 0; i < 100; i++)
-            Log.d("TEST", "SUCCESS");
 
         FileInputStream inputStream = new FileInputStream(file);
 
@@ -121,19 +124,8 @@ public class SavePartToBuild extends Fragment {
 
         }
 
-
-        //      inputStream.close();
-        //        FileWriter fw = new FileWriter(file.getAbsoluteFile());
-        //      BufferedWriter bw = new BufferedWriter(fw);
-        //    bw.write(content);
-        //  bw.close();
-
-
         Toast.makeText(getActivity(),
                 "Added to Build", Toast.LENGTH_LONG).show();
-
-
-
 
     }
 

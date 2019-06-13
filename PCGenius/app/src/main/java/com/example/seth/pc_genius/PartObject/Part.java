@@ -16,7 +16,7 @@ public class Part {
     private String mBrand;
     private String mModel;
     private int mRank;
-    private double mBenchmark;
+    private String mBenchmark;
     private int mSamples;
     private String mURL;
     private String mVendor;
@@ -33,7 +33,7 @@ public class Part {
         mVendor = vendor;
     }
 
-    public Part(String name, String description, double price, double bench, int image) {
+    public Part(String name, String description, double price, String bench, int image) {
         mName = name;
         mDescription = description;
         mPrice = price;
@@ -55,7 +55,7 @@ public class Part {
         mBrand = brand;
         mModel = model;
         mRank = Integer.getInteger(rank);
-        mBenchmark = Integer.getInteger(benchmark);
+        mBenchmark = benchmark;
         mSamples = Integer.getInteger(samples);
         mURL = URL;
     }
@@ -146,11 +146,11 @@ public class Part {
         this.mRank = mRank;
     }
 
-    public double getmBenchmark() {
+    public String getmBenchmark() {
         return mBenchmark;
     }
 
-    public void setmBenchmark(double mBenchmark) {
+    public void setmBenchmark(String mBenchmark) {
         this.mBenchmark = mBenchmark;
     }
 

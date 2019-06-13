@@ -17,6 +17,7 @@ import android.widget.ListView;
 
 import com.example.seth.pc_genius.BuildObject.Build;
 import com.example.seth.pc_genius.BuildObject.BuildsAdapter;
+import com.example.seth.pc_genius.PartObject.Part;
 import com.example.seth.pc_genius.R;
 
 import java.io.File;
@@ -54,7 +55,7 @@ public class BuildsFragment extends Fragment {
                 transaction.addToBackStack(null);
                 transaction.commit();
                 Log.i("info", "item clicked");
-
+                readBuild();
 
             }
         });
@@ -176,11 +177,14 @@ public class BuildsFragment extends Fragment {
 
             String[] savedParts = fullStr.split(",");
 
+            Build build;
             for (int z = buildList.size(); z < savedParts.length; z++) {
                 File buildFile = new File(getActivity().getFilesDir().getPath() + "/" + savedParts[z] + ".csv");
+                build = new Build(savedParts[z]);
+                buildList.add(addPartsToBuild(build));
+                Log.d("NOWBUILD NAME", savedParts[z]);
+                addPartsToBuild(build);
 
-                buildList.add(new Build(savedParts[z]));
-                Log.d("BUILD NAME", savedParts[z]);
             }
 
 
@@ -189,6 +193,66 @@ public class BuildsFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Build addPartsToBuild(Build build) {
+
+        String name = build.getmName();
+
+        Log.d("ACTUAL BUILD NAME", name.replaceAll("\\s+", ""));
+
+
+        try {
+
+            File buildFile = new File(getActivity().getFilesDir().getPath() + "/" + name.replaceAll("\\s+", "") + ".csv");
+
+            Log.e("DIRECTORY", getActivity().getFilesDir().getPath() + "/" + name.replaceAll("\\s+", "") + ".csv");
+            FileInputStream inputStream = new FileInputStream(buildFile);
+
+            String fullStr = "";
+            int i = 0;
+            while ((i = inputStream.read()) != -1) {
+
+                char ch = (char) i;
+                String str = String.valueOf(ch);
+                //          Log.d("READ", str);
+                fullStr += str;
+
+            }
+            Log.d("READ", fullStr);
+
+            String[] savedParts = fullStr.split("@");
+
+
+            for (String savedP : savedParts) {
+
+                String[] savedInfo = savedP.split(",");
+                Part part = new Part();
+
+                if (savedInfo.length != 0) {
+                    part.setmModel(savedInfo[0]);
+                    Log.d("ACTUALmodel", savedInfo[0]);
+
+                    part.setmVendor(savedInfo[1]);
+                    Log.d("ACTUALvendor", savedInfo[1]);
+
+                    part.setmPrice(Double.parseDouble(savedInfo[2]));
+                    Log.d("ACTUALprice", savedInfo[2]);
+
+                    part.setmBenchmark(savedInfo[3]);
+                    Log.d("ACTUALbench", savedInfo[3]);
+
+                    build.addPart(part);
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return build;
+
     }
 
 }

@@ -168,7 +168,7 @@ public final class QueryUtils {
                 }
 
                 String url = results.getString("webUrl");
-                Part part = new Part(title, author, price, 0, img);
+                Part part = new Part(title, author, price, "0", img);
                 newsStories.add(part);
             }
 
