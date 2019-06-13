@@ -11,10 +11,10 @@ import com.example.seth.pc_genius.BuildObject.Build;
 
 import java.util.List;
 
-public class SavePartToBuildAdapter extends ArrayAdapter<Build> {
+public class SavePartToBuildContents extends ArrayAdapter<Build> {
 
 
-    public SavePartToBuildAdapter(Context context, int resources, List<Build> locationsList) {
+    public SavePartToBuildContents(Context context, int resources, List<Build> locationsList) {
         super(context, 0, locationsList);
     }
 
