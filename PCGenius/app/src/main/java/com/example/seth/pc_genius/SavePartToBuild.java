@@ -21,15 +21,20 @@ import android.widget.Toast;
 import com.example.seth.pc_genius.BuildObject.Build;
 import com.example.seth.pc_genius.BuildObject.BuildsAdapter;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SavePartToBuild extends Fragment {
 
+    ArrayList<String> buildList = new ArrayList<String>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
+        readBuild();
 
         final BuildsAdapter adapter = new BuildsAdapter(getActivity(), -1, com.example.seth.pc_genius.BuildScreen.BuildsFragment.buildList);
         View view = inflater.inflate(R.layout.save_to_build, container, false);
@@ -37,5 +42,42 @@ public class SavePartToBuild extends Fragment {
         listView.setAdapter(adapter);
         return view;
     }
+
+    private void readBuild() {
+
+
+        try {
+
+            File file = new File(getActivity().getFilesDir().getPath() + "/builds.csv");
+
+            FileInputStream inputStream = new FileInputStream(file);
+
+            String fullStr = "";
+            int i = 0;
+            while ((i = inputStream.read()) != -1) {
+
+                char ch = (char) i;
+                String str = String.valueOf(ch);
+                //          Log.d("READ", str);
+                fullStr += str;
+
+            }
+            Log.d("READ", fullStr);
+
+            String[] savedParts = fullStr.split(",");
+
+            for (int z = buildList.size(); z < savedParts.length - 1; z++) {
+                buildList.add(savedParts[z]);
+                Log.d("BUILD NAME", savedParts[z]);
+            }
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
