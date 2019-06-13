@@ -27,6 +27,7 @@ import com.example.seth.pc_genius.BuildScreen.InfoBuildDisplay;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,12 @@ public class SavePartToBuild extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                buildList.get(position);
+
+                try {
+                    saveToBuild(buildList.get(position));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
 
                 /*
@@ -72,7 +78,95 @@ public class SavePartToBuild extends Fragment {
         return view;
     }
 
-    private void saveToBuild(){
+    private void saveToBuild(String path) throws IOException {
+
+        File file = new File(getActivity().getFilesDir().getPath() + "/" + path +".csv");
+
+        FileOutputStream stream;
+        // if file doesnt exists, then create it
+        if (!file.exists()) {
+
+            Log.d("EXISTS", "DNE");
+            stream = new FileOutputStream(file);
+
+
+        } else {
+            Log.d("EXISTS", "EXISTS");
+            stream = new FileOutputStream(file, true);
+
+        }
+
+
+
+        CharSequence cs = getTemp();
+        String s = cs.toString();
+        byte b[] = s.getBytes();
+        stream.write(b);
+
+        stream.close();
+        stream.flush();
+
+        for (int i = 0; i < 100; i++)
+            Log.d("TEST", "SUCCESS");
+
+        FileInputStream inputStream = new FileInputStream(file);
+
+
+        int i = 0;
+        while ((i = inputStream.read()) != -1) {
+
+            char ch = (char) i;
+            String str = String.valueOf(ch);
+            Log.d("READ", str);
+
+        }
+
+
+        //      inputStream.close();
+        //        FileWriter fw = new FileWriter(file.getAbsoluteFile());
+        //      BufferedWriter bw = new BufferedWriter(fw);
+        //    bw.write(content);
+        //  bw.close();
+
+
+        Toast.makeText(getActivity(),
+                "Added to Build", Toast.LENGTH_LONG).show();
+
+
+
+
+    }
+
+    private CharSequence getTemp() {
+
+        try {
+
+            File file = new File(getActivity().getFilesDir().getPath() + "/temp.csv");
+
+            FileInputStream inputStream = new FileInputStream(file);
+
+            String fullStr = "";
+            int i = 0;
+            while ((i = inputStream.read()) != -1) {
+
+                char ch = (char) i;
+                String str = String.valueOf(ch);
+                //          Log.d("READ", str);
+                fullStr += str;
+
+            }
+            Log.d("READ", fullStr);
+
+            String[] savedParts = fullStr.split("@");
+            Log.d("SAVED PARTS STRING", savedParts[savedParts.length-1]);
+            return savedParts[savedParts.length-1];
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    return "";
 
     }
 
@@ -91,7 +185,7 @@ public class SavePartToBuild extends Fragment {
 
                 char ch = (char) i;
                 String str = String.valueOf(ch);
-                //          Log.d("READ", str);
+                //Log.d("READ", str);
                 fullStr += str;
 
             }
@@ -99,7 +193,7 @@ public class SavePartToBuild extends Fragment {
 
             String[] savedParts = fullStr.split(",");
 
-            for (int z = buildList.size(); z < savedParts.length - 1; z++) {
+            for (int z = buildList.size(); z < savedParts.length; z++) {
                 buildList.add(savedParts[z]);
                 Log.d("BUILD NAME", savedParts[z]);
             }

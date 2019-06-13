@@ -105,7 +105,7 @@ public class BuildsFragment extends Fragment {
 
                                             }
 
-                                            CharSequence cs = userInput.getText().toString() + " , ";
+                                            CharSequence cs = userInput.getText().toString() + ",";
                                             String s = cs.toString();
                                             byte b[] = s.getBytes();
                                             stream.write(b);
@@ -176,7 +176,7 @@ public class BuildsFragment extends Fragment {
 
             String[] savedParts = fullStr.split(",");
 
-            for (int z = buildList.size(); z < savedParts.length - 1; z++) {
+            for (int z = buildList.size(); z < savedParts.length; z++) {
                 File buildFile = new File(getActivity().getFilesDir().getPath() + "/" + savedParts[z] + ".csv");
 
                 buildList.add(new Build(savedParts[z]));

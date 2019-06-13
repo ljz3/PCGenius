@@ -66,6 +66,7 @@ public class SearchInfoPartDisplay extends Fragment {
                 return true;
 
             case R.id.action_add_build:
+                temp();
                 Fragment fragment = new SavePartToBuild();
                 if (fragment != null) {
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
@@ -74,6 +75,62 @@ public class SearchInfoPartDisplay extends Fragment {
                 }
         }
         return super.onOptionsItemSelected(item);
+
+    }
+
+    private void temp() {
+
+        try {
+
+            File file = new File(getActivity().getFilesDir().getPath() + "/temp.csv");
+
+            FileOutputStream stream;
+            // if file doesnt exists, then create it
+            if (!file.exists()) {
+
+                Log.d("EXISTS", "DNE");
+                stream = new FileOutputStream(file);
+
+
+            } else {
+                Log.d("EXISTS", "EXISTS");
+                stream = new FileOutputStream(file, true);
+
+            }
+
+            TextView name = (TextView) getView().findViewById(R.id.partNameDisplay);
+            TextView vendor = (TextView) getView().findViewById(R.id.vendorDisplay);
+            TextView price = (TextView) getView().findViewById(R.id.priceDisplay);
+            TextView bench = (TextView) getView().findViewById(R.id.searchBenchmarkDisplay);
+            CharSequence cs = name.getText() + "," + vendor.getText() + "," + price.getText() + "," + bench.getText() + "@";
+            String s = cs.toString();
+            byte b[] = s.getBytes();
+            stream.write(b);
+
+            stream.close();
+            stream.flush();
+
+            for (int i = 0; i < 100; i++)
+                Log.d("TEST", "SUCCESS");
+
+            FileInputStream inputStream = new FileInputStream(file);
+
+
+            int i = 0;
+            while ((i = inputStream.read()) != -1) {
+
+                char ch = (char) i;
+                String str = String.valueOf(ch);
+                Log.d("READ", str);
+
+            }
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
