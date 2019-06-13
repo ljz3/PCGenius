@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BuildsFragment extends Fragment {
-    protected static List<Build> buildList = new ArrayList<>();
+    public static List<Build> buildList = new ArrayList<>();
     String buildTitle;
 
     @Nullable

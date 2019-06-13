@@ -25,13 +25,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SavePartToBuild extends Fragment {
-    protected static List<Build> buildList = new ArrayList<>();
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        final BuildsAdapter adapter = new BuildsAdapter(getActivity(), -1, buildList);
+
+
+        final BuildsAdapter adapter = new BuildsAdapter(getActivity(), -1, com.example.seth.pc_genius.BuildScreen.BuildsFragment.buildList);
         View view = inflater.inflate(R.layout.save_to_build, container, false);
-        final ListView listView = (ListView) view.findViewById(R.id.list_builds);
+        final ListView listView = (ListView) view.findViewById(R.id.list_add_build);
+        listView.setAdapter(adapter);
         return view;
     }
 
