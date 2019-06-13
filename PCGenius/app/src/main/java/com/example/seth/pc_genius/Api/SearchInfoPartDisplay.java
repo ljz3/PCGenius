@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
+import com.example.seth.pc_genius.SavePartToBuild;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -47,7 +48,7 @@ public class SearchInfoPartDisplay extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-      //  getBenchmark();
+        //  getBenchmark();
     }
 
     @Override
@@ -63,12 +64,16 @@ public class SearchInfoPartDisplay extends Fragment {
             case R.id.action_save_part:
                 savePart();
                 return true;
+
+            case R.id.action_add_build:
+                Fragment fragment = new SavePartToBuild();
+                if (fragment != null) {
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.screen_area, fragment);
+                    ft.commit();
+                }
         }
         return super.onOptionsItemSelected(item);
-
-    }
-
-    private void getBenchmark() {
 
     }
 
@@ -102,7 +107,7 @@ public class SearchInfoPartDisplay extends Fragment {
             TextView vendor = (TextView) getView().findViewById(R.id.vendorDisplay);
             TextView price = (TextView) getView().findViewById(R.id.priceDisplay);
             TextView bench = (TextView) getView().findViewById(R.id.searchBenchmarkDisplay);
-            CharSequence cs = name.getText() + "," + vendor.getText() + "," + price.getText() +  "," + bench.getText() + "@";
+            CharSequence cs = name.getText() + "," + vendor.getText() + "," + price.getText() + "," + bench.getText() + "@";
             String s = cs.toString();
             byte b[] = s.getBytes();
             stream.write(b);
@@ -126,21 +131,18 @@ public class SearchInfoPartDisplay extends Fragment {
             }
 
 
+            //      inputStream.close();
+            //        FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            //      BufferedWriter bw = new BufferedWriter(fw);
+            //    bw.write(content);
+            //  bw.close();
 
 
-
-                //      inputStream.close();
-                //        FileWriter fw = new FileWriter(file.getAbsoluteFile());
-                //      BufferedWriter bw = new BufferedWriter(fw);
-                //    bw.write(content);
-                //  bw.close();
+            Toast.makeText(getActivity(),
+                    "Saved", Toast.LENGTH_LONG).show();
 
 
-                Toast.makeText(getActivity(),
-                        "Saved", Toast.LENGTH_LONG).show();
-
-
-            } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -149,126 +151,123 @@ public class SearchInfoPartDisplay extends Fragment {
     }
 
 
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle
+            savedInstanceState) {
 
-        public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle
-        savedInstanceState){
+
+        View view = inflater.inflate(R.layout.search_part_info_display, container, false);
+        mName = getArguments().getString("Name", "");
+        mDescription = getArguments().getString("Description", "");
+        mPrice = getArguments().getDouble("Price", 0);
+        mImageResourceId = getArguments().getInt("ImageResource", 0);
+        mVendor = getArguments().getString("Vendor", "");
+
+        try {
+            mBitmap = getArguments().getParcelable("BitmapImage");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
-            View view = inflater.inflate(R.layout.search_part_info_display, container, false);
-            mName = getArguments().getString("Name", "");
-            mDescription = getArguments().getString("Description", "");
-            mPrice = getArguments().getDouble("Price", 0);
-            mImageResourceId = getArguments().getInt("ImageResource", 0);
-            mVendor = getArguments().getString("Vendor", "");
+        TextView partDisplay = view.findViewById(R.id.partNameDisplay);
+        partDisplay.setText(mName);
+        TextView descriptionDisplay = view.findViewById(R.id.descriptionDisplay);
+        //descriptionDisplay.setText(mDescription);
+        TextView priceDisplay = view.findViewById(R.id.priceDisplay);
+        priceDisplay.setText(Double.toString(mPrice));
+        TextView vendorDisplay = view.findViewById(R.id.vendorDisplay);
+        vendorDisplay.setText(mVendor);
+        ImageView imageDisplay = view.findViewById(R.id.imageDisplay);
 
+        if (mBitmap != null) {
+            imageDisplay.setImageBitmap(mBitmap);
+        } else {
+            imageDisplay.setImageResource(mImageResourceId);
+        }
+
+
+        Log.i("importantInfo", "test");
+        PartAdapter adapter = new PartAdapter(getActivity(), -1, searchRelatedList);
+        ListView listView = (ListView) view.findViewById(R.id.relatedParts);
+
+        TextView name = (TextView) view.findViewById(R.id.partNameDisplay);
+
+        TextView bench = (TextView) view.findViewById(R.id.searchBenchmarkDisplay);
+
+
+        for (int z = 0; z < 5; z++) {
+            int csv = 0;
+            switch (z) {
+                case 0:
+                    csv = R.raw.gpu;
+                    break;
+                case 1:
+                    csv = R.raw.cpu;
+                    break;
+                case 2:
+                    csv = R.raw.hdd;
+                    break;
+                case 3:
+                    csv = R.raw.ram;
+                    break;
+                case 4:
+                    csv = R.raw.ssd;
+                    break;
+            }
+
+
+            InputStream is = getResources().openRawResource(csv);
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(is, Charset.forName("UTF-8"))
+            );
+
+
+            String line = "";
             try {
-                mBitmap = getArguments().getParcelable("BitmapImage");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+                while ((line = reader.readLine()) != null) {
+                    // Split by ','
+                    String[] tokens = line.split(",");
 
+                    if (name.getText().toString().contains(tokens[3])) {
+                        Log.d("READ", tokens[3]);
 
-            TextView partDisplay = view.findViewById(R.id.partNameDisplay);
-            partDisplay.setText(mName);
-            TextView descriptionDisplay = view.findViewById(R.id.descriptionDisplay);
-            //descriptionDisplay.setText(mDescription);
-            TextView priceDisplay = view.findViewById(R.id.priceDisplay);
-            priceDisplay.setText(Double.toString(mPrice));
-            TextView vendorDisplay = view.findViewById(R.id.vendorDisplay);
-            vendorDisplay.setText(mVendor);
-            ImageView imageDisplay = view.findViewById(R.id.imageDisplay);
-
-            if (mBitmap != null) {
-                imageDisplay.setImageBitmap(mBitmap);
-            } else {
-                imageDisplay.setImageResource(mImageResourceId);
-            }
-
-
-            Log.i("importantInfo", "test");
-            PartAdapter adapter = new PartAdapter(getActivity(), -1, searchRelatedList);
-            ListView listView = (ListView) view.findViewById(R.id.relatedParts);
-
-            getBenchmark();
-            TextView name = (TextView) view.findViewById(R.id.partNameDisplay);
-
-            TextView bench = (TextView) view.findViewById(R.id.searchBenchmarkDisplay);
-
-
-
-            for (int z = 0; z < 5; z++) {
-                int csv = 0;
-                switch (z) {
-                    case 0:
-                        csv = R.raw.gpu;
-                        break;
-                    case 1:
-                        csv = R.raw.cpu;
-                        break;
-                    case 2:
-                        csv = R.raw.hdd;
-                        break;
-                    case 3:
-                        csv = R.raw.ram;
-                        break;
-                    case 4:
-                        csv = R.raw.ssd;
-                        break;
-                }
-
-
-                InputStream is = getResources().openRawResource(csv);
-                BufferedReader reader = new BufferedReader(
-                        new InputStreamReader(is, Charset.forName("UTF-8"))
-                );
-
-
-                String line = "";
-                try {
-                    while ((line = reader.readLine()) != null) {
-                        // Split by ','
-                        String[] tokens = line.split(",");
-
-                        if (name.getText().toString().contains(tokens[3])) {
-                            Log.d("READ", tokens[3]);
-
-                            bench.setText(tokens[5]);
-
-                        }
+                        bench.setText(tokens[5]);
 
                     }
-                } catch (IOException e) {
-                    Log.wtf("MyActivity", "Error reading data file on line " + line, e);
-                    e.printStackTrace();
+
                 }
+            } catch (IOException e) {
+                Log.wtf("MyActivity", "Error reading data file on line " + line, e);
+                e.printStackTrace();
             }
-
-            listView.setAdapter(adapter);
-
-            listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Bundle bundle = new Bundle();
-                    SearchInfoPartDisplay searchInfoPartDisplay = new SearchInfoPartDisplay();
-                    bundle.putString("Name", searchRelatedList.get(position).getmName());
-                    bundle.putString("Description", searchRelatedList.get(position).getmDescription());
-                    bundle.putInt("ImageResource", searchRelatedList.get(position).getmImageResourceId());
-                    bundle.putDouble("Price", searchRelatedList.get(position).getmPrice());
-                    bundle.putParcelable("BitmapImage", searchRelatedList.get(position).getmBitmap());
-                    bundle.putString("Vendor", searchRelatedList.get(position).getmVendor());
-                    searchInfoPartDisplay.setArguments(bundle);
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.screen_area, searchInfoPartDisplay, null);
-                    transaction.addToBackStack(null);
-
-                    transaction.commit();
-
-                }
-            });
-
-            return view;
         }
+
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Bundle bundle = new Bundle();
+                SearchInfoPartDisplay searchInfoPartDisplay = new SearchInfoPartDisplay();
+                bundle.putString("Name", searchRelatedList.get(position).getmName());
+                bundle.putString("Description", searchRelatedList.get(position).getmDescription());
+                bundle.putInt("ImageResource", searchRelatedList.get(position).getmImageResourceId());
+                bundle.putDouble("Price", searchRelatedList.get(position).getmPrice());
+                bundle.putParcelable("BitmapImage", searchRelatedList.get(position).getmBitmap());
+                bundle.putString("Vendor", searchRelatedList.get(position).getmVendor());
+                searchInfoPartDisplay.setArguments(bundle);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.screen_area, searchInfoPartDisplay, null);
+                transaction.addToBackStack(null);
+
+                transaction.commit();
+
+            }
+        });
+
+        return view;
     }
+}
 
 
 
