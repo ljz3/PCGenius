@@ -80,8 +80,6 @@ public class SearchInfoPartDisplay extends Fragment {
 
     private void savePart() {
 
-        // EditText fileNameEdit= (EditText) getActivity().findViewById(R.raw.parts);
-        String fileName = "parts";
         for (int i = 0; i < 100; i++)
             Log.d("PATH IS", getActivity().getFilesDir().getPath());
 

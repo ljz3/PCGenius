@@ -4,12 +4,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,18 +17,19 @@ import android.widget.ListView;
 
 import com.example.seth.pc_genius.BuildObject.Build;
 import com.example.seth.pc_genius.BuildObject.BuildsAdapter;
-import com.example.seth.pc_genius.PartObject.Part;
-import com.example.seth.pc_genius.PartObject.PartAdapter;
 import com.example.seth.pc_genius.R;
-import com.example.seth.pc_genius.SavedPartsScreen.InfoPartDisplay;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BuildsFragment extends Fragment {
-    String buildTitle;
     protected static List<Build> buildList = new ArrayList<>();
-
+    String buildTitle;
 
     @Nullable
     @Override
@@ -88,10 +86,44 @@ public class BuildsFragment extends Fragment {
                                     public void onClick(DialogInterface dialog, int id) {
                                         // get user input and set it to result
                                         // edit text
+
+                                        try {
+
+                                            File file = new File(getActivity().getFilesDir().getPath() + "/builds.csv");
+
+                                            FileOutputStream stream;
+                                            // if file doesnt exists, then create it
+                                            if (!file.exists()) {
+
+                                                Log.d("EXISTS", "DNE");
+                                                stream = new FileOutputStream(file);
+
+
+                                            } else {
+                                                Log.d("EXISTS", "EXISTS");
+                                                stream = new FileOutputStream(file, true);
+
+                                            }
+
+                                            CharSequence cs = userInput.getText().toString() + " , ";
+                                            String s = cs.toString();
+                                            byte b[] = s.getBytes();
+                                            stream.write(b);
+
+                                            stream.close();
+                                            stream.flush();
+
+
+                                        } catch (FileNotFoundException e) {
+                                            e.printStackTrace();
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+                                        readBuild();
                                         buildTitle = userInput.getText().toString();
-                                        buildList.add(new Build(buildTitle));
                                         Log.i("info", "test");
                                         adapter.notifyDataSetChanged();
+
 
                                     }
                                 })
@@ -101,6 +133,7 @@ public class BuildsFragment extends Fragment {
                                         dialog.cancel();
                                     }
                                 });
+
 
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
@@ -112,9 +145,51 @@ public class BuildsFragment extends Fragment {
             }
         });
 
+        readBuild();
+        Log.i("info", "test");
+        adapter.notifyDataSetChanged();
 
         return view;
     }
+
+
+    private void readBuild() {
+
+
+        try {
+
+            File file = new File(getActivity().getFilesDir().getPath() + "/builds.csv");
+
+            FileInputStream inputStream = new FileInputStream(file);
+
+            String fullStr = "";
+            int i = 0;
+            while ((i = inputStream.read()) != -1) {
+
+                char ch = (char) i;
+                String str = String.valueOf(ch);
+                //          Log.d("READ", str);
+                fullStr += str;
+
+            }
+            Log.d("READ", fullStr);
+
+            String[] savedParts = fullStr.split(",");
+
+            for (int z = buildList.size(); z < savedParts.length - 1; z++) {
+
+                buildList.add(new Build(savedParts[z]));
+                Log.d("BUILD NAME", savedParts[z]);
+            }
+
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 
