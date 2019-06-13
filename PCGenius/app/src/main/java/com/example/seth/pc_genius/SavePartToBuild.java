@@ -48,6 +48,8 @@ public class SavePartToBuild extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                buildList.get(position);
+
 
                 /*
                 Bundle bundle = new Bundle();
