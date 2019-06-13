@@ -11,10 +11,10 @@ import com.example.seth.pc_genius.BuildObject.Build;
 
 import java.util.List;
 
-public class SavePartToBuildContents extends ArrayAdapter<Build> {
+public class SavePartToBuildAdapter extends ArrayAdapter<String> {
 
 
-    public SavePartToBuildContents(Context context, int resources, List<Build> locationsList) {
+    public SavePartToBuildAdapter(Context context, int resources, List<String> locationsList) {
         super(context, 0, locationsList);
     }
 
@@ -24,21 +24,16 @@ public class SavePartToBuildContents extends ArrayAdapter<Build> {
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(R.layout.listview_activity, parent, false);
         }
-        Build currentLocation = getItem(position);
+
+        String currentLocation = getItem(position);
+        //Build currentLocation = getItem(position);
 
        /* ImageView imageView = (ImageView) listItemView.findViewById(R.id.listview_image);
         imageView.setImageResource(currentLocation.getmImageResourceId());*/
 
 
         TextView nameTextView = (TextView) listItemView.findViewById(R.id.partItemModel);
-        nameTextView.setText(currentLocation.getmName());
-
-        TextView priceTextView = (TextView) listItemView.findViewById(R.id.partItemPrice);
-        priceTextView.setText(currentLocation.getmPrice() + "$");
-
-        TextView descTextView = (TextView) listItemView.findViewById(R.id.partItemVendor);
-        descTextView.setText(("Description:   " + currentLocation.getmDescription()));
-
+        nameTextView.setText(currentLocation);
 
         return listItemView;
     }

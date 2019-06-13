@@ -36,7 +36,7 @@ public class SavePartToBuild extends Fragment {
 
         readBuild();
 
-        final BuildsAdapter adapter = new BuildsAdapter(getActivity(), -1, com.example.seth.pc_genius.BuildScreen.BuildsFragment.buildList);
+        final SavePartToBuildAdapter adapter = new SavePartToBuildAdapter(getActivity(), -1, buildList);
         View view = inflater.inflate(R.layout.save_to_build, container, false);
         final ListView listView = (ListView) view.findViewById(R.id.list_add_build);
         listView.setAdapter(adapter);
