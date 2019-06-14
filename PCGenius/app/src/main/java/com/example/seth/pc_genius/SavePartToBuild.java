@@ -33,10 +33,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SavePartToBuild extends Fragment {
+    String mName;
+    Double mPrice;
 
     ArrayList<String> buildList = new ArrayList<String>();
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+                mName = getArguments().getString("Name", "");
+                Log.i("SavePartToBuild Name",mName);
+                mPrice = getArguments().getDouble("Price", 0);
 
         readBuild();
 

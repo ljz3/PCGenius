@@ -69,9 +69,15 @@ public class SearchInfoPartDisplay extends Fragment {
                 temp();
                 Fragment fragment = new SavePartToBuild();
                 if (fragment != null) {
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.screen_area, fragment);
-                    ft.commit();
+                    Bundle bundle = new Bundle();
+                SavePartToBuild savePartToBuild = new SavePartToBuild();
+                bundle.putString("Name", mName);
+                bundle.putDouble("Price", mPrice);
+                savePartToBuild.setArguments(bundle);
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.screen_area, savePartToBuild, null);
+                transaction.addToBackStack(null);
+                transaction.commit();
                 }
         }
         return super.onOptionsItemSelected(item);
