@@ -19,7 +19,7 @@ public class Build {
         mDescription = description;
         mPrice = price;
         mParts = parts;
-
+mViewed = true;
     }
 
     public Build(String name) {
@@ -28,6 +28,7 @@ public class Build {
         mDescription = "";
         mPrice = 0.00;
         mParts = new ArrayList();
+        mViewed = true;
 //        mParts.add(new Part("blank", "Motherboard", 0.00, 0, R.drawable.image_icon));
  //       mParts.add(new Part("blank", "CPU", 0.00,0, R.drawable.image_icon));
  //      mParts.add(new Part("blank", "GPU", 0.00,0, R.drawable.image_icon));
@@ -39,6 +40,15 @@ public class Build {
     public void addPart(Part part){
         mParts.add(part);
     }
+
+    public void remPart(int index){
+        mParts.remove(index);
+    }
+
+    public int getSize(){
+        return mParts.size();
+    }
+
 
     public ArrayList<Part> getmParts() {
         return mParts;

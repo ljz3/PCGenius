@@ -58,10 +58,10 @@ public class BuildsFragment extends Fragment {
                 build = buildList.get(position);
                 if(buildList.get(position).getmViewed()) {
                     buildList.add(addPartsToBuild(build));
-                    buildList.remove(position);
                     buildList.get(position).setmViewed(false);
-                }
+                    buildList.remove(position);
 
+                }
                 Bundle bundle = new Bundle();
                 InfoBuildDisplay infoBuildDisplay = new InfoBuildDisplay();
                 bundle.putInt("Position", position);
@@ -266,58 +266,8 @@ public class BuildsFragment extends Fragment {
                 }
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        /*
-        Log.d("ACTUAL BUILD NAME", name.replaceAll("\\s+", ""));
-
-        try {
-
-            File buildFile = new File(getActivity().getFilesDir().getPath() + "/" + name.replaceAll("\\s+", "") + ".csv");
-
-            Log.e("DIRECTORY", getActivity().getFilesDir().getPath() + "/" + name.replaceAll("\\s+", "") + ".csv");
-            FileInputStream inputStream = new FileInputStream(buildFile);
-
-            String fullStr = "";
-            int i = 0;
-            while ((i = inputStream.read()) != -1) {
-
-                char ch = (char) i;
-                String str = String.valueOf(ch);
-                //          Log.d("READ", str);
-                fullStr += str;
-
-            }
-            Log.d("READ", fullStr);
-
-            String[] savedParts = fullStr.split("@");
-
-
-            for (String savedP : savedParts) {
-
-                String[] savedInfo = savedP.split(",");
-                Part part = new Part();
-
-                if (savedInfo.length != 0) {
-                    part.setmModel(savedInfo[0]);
-                    Log.d("ACTUALmodel", savedInfo[0]);
-
-                    part.setmVendor(savedInfo[1]);
-                    Log.d("ACTUALvendor", savedInfo[1]);
-
-                    part.setmPrice(Double.parseDouble(savedInfo[2]));
-                    Log.d("ACTUALprice", savedInfo[2]);
-
-                    part.setmBenchmark(savedInfo[3]);
-                    Log.d("ACTUALbench", savedInfo[3]);
-
-                    build.addPart(part);
-                }
+            for(int m = build.getSize();m<savedParts.length;m--){
+                build.remPart(m);
             }
 
         } catch (FileNotFoundException e) {
@@ -325,7 +275,7 @@ public class BuildsFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        */
+
         return build;
 
     }
