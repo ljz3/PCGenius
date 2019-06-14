@@ -37,7 +37,11 @@ public class BuildsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         getActivity().setTitle("Builds");
 
+        Log.d("BUILDLISTSIZESTART", String.valueOf(buildList.size()));
+
         final BuildsAdapter adapter = new BuildsAdapter(getActivity(), -1, buildList);
+        Log.d("BUILDLISTSIZESTART2", String.valueOf(buildList.size()));
+
         View view = inflater.inflate(R.layout.fragment_builds, container, false);
         final ListView listView = (ListView) view.findViewById(R.id.list_builds);
         listView.setAdapter(adapter);
@@ -170,14 +174,17 @@ public class BuildsFragment extends Fragment {
                 fullStr += str;
 
             }
-            Log.d("READ", fullStr);
+            Log.d("READFULLSTR", fullStr);
 
             String[] buildNames = fullStr.split(",");
 
             Build build;
-            for (int z = buildList.size(); z < buildNames.length; z++) {
+            Log.d("LMAO", String.valueOf(buildList.size()));
+            Log.d("NOWBUILD NAME", buildNames[0]);
+
+            for (int z = 0; z < buildNames.length; z++) {
                 build = new Build(buildNames[z]);
-                buildList.add(addPartsToBuild(build));
+               buildList.add(addPartsToBuild(build));
                 Log.d("NOWBUILD NAME", buildNames[z]);
 
             }
