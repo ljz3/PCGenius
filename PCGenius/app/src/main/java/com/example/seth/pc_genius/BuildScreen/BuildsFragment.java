@@ -236,7 +236,7 @@ public class BuildsFragment extends Fragment {
 
 
                 if(savedInfo.length!=0) {
-                    part.setmModel(savedInfo[0]);
+                    part.setmName(savedInfo[0]);
                     Log.d("model", savedInfo[0]);
 
                     part.setmVendor(savedInfo[1]);
