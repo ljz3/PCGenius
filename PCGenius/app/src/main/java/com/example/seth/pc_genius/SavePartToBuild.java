@@ -74,9 +74,6 @@ public class SavePartToBuild extends Fragment {
             }
         });
 
-
-
-
         return view;
     }
 
@@ -163,8 +160,6 @@ public class SavePartToBuild extends Fragment {
     }
 
     private void readBuild() {
-
-
         try {
 
             File file = new File(getActivity().getFilesDir().getPath() + "/builds.csv");
