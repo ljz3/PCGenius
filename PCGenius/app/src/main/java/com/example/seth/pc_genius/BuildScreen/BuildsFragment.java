@@ -40,7 +40,6 @@ public class BuildsFragment extends Fragment {
         final BuildsAdapter adapter = new BuildsAdapter(getActivity(), -1, buildList);
         View view = inflater.inflate(R.layout.fragment_builds, container, false);
         final ListView listView = (ListView) view.findViewById(R.id.list_builds);
-
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
@@ -155,8 +154,6 @@ public class BuildsFragment extends Fragment {
 
 
     private void readBuild() {
-
-
         try {
 
             File file = new File(getActivity().getFilesDir().getPath() + "/builds.csv");
@@ -183,7 +180,6 @@ public class BuildsFragment extends Fragment {
                 build = new Build(savedParts[z]);
                 buildList.add(addPartsToBuild(build));
                 Log.d("NOWBUILD NAME", savedParts[z]);
-                addPartsToBuild(build);
 
             }
 
@@ -198,9 +194,63 @@ public class BuildsFragment extends Fragment {
     public Build addPartsToBuild(Build build) {
 
         String name = build.getmName();
+        try {
 
+            File file = new File(getActivity().getFilesDir().getPath() + "/" + name + ".csv");
+
+
+            FileInputStream inputStream = new FileInputStream(file);
+
+            String fullStr = "";
+            int i = 0;
+            while ((i = inputStream.read()) != -1) {
+
+                char ch = (char) i;
+                String str = String.valueOf(ch);
+                //          Log.d("READ", str);
+                fullStr += str;
+
+            }
+            Log.d("READ", fullStr);
+
+            String[] savedParts = fullStr.split("@");
+            Log.d("SAVEINFOLENGTH", String.valueOf(savedParts.length));
+
+            for(String savedP:savedParts){
+
+                String[] savedInfo = savedP.split(",");
+                Log.d("SAVEINFOLENGTH", String.valueOf(savedInfo.length));
+
+                Part part = new Part();
+
+
+                if(savedInfo.length!=0) {
+                    part.setmModel(savedInfo[0]);
+                    Log.d("model", savedInfo[0]);
+
+                    part.setmVendor(savedInfo[1]);
+                    Log.d("vendor", savedInfo[1]);
+
+                    part.setmPrice(Double.parseDouble(savedInfo[2]));
+                    Log.d("price", savedInfo[2]);
+
+
+                    part.setmBenchmark(savedInfo[3]);
+                    Log.d("bench", savedInfo[3]);
+
+                    build.addPart(part);
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        /*
         Log.d("ACTUAL BUILD NAME", name.replaceAll("\\s+", ""));
-
 
         try {
 
@@ -251,6 +301,7 @@ public class BuildsFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
         return build;
 
     }

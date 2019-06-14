@@ -105,7 +105,7 @@ public class SavePartToBuild extends Fragment {
 
         }
 
-        CharSequence cs = mName + "," + mVendor + "," +mPrice + "," + 0;
+        CharSequence cs = mName + "," + mVendor + "," +mPrice + "," + 0 + "@";
         String s = cs.toString();
 
         Log.d("CHARSEQUENCE", s);
