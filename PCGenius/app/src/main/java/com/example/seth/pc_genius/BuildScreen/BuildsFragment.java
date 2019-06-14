@@ -182,7 +182,7 @@ public class BuildsFragment extends Fragment {
             Log.d("LMAO", String.valueOf(buildList.size()));
             Log.d("NOWBUILD NAME", buildNames[0]);
 
-            for (int z = 0; z < buildNames.length; z++) {
+            for (int z = buildList.size(); z < buildNames.length; z++) {
                 build = new Build(buildNames[z]);
                buildList.add(addPartsToBuild(build));
                 Log.d("NOWBUILD NAME", buildNames[z]);
