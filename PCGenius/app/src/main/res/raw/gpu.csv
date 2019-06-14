@@ -984,3 +984,6 @@ GPU,none,Nvidia,GeForce 6100,598,0.05,572,https://gpu.userbenchmark.com/SpeedTes
 GPU,none,Nvidia,GeForce 7150M / nForce 630M,599,0.05,220,https://gpu.userbenchmark.com/SpeedTest/10312/NVIDIA-GeForce-7150M--nForce-630M
 GPU,none,Nvidia,GeForce 7025 / nForce 630a,600,0.05,3818,https://gpu.userbenchmark.com/SpeedTest/9258/NVIDIA-GeForce-7025--NVIDIA-nForce-630a
 GPU,none,Nvidia,GeForce 6150SE nForce 430,601,0.05,4600,https://gpu.userbenchmark.com/SpeedTest/7763/NVIDIA-GeForce-6150SE-nForce-430
+GPU,none,Nvidia,GTX 1060,45,65.9,199842,https://gpu.userbenchmark.com/Nvidia-GTX-1060-3GB/Rating/3646
+GPU,08G-P4-6180-KR,EVGA,GTX 1080,12,122,396359,https://gpu.userbenchmark.com/Nvidia-GTX-1080/Rating/3603
+GPU,08G-P4-5173-KR,EVGA,GTX 1070,21,98.1,480799,https://gpu.userbenchmark.com/Nvidia-GTX-1070/Rating/3609

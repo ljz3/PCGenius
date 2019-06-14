@@ -28,7 +28,7 @@ public class InfoPartDisplay extends Fragment {
     private double mPrice;
     private int mImageResourceId;
     private String mVendor;
-    private double mBenchmark;
+    private String mBenchmark;
     private Bitmap mBitmap=null;
 
 
@@ -44,7 +44,7 @@ public class InfoPartDisplay extends Fragment {
         mPrice = getArguments().getDouble("Price", 0);
         mImageResourceId = getArguments().getInt("ImageResource", 0);
         mVendor = getArguments().getString("Vendor","");
-        mBenchmark= getArguments().getDouble("Bench",0);
+        mBenchmark= getArguments().getString("Bench","N/A");
         try {
             mBitmap = getArguments().getParcelable("BitmapImage");
 
@@ -61,7 +61,7 @@ public class InfoPartDisplay extends Fragment {
         priceDisplay.setText(Double.toString(mPrice));
         ImageView imageDisplay = view.findViewById(R.id.partInfoImageDisplay);
         TextView benchmarkDisplay = view.findViewById(R.id.benchmarkDisplay);
-        benchmarkDisplay.setText(Double.toString(mBenchmark));
+        benchmarkDisplay.setText(mBenchmark);
         if(mBitmap!=null){
             imageDisplay.setImageBitmap(mBitmap);
         }else {

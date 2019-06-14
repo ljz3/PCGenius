@@ -205,6 +205,8 @@ public class BuildsFragment extends Fragment {
             }
 
 
+
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -247,7 +249,8 @@ public class BuildsFragment extends Fragment {
 
                 Part part = new Part();
 
-
+                Log.d("BUILDSIZE", String.valueOf(build.getSize()));
+                Log.d("SAVEPARTSLENGTH", String.valueOf(savedParts.length));
                 if(savedInfo.length!=0) {
                     part.setmName(savedInfo[0]);
                     Log.d("model", savedInfo[0]);
@@ -266,7 +269,10 @@ public class BuildsFragment extends Fragment {
                 }
             }
 
-            for(int m = build.getSize();m<savedParts.length;m--){
+
+
+
+            for(int m = savedParts.length;m<=build.getSize()-1;m++){
                 build.remPart(m);
             }
 
