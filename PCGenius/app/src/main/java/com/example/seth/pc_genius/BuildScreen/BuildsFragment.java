@@ -58,6 +58,8 @@ public class BuildsFragment extends Fragment {
                 transaction.addToBackStack(null);
                 transaction.commit();
                 Log.i("info", "item clicked");
+                Log.d("BEFORE", String.valueOf(buildList.size()));
+
                 readBuild();
 
             }
@@ -159,6 +161,7 @@ public class BuildsFragment extends Fragment {
 
     private void readBuild() {
         try {
+            Log.d("LMAO", String.valueOf(buildList.size()));
 
             File file = new File(getActivity().getFilesDir().getPath() + "/builds.csv");
 
@@ -179,7 +182,6 @@ public class BuildsFragment extends Fragment {
             String[] buildNames = fullStr.split(",");
 
             Build build;
-            Log.d("LMAO", String.valueOf(buildList.size()));
             Log.d("NOWBUILD NAME", buildNames[0]);
 
             for (int z = buildList.size(); z < buildNames.length; z++) {
