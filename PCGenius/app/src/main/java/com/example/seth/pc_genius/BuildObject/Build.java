@@ -12,12 +12,14 @@ public class Build {
     private String mDescription;
     private double mPrice;
     private ArrayList<Part> mParts;
+    boolean mViewed;
 
     public Build(String name, String description, double price, ArrayList<Part> parts) {
         mName = name;
         mDescription = description;
         mPrice = price;
         mParts = parts;
+
     }
 
     public Build(String name) {
@@ -64,6 +66,13 @@ public class Build {
 
     public String getmName() {
         return mName;
+    }
+
+    public void setmViewed(boolean viewed) {
+        mViewed = viewed;
+    }
+    public boolean getmViewed() {
+        return mViewed;
     }
 
     public void setmName(String mName) {

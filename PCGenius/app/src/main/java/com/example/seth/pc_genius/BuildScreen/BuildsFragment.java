@@ -45,10 +45,23 @@ public class BuildsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_builds, container, false);
         final ListView listView = (ListView) view.findViewById(R.id.list_builds);
         listView.setAdapter(adapter);
+        Log.d("BUILDLISTSIZESTART3", String.valueOf(buildList.size()));
 
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("BUILDLISTSIZESTART4", String.valueOf(buildList.size()));
+                Log.d("position", String.valueOf(position));
+                Log.d("BUILDLISTSIZESTART5", buildList.get(position).getmName());
+
+                Build build;
+                build = buildList.get(position);
+                if(buildList.get(position).getmViewed()) {
+                    buildList.add(addPartsToBuild(build));
+                    buildList.remove(position);
+                    buildList.get(position).setmViewed(false);
+                }
+
                 Bundle bundle = new Bundle();
                 InfoBuildDisplay infoBuildDisplay = new InfoBuildDisplay();
                 bundle.putInt("Position", position);
