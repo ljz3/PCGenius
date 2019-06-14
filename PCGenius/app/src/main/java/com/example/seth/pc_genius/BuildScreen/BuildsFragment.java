@@ -172,14 +172,13 @@ public class BuildsFragment extends Fragment {
             }
             Log.d("READ", fullStr);
 
-            String[] savedParts = fullStr.split(",");
+            String[] buildNames = fullStr.split(",");
 
             Build build;
-            for (int z = buildList.size(); z < savedParts.length; z++) {
-                File buildFile = new File(getActivity().getFilesDir().getPath() + "/" + savedParts[z] + ".csv");
-                build = new Build(savedParts[z]);
+            for (int z = buildList.size(); z < buildNames.length; z++) {
+                build = new Build(buildNames[z]);
                 buildList.add(addPartsToBuild(build));
-                Log.d("NOWBUILD NAME", savedParts[z]);
+                Log.d("NOWBUILD NAME", buildNames[z]);
 
             }
 
@@ -192,6 +191,9 @@ public class BuildsFragment extends Fragment {
     }
 
     public Build addPartsToBuild(Build build) {
+
+        Log.d("IS CALL", "CALL");
+
 
         String name = build.getmName();
         try {
