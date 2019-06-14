@@ -35,6 +35,7 @@ import java.util.List;
 public class SavePartToBuild extends Fragment {
     String mName;
     Double mPrice;
+    String mVendor;
 
     ArrayList<String> buildList = new ArrayList<String>();
 
@@ -43,6 +44,7 @@ public class SavePartToBuild extends Fragment {
                 mName = getArguments().getString("Name", "");
                 Log.i("SavePartToBuild Name",mName);
                 mPrice = getArguments().getDouble("Price", 0);
+                mVendor = getArguments().getString("Vendor", "");
 
         readBuild();
 
@@ -103,11 +105,10 @@ public class SavePartToBuild extends Fragment {
 
         }
 
-        CharSequence cs = getTemp();
-
-        Log.d("CHARSEQUENCE PRINT", getTemp().toString());
-
+        CharSequence cs = mName + "," + mVendor + "," +mPrice;
         String s = cs.toString();
+
+        Log.d("CHARSEQUENCE", s);
         byte b[] = s.getBytes();
         stream.write(b);
 
@@ -132,38 +133,7 @@ public class SavePartToBuild extends Fragment {
 
     }
 
-    private CharSequence getTemp() {
 
-        try {
-
-            File file = new File(getActivity().getFilesDir().getPath() + "/temp.csv");
-
-            FileInputStream inputStream = new FileInputStream(file);
-
-            String fullStr = "";
-            int i = 0;
-            while ((i = inputStream.read()) != -1) {
-
-                char ch = (char) i;
-                String str = String.valueOf(ch);
-                //          Log.d("READ", str);
-                fullStr += str;
-
-            }
-            Log.d("READ", fullStr);
-
-            String[] savedParts = fullStr.split("@");
-            Log.d("SAVED PARTS STRING", savedParts[savedParts.length-1]);
-            return savedParts[savedParts.length-1];
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    return "";
-
-    }
 
     private void readBuild() {
         try {

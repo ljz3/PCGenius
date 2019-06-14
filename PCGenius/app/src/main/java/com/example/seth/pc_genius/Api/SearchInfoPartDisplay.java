@@ -73,6 +73,7 @@ public class SearchInfoPartDisplay extends Fragment {
                 SavePartToBuild savePartToBuild = new SavePartToBuild();
                 bundle.putString("Name", mName);
                 bundle.putDouble("Price", mPrice);
+                bundle.putString("Vendor", mVendor);
                 savePartToBuild.setArguments(bundle);
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.screen_area, savePartToBuild, null);
