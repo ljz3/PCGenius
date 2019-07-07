@@ -41,10 +41,10 @@ public class SavePartToBuild extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-                mName = getArguments().getString("Name", "");
-                Log.i("SavePartToBuild Name",mName);
-                mPrice = getArguments().getDouble("Price", 0);
-                mVendor = getArguments().getString("Vendor", "");
+        mName = getArguments().getString("Name", "");
+        Log.i("SavePartToBuild Name", mName);
+        mPrice = getArguments().getDouble("Price", 0);
+        mVendor = getArguments().getString("Vendor", "");
 
         readBuild();
 
@@ -59,9 +59,9 @@ public class SavePartToBuild extends Fragment {
 
 
                 try {
-                    saveToBuild(buildList.get(position).replaceAll("\\s+",""));
+                    saveToBuild(buildList.get(position).replaceAll("\\s+", ""));
 
-                    Log.e("SAVEPARTOBUILDCLASSNAME", buildList.get(position).replaceAll("\\s+",""));
+                    Log.e("SAVEPARTOBUILDCLASSNAME", buildList.get(position).replaceAll("\\s+", ""));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -87,9 +87,9 @@ public class SavePartToBuild extends Fragment {
 
     private void saveToBuild(String path) throws IOException {
 
-        Log.d("FILE PATH SAVEBUILD", getActivity().getFilesDir().getPath() + "/" + path +".csv");
+        Log.d("FILE PATH SAVEBUILD", getActivity().getFilesDir().getPath() + "/" + path + ".csv");
 
-        File file = new File(getActivity().getFilesDir().getPath() + "/" + path +".csv");
+        File file = new File(getActivity().getFilesDir().getPath() + "/" + path + ".csv");
 
         FileOutputStream stream;
         // if file doesnt exists, then create it
@@ -105,7 +105,7 @@ public class SavePartToBuild extends Fragment {
 
         }
 
-        CharSequence cs = mName + "," + mVendor + "," +mPrice + "," + 0 + "@";
+        CharSequence cs = mName + "," + mVendor + "," + mPrice + "," + 0 + "@";
         String s = cs.toString();
 
         Log.d("CHARSEQUENCE", s);
@@ -132,7 +132,6 @@ public class SavePartToBuild extends Fragment {
                 "Added to Build", Toast.LENGTH_LONG).show();
 
     }
-
 
 
     private void readBuild() {

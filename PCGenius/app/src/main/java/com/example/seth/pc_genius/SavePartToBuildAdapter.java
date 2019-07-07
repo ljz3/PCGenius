@@ -26,11 +26,6 @@ public class SavePartToBuildAdapter extends ArrayAdapter<String> {
         }
 
         String currentLocation = getItem(position);
-        //Build currentLocation = getItem(position);
-
-       /* ImageView imageView = (ImageView) listItemView.findViewById(R.id.listview_image);
-        imageView.setImageResource(currentLocation.getmImageResourceId());*/
-
 
         TextView nameTextView = (TextView) listItemView.findViewById(R.id.partItemModel);
         nameTextView.setText(currentLocation);
